@@ -1,0 +1,36 @@
+# Database installation
+
+- PgAdmin password: admin
+- Postgres user: postgres
+- Postgres password: postgres
+
+## Requirements
+
+- Docker (https://docs.docker.com/install/)
+- Docker Compose (https://docs.docker.com/compose/install/)
+
+## Pre-installation
+
+In the directory `postgres/entrypoint` make sure that every file has the read permission. If not, run the following command:
+
+```bash
+chmod +r postgres/entrypoint/*
+```
+
+Then the file `postgres/entrypoint/restore.sql` must have the execute permission. If not, run the following command:
+
+```bash
+chmod +x postgres/entrypoint/restore.sql
+```
+
+## Installation
+
+Now we can build and run the development database `dvdrental` with the following command:
+
+```bash
+docker-compose up -d
+```
+
+## Note
+
+Volumes have been unused since they are not necessary for the development database. If you want to use them, uncomment the related lines in the `docker-compose.yml` file.
