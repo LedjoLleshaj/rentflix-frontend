@@ -1,24 +1,21 @@
-<div class="rf-login-container">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Log in</mat-card-title>
+<div class="background-image"></div>
+<div class="card-container">
+  <mat-card class="card">
+    <mat-card-header class="header">
+      <mat-card-title class="title">Login</mat-card-title>
     </mat-card-header>
-    <form>
-      <mat-card-content>
-        <mat-grid-list cols="1">
-          <mat-grid-tile>
-            <mat-form-field>
-              <input matInput placeholder="Username">
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field>
-              <input matInput placeholder="Password">
-            </mat-form-field>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </mat-card-content>
-      <button mat-stroked-button color="accent" class="btn-block">Log in</button>
-    </form>
+    <mat-card-content>
+      <form class="centered-form">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" name="username" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" name="password" />
+        </mat-form-field>
+        <button mat-raised-button class="submit-button">Accedi</button>
+      </form>
+    </mat-card-content>
   </mat-card>
 </div>
