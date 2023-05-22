@@ -1,21 +1,27 @@
-<div class="background-image"></div>
-<div class="card-container">
-  <mat-card class="card">
-    <mat-card-header class="header">
-      <mat-card-title class="title">Login</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <form class="centered-form">
-        <mat-form-field appearance="outline">
-          <mat-label>Username</mat-label>
-          <input matInput type="text" name="username" />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
-          <input matInput type="password" name="password" />
-        </mat-form-field>
-        <button mat-raised-button class="submit-button">Accedi</button>
-      </form>
-    </mat-card-content>
-  </mat-card>
-</div>
+<main>
+  <div class="rf-login-box">
+    <mat-card class="rf-login-card">
+      <mat-card-header>
+        <mat-card-title>
+          <h1>Authentication</h1>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="rf-flex-column-stretch">
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput type="text" name="Username" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" name="Password" />
+          </mat-form-field>
+          <button mat-raised-button class="submit-button">
+            Enter
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</main>
+
