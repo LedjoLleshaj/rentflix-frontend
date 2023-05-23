@@ -1,5 +1,6 @@
-import { ApolloServer } from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
+import { ApolloServer } from '@apollo/server'
+import { startStandaloneServer } from '@apollo/server/standalone'
+
 const books = [
     {
         title: 'The Awakening',
@@ -9,8 +10,7 @@ const books = [
         title: 'City of Glass',
         author: 'Paul Auster',
     },
-];
-
+]
 
 // The GraphQL schema
 const typeDefs = `#graphql
@@ -21,12 +21,12 @@ const typeDefs = `#graphql
   type Query {
     books: [Book]
   }
-`;
+`
 
 const resolvers = {
-    Query:{
+    Query: {
         books: () => books,
-    }
+    },
 }
 
 // Apollo server instance
@@ -35,11 +35,12 @@ const resolvers = {
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-});
+})
 
 // Passing an ApolloServer instance
 const { url } = await startStandaloneServer(server, {
     listen: { port: 4000 },
-});
+})
 
-console.log(`🚀  Server ready at: ${url}`);
+console.log(`🚀  Server ready at: ${url}`)
+
