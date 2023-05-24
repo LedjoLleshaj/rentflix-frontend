@@ -1,4 +1,31 @@
 type Query {
     numberSix: Int!
     numberSeven: Int!
+    filmList: [Film!]!
+}
+
+enum mpaa_rating {
+    G
+    PG
+    PG13
+    R
+    NC17
+}
+
+type Film {
+    film_id: Int!
+    title: String!
+    description: String
+    release_year: Int
+    language: String!
+    rental_duration: Int!
+    rental_rate: Float!
+    length: Int
+    replacement_cost: Float!
+    rating: mpaa_rating
+    last_update: String! #date
+    special_features: [String!]!
+    fulltext: String!
+    categories: [String!]!
+    actors: [String!]!
 }
