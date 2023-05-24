@@ -1,4 +1,4 @@
-const resolvers = {
+export const resolvers = {
     Query: {
         numberSix() {
             return 6;
@@ -8,5 +8,3 @@ const resolvers = {
         },
     },
 };
-
-export default resolvers;

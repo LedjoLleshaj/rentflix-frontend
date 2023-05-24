@@ -1,14 +1,7 @@
-import * as path from 'path';
-
-const directory: string = path.resolve();
-console.log(directory);
 import { ApolloServer } from '@apollo/server';
 import { readFileSync} from "fs";
 import {startStandaloneServer} from "@apollo/server/standalone";
-import resolvers from "./src/resolvers";
-
-
-
+import { resolvers } from './resolvers.js'
 
 function startApolloServer() {
     const schema = readFileSync("src/schema.graphql");
@@ -25,7 +18,7 @@ function startApolloServer() {
     });
 }
 //
-// startApolloServer();
+startApolloServer();
 
 
 
