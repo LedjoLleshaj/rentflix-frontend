@@ -26,6 +26,6 @@ type Film {
     last_update: String! #date
     special_features: [String!]!
     fulltext: String!
-    categories: [String!]!
-    actors: [String!]!
+    #categories: [String!]!
+    #actors: [String!]!
 }

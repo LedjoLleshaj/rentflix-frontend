@@ -1,29 +1,31 @@
+import pg from 'pg'
+
+const { Pool } = pg
+
+const pool = new Pool({
+    user: 'postgres',
+    host: 'localhost',
+    database: 'dvdrental',
+    password: 'postgres',
+    port: 5432,
+})
+
+async function getFilmList(): Promise<[any]> {
+    const response = await pool.query(`SELECT * FROM film`)
+    return response.rows
+}
+
+// const list = await getFilmList()
+// console.log('getFilmList ->', list)
+
 export const resolvers = {
     Query: {
         numberSix() {
-            return 6;
+            return 6
         },
         numberSeven() {
-            return 7;
+            return 7
         },
-        filmList(){
-            return [{
-                film_id: 1,
-                title: "title",
-                description: "description",
-                release_year: 2021,
-                language: "language",
-                rental_duration: 1,
-                rental_rate: 1.0,
-                length: 1,
-                replacement_cost: 1.0,
-                rating: "PG",
-                last_update: "last_update",
-                special_features: ["special_features"],
-                fulltext: "fulltext",
-                categories: ["categories"],
-                actors: ["actors"],
-            }]
-        }
+        filmList: () => getFilmList(),
     },
-};
+}
