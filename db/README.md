@@ -31,6 +31,18 @@ Now we can build and run the development database `dvdrental` with the following
 docker-compose up -d
 ```
 
+## Post-installation
+
+To open the PgAdmin interface, open a browser and go to `http://localhost:5050`. Then login with the following credentials:
+password: postgres
+
+To connect to the database, create a new server with the following credentials:
+
+- host: `your ip address` < using **ifconfig**
+- port: 5432
+- username: postgres
+- password: postgres
+
 ## Note
 
 Volumes have been unused since they are not necessary for the development database. If you want to use them, uncomment the related lines in the `docker-compose.yml` file.
