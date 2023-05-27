@@ -1,8 +1,8 @@
-version: '3.5'
+version: '3.8'
 
 services:
   postgres:
-    container_name: postgres_container
+    container_name: rentflix-postgres
     build:
       context: ./postgres
       dockerfile: Dockerfile
@@ -19,7 +19,7 @@ services:
     restart: unless-stopped
   
   pgadmin:
-    container_name: pgadmin_container
+    container_name: rentflix-pgadmin
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}

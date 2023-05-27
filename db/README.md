@@ -43,6 +43,17 @@ To connect to the database, create a new server with the following credentials:
 - username: postgres
 - password: postgres
 
+## Database postgres
+
+This database is used by the application to store the data, in particular the data about users, in the development mode there are this users:
+
+```text
+username: test_0X (X is a number from 1 to 9)
+password: test
+```
+
+The `customer_id` are the first 9 customers in the database.
+
 ## Note
 
 Volumes have been unused since they are not necessary for the development database. If you want to use them, uncomment the related lines in the `docker-compose.yml` file.
