@@ -1,5 +1,11 @@
 type Query {
-    filmList: [Film!]!
+    login(username: String!, password: String!): TokenResponse!
+    filmList: [Film!]!,
+}
+
+type TokenResponse{
+    result: Boolean!
+    token: String!
 }
 
 enum mpaa_rating {
