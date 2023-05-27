@@ -50,6 +50,7 @@ This database is used by the application to store the data, in particular the da
 ```text
 username: test_0X (X is a number from 1 to 9)
 password: test
+customer_id: X (X is a number from 1 to 9)
 ```
 
 The `customer_id` are the first 9 customers in the database.
