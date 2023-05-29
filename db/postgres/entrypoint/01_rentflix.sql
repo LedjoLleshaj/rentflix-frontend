@@ -4,7 +4,7 @@
 CREATE TABLE public.users (
     username VARCHAR(50) UNIQUE NOT NULL,
     password_md5 CHAR(32) NOT NULL,
-    custumer_id INTEGER NOT NULL
+    customer_id INTEGER NOT NULL
 );
 
 -- Only for testing purposes:
@@ -12,7 +12,7 @@ CREATE TABLE public.users (
 -- password: "test"
 -- TODO: remove this
 INSERT INTO
-        public.users(username, password_md5, custumer_id)
+        public.users(username, password_md5, customer_id)
     VALUES
         ('test_01', '098f6bcd4621d373cade4e832627b4f6', 1),
         ('test_02', '098f6bcd4621d373cade4e832627b4f6', 2),
