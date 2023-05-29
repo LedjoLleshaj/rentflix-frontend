@@ -5,16 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthComponent } from './auth/auth.component';
-import {CustomMaterialModule} from "./material.modules";
-import {MatListModule} from "@angular/material/list";
-import {MatGridListModule} from "@angular/material/grid-list";
+import { CustomMaterialModule } from './material.modules';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './shared/authconfig.interceptor';
+
+import { FilmService } from './shared/film.service';
+
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AuthComponent
-  ],
+  declarations: [AppComponent, AuthComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,8 +25,18 @@ import {MatGridListModule} from "@angular/material/grid-list";
     CustomMaterialModule,
     MatListModule,
     MatGridListModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    FilmService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
