@@ -15,9 +15,12 @@ import { AuthInterceptor } from './shared/authconfig.interceptor';
 import { FilmService } from './shared/film.service';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { LayoutComponent } from './layout/layout.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
-  declarations: [AppComponent, AuthComponent],
+  declarations: [AppComponent, AuthComponent, LayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -28,6 +31,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    MatSidenavModule,
+    MatIconModule,
   ],
   providers: [
     {

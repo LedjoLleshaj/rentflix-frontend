@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './shared/auth.guard';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import {AuthComponent} from "./auth/auth.component";
+import {LayoutComponent} from "./layout/layout.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/log-in', pathMatch: 'full' },
-  { path: 'log-in', component: AuthComponent },
-  { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [AuthGuard] },
+  { path: '', component: LayoutComponent },
+  { path: 'log-in', component: AuthComponent }
 ];
 
 @NgModule({

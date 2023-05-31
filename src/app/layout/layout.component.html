@@ -1,0 +1,22 @@
+<mat-toolbar color='primary' *ngIf='mobileQuery.matches'>
+  <button mat-icon-button (click)='onToggleSidenav()'>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h2>Rentflix</h2>
+</mat-toolbar>
+
+<mat-sidenav-container style='height: calc(100vh - 65px); !important;'>
+  <mat-sidenav
+    [opened]='navOpen || !mobileQuery.matches'
+    [mode]="mobileQuery.matches ? 'over' : 'side'"
+    [style.marginTop.px]='mobileQuery.matches ? 56 : 0'
+    [fixedInViewport]='mobileQuery.matches'>
+    <mat-nav-list>
+      <a mat-list-item routerLink='.' *ngFor='let nav of fillerNav'>{{nav}}</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <p>in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </mat-sidenav-content>
+</mat-sidenav-container>
