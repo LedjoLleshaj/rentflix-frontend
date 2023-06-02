@@ -18,7 +18,6 @@ import { LayoutComponent } from './layout/layout.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { GraphQLModule } from './graphql.module';
-import { AuthService } from './shared/auth.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
@@ -39,9 +38,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     GraphQLModule,
     FormsModule
   ],
-  providers: [
-    AuthService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

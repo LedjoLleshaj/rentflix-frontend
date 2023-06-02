@@ -6,12 +6,12 @@ import { LS_AUTH_TOKEN } from './constants';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard {
+export class PublicGuard {
   constructor(private router: Router) {}
 
   canActivate(): boolean {
-    if (localStorage.getItem(LS_AUTH_TOKEN) === null) {
-      this.router.navigate(['/login']);
+    if (localStorage.getItem(LS_AUTH_TOKEN) !== null) {
+      this.router.navigate(['/']);
       return false;
     }
     return true;
