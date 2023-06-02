@@ -17,8 +17,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LayoutComponent } from './layout/layout.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
-import {MatSidenavModule} from "@angular/material/sidenav";
-import {MatIconModule} from "@angular/material/icon";
 import { GraphQLModule } from './graphql.module';
 import { AuthService } from './shared/auth.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -39,10 +37,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatIconModule,
     MatSnackBarModule,
     GraphQLModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [
-    AuthService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
