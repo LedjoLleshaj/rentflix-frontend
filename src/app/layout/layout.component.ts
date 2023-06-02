@@ -8,8 +8,6 @@ import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 })
 export class LayoutComponent {
   mobileQuery: MediaQueryList;
-  navOpen: boolean = false;
-
   fillerNav = ['Nav 1'];
 
 
@@ -25,7 +23,4 @@ export class LayoutComponent {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  onToggleSidenav() {
-    this.navOpen = true;
-  }
 }
