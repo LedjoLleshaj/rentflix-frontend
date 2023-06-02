@@ -1,0 +1,14 @@
+<h4 class='mv3'>Login</h4>
+<div class='flex flex-column'>
+  <input
+    [(ngModel)]="username"
+    type="text"
+    placeholder="Username">
+  <input
+    [(ngModel)]="password"
+    type="password"
+    placeholder="Password">
+</div>
+<div class='flex mt3'>
+  <button mat-flat-button color="primary" (click)="confirm()">Login</button>
+</div>
