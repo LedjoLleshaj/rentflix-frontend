@@ -16,8 +16,8 @@ import { FilmService } from './shared/film.service';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LayoutComponent } from './layout/layout.component';
-import {MatSidenavModule} from "@angular/material/sidenav";
-import {MatIconModule} from "@angular/material/icon";
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [AppComponent, AuthComponent, LayoutComponent],
@@ -32,16 +32,17 @@ import {MatIconModule} from "@angular/material/icon";
     ReactiveFormsModule,
     FormsModule,
     MatSidenavModule,
-    MatIconModule,
+    MatIconModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true,
+      multi: true
     },
-    FilmService,
+    FilmService
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}
