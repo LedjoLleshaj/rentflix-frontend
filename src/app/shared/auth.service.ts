@@ -1,65 +1,47 @@
-import { Injectable } from '@angular/core';
-import { User } from './user';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
-@Injectable({
-  providedIn: 'root',
-})
+import {Injectable} from '@angular/core';
+import {LS_AUTH_TOKEN, LS_USER_ID} from './constants';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+@Injectable()
 export class AuthService {
-  endpoint: string = 'http://localhost:4000/api';
-  headers = new HttpHeaders().set('Content-Type', 'application/json');
-  currentUser = {};
-  constructor(private http: HttpClient, public router: Router) {}
-  // Sign-up
-  signUp(user: User): Observable<any> {
-    let api = `${this.endpoint}/register-user`;
-    return this.http.post(api, user).pipe(catchError(this.handleError));
+  // private userId: string = null;
+
+  private _isAuthenticated = new BehaviorSubject(false);
+
+  constructor() {
   }
-  // Sign-in
-  signIn(user: User) {
-    return this.http.post<any>(`${this.endpoint}/signin`, user).subscribe((res: any) => {
-      localStorage.setItem('access_token', res.token);
-      this.getUserProfile(res._id).subscribe((res) => {
-        this.currentUser = res;
-        this.router.navigate(['user-profile/' + res.msg._id]);
-      });
-    });
+
+  // Providing a observable to listen the authentication state
+  get isAuthenticated(): Observable<boolean> {
+    return this._isAuthenticated.asObservable();
   }
-  getToken() {
-    return localStorage.getItem('access_token');
+
+  setUserId(id: string) {
+    // this.userId = id;
+
+    // Dispatching to all listeners that the user is authenticated
+    this._isAuthenticated.next(true);
   }
-  get isLoggedIn(): boolean {
-    let authToken = localStorage.getItem('access_token');
-    return authToken !== null ? true : false;
+
+  saveUserData(token: string) {
+    localStorage.setItem(LS_AUTH_TOKEN, token);
   }
-  doLogout() {
-    let removeToken = localStorage.removeItem('access_token');
-    if (removeToken == null) {
-      this.router.navigate(['log-in']);
-    }
+
+  logout() {
+    // Removing user data from local storage and the service
+    localStorage.removeItem(LS_USER_ID);
+    localStorage.removeItem(LS_AUTH_TOKEN);
+    // this.userId = null;
+
+    // Dispatching to all listeners that the user is not authenticated
+    this._isAuthenticated.next(false);
   }
-  // User profile
-  getUserProfile(id: any): Observable<any> {
-    let api = `${this.endpoint}/user-profile/${id}`;
-    return this.http.get(api, { headers: this.headers }).pipe(
-      map((res) => {
-        return res || {};
-      }),
-      catchError(this.handleError)
-    );
-  }
-  // Error
-  handleError(error: HttpErrorResponse) {
-    let msg = '';
-    if (error.error instanceof ErrorEvent) {
-      // client-side error
-      msg = error.error.message;
-    } else {
-      // server-side error
-      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    return throwError(msg);
-  }
+
+  // autoLogin() {
+  //   const id = localStorage.getItem(LS_USER_ID);
+
+  //   if (id) {
+  //     this.setUserId(id);
+  //   }
+  // }
 }
