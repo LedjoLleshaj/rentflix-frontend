@@ -4,17 +4,20 @@
     [mode]="mobileQuery.matches ? 'over' : 'side'"
     role='navigation'
     fixedInViewport='true'>
-    <div class='rf-flex-end'>
+    <div class='rf-flex-end' *ngIf='mobileQuery.matches'>
       <button mat-icon-button aria-label='Close menu' (click)='rfnav.toggle()'>
         <mat-icon>close</mat-icon>
       </button>
     </div>
 
-    <mat-list-item>
-      <mat-icon matListItemIcon>account_circle</mat-icon>
-      <mat-list-item>
-      </mat-list-item>
-    </mat-list-item>
+    <div class='rf-d-flex rf-justify-center'>
+      <mat-icon>account_circle</mat-icon>
+      <div>
+        <div>Username</div>
+        <div>Surname Name</div>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
     <mat-nav-list>
       <mat-list-item [activated]='true'>
         <mat-icon matListItemIcon>movies</mat-icon>
