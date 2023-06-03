@@ -63,3 +63,9 @@ body {
 .rf-h-full {
   height: 100% !important;
 }
+
+.rf-flex-end {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: end !important;
+}
