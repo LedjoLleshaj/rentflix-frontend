@@ -19,9 +19,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { GraphQLModule } from './graphql.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FilmViewComponent } from './film-view/film-view.component';
+import { HistoryViewComponent } from './history-view/history-view.component';
 
 @NgModule({
-  declarations: [AppComponent, LayoutComponent, LoginComponent],
+  declarations: [AppComponent, LayoutComponent, LoginComponent, FilmViewComponent, HistoryViewComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

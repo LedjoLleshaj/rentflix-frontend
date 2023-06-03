@@ -1,22 +1,23 @@
-<mat-toolbar *ngIf='mobileQuery.matches' class='mat-elevation-z1'>
-  <button mat-icon-button (click)='rfnav.toggle()' aria-label='Open menu'>
-    <mat-icon>menu</mat-icon>
-  </button>
-  <h2>Rentflix</h2>
-</mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav
     #rfnav
     [mode]="mobileQuery.matches ? 'over' : 'side'"
-    [style.marginTop.px]='mobileQuery.matches ? 56 : 0'
+    role='navigation'
     fixedInViewport='true'>
-    <mat-list-item>
-      <mat-icon matListItemIcon>account_circle</mat-icon>
-      <mat-list-item>
+    <div class='rf-flex-end' *ngIf='mobileQuery.matches'>
+      <button mat-icon-button aria-label='Close menu' (click)='rfnav.toggle()'>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
 
-      </mat-list-item>
-
-    </mat-list-item>
+    <div class='rf-d-flex rf-justify-center'>
+      <mat-icon>account_circle</mat-icon>
+      <div>
+        <div>Username</div>
+        <div>Surname Name</div>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
     <mat-nav-list>
       <mat-list-item [activated]='true'>
         <mat-icon matListItemIcon>movies</mat-icon>
@@ -29,13 +30,13 @@
     </mat-nav-list>
   </mat-sidenav>
 
-  <mat-sidenav-content style='height: calc(100vh - 65px); !important;'>
-    <mat-toolbar class='mat-elevation-z1' *ngIf='!mobileQuery.matches'>
+  <mat-sidenav-content style='height: calc(100vh - 65px); !important;' role='region'>
+    <mat-toolbar class='mat-elevation-z1'>
       <button mat-icon-button (click)='rfnav.toggle()'>
         <mat-icon>menu</mat-icon>
       </button>
       <h2>Rentflix</h2>
     </mat-toolbar>
-    <p>In culpa qui officia deserunt mollit anim id est laborum.</p>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
