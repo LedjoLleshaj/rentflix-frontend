@@ -20,9 +20,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { GraphQLModule } from './graphql.module';
 import { AuthService } from './shared/auth.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FilmViewComponent } from './film-view/film-view.component';
 
 @NgModule({
-  declarations: [AppComponent, LayoutComponent, LoginComponent],
+  declarations: [AppComponent, LayoutComponent, LoginComponent, FilmViewComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
