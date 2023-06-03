@@ -18,7 +18,6 @@ import { LayoutComponent } from './layout/layout.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { GraphQLModule } from './graphql.module';
-import { AuthService } from './shared/auth.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FilmViewComponent } from './film-view/film-view.component';
 import { HistoryViewComponent } from './history-view/history-view.component';
@@ -41,9 +40,7 @@ import { HistoryViewComponent } from './history-view/history-view.component';
     GraphQLModule,
     FormsModule
   ],
-  providers: [
-    AuthService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
