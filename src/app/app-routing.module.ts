@@ -4,12 +4,14 @@ import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './shared/auth.guard';
 import { FilmViewComponent } from './film-view/film-view.component';
+import { HistoryViewComponent } from './history-view/history-view.component';
 
 const routes: Routes = [
   {
     path: '', component: LayoutComponent,
     children: [
-      { path: '', component: FilmViewComponent }
+      { path: '', component: FilmViewComponent },
+      { path: 'history', component: HistoryViewComponent }
     ]
   },
   { path: 'login', component: LoginComponent }
