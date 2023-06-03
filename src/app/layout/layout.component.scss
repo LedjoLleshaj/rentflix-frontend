@@ -1,0 +1,25 @@
+.rf-sidenav {
+  mat-icon {
+    margin-right: 1.2rem !important;
+  }
+}
+
+div.rf-avatar-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 0.7rem;
+  margin: 0.7rem 0;
+
+  i {
+    font-size: 2.3rem;
+    margin-right: 0.7rem;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    padding: 0.2rem 0;
+  }
+
+}
