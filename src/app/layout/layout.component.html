@@ -3,11 +3,11 @@
     #rfnav
     [mode]="mobileQuery.matches ? 'over' : 'side'"
     [style.width]='mobileQuery.matches ? "215px" : "250px"'
-    role='navigation'
     class='rf-sidenav'
+    role='region'
     fixedInViewport='true'>
     <div class='rf-d-flex rf-justify-end' *ngIf='mobileQuery.matches'>
-      <button mat-icon-button aria-label='Close menu' (click)='rfnav.toggle()'>
+      <button mat-icon-button aria-label='Close sidenav' (click)='rfnav.toggle()'>
         <mat-icon>close</mat-icon>
       </button>
     </div>
@@ -21,30 +21,39 @@
     </div>
     <mat-divider></mat-divider>
     <mat-nav-list>
-      <mat-list-item
-        [activated]="this.router.url==='/'"
-        (click)='this.router.navigate([""])'
+      <button mat-list-item
+              aria-label='Open movies view'
+              style='border:none; text-align: left'
+              [activated]="this.router.url==='/'"
+              (click)='this.router.navigate([""])'
       >
         <mat-icon matListItemIcon>movies</mat-icon>
         <div matListItemTitle>Movies</div>
-      </mat-list-item>
-      <mat-list-item
-        [activated]="this.router.url==='/history'"
-        (click)='this.router.navigate(["/history"])'
+      </button>
+      <button mat-list-item
+              aria-label='Open history view '
+
+              style='border:none; text-align: left'
+              [activated]="this.router.url==='/history'"
+              (click)='this.router.navigate(["/history"])'
       >
         <mat-icon matListItemIcon>history</mat-icon>
         <div matListItemTitle>History</div>
-      </mat-list-item>
+      </button>
     </mat-nav-list>
   </mat-sidenav>
 
-  <mat-sidenav-content style='height: calc(100vh); !important;' role='region'>
+  <mat-sidenav-content style='height: calc(100vh); !important;'
+                       role='main'>
     <mat-toolbar class='mat-elevation-z1'>
-      <button mat-icon-button (click)='rfnav.toggle()'>
+      <button mat-icon-button (click)='rfnav.toggle()'
+              [attr.aria-label]="rfnav.opened ? 'Close sidenav' : 'Open sidenav'"
+      >
         <mat-icon>menu</mat-icon>
       </button>
       <h1 style='margin:0'>Rentflix</h1>
     </mat-toolbar>
     <router-outlet></router-outlet>
+
   </mat-sidenav-content>
 </mat-sidenav-container>
