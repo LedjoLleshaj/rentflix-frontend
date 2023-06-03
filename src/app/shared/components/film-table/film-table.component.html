@@ -1,0 +1,66 @@
+<h2>Ciao table</h2>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table">
+  <!-- title Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef class="text-align-center">Title</th>
+    <td mat-cell class="text-align-center" *matCellDef="let film">{{ film.title }}</td>
+  </ng-container>
+
+  <!-- year Column -->
+  <ng-container matColumnDef="year">
+    <th class="text-align-center" mat-header-cell *matHeaderCellDef>Year</th>
+    <td class="text-align-center" mat-cell *matCellDef="let film">{{ film.year }}</td>
+  </ng-container>
+
+  <!-- rating Column -->
+  <ng-container matColumnDef="rating">
+    <th class="text-align-center" mat-header-cell *matHeaderCellDef>Rating</th>
+    <td class="text-align-center" mat-cell *matCellDef="let film">{{ film.rating }}</td>
+  </ng-container>
+
+  <!-- category Column -->
+  <ng-container matColumnDef="category">
+    <th class="text-align-center" mat-header-cell *matHeaderCellDef>Category</th>
+    <td class="text-align-center" mat-cell *matCellDef="let film">{{ film.category }}</td>
+  </ng-container>
+
+  <!-- language Column -->
+  <ng-container matColumnDef="language">
+    <th class="text-align-center" mat-header-cell *matHeaderCellDef>Language</th>
+    <td class="text-align-center" mat-cell *matCellDef="let film">{{ film.language }}</td>
+  </ng-container>
+
+  <!-- rental_cost Column -->
+  <ng-container matColumnDef="rental_cost">
+    <th class="text-align-center" mat-header-cell *matHeaderCellDef>Rental cost</th>
+    <td class="text-align-center" mat-cell *matCellDef="let film">{{ film.rental_cost }}</td>
+  </ng-container>
+
+  <!-- rent movie button -->
+  <ng-container matColumnDef="rent">
+    <th class="text-align-center" mat-header-cell *matHeaderCellDef>Rent a movie</th>
+    <td class="text-align-center" mat-cell *matCellDef="let film">
+      <button mat-raised-button class="rounded-button" color="primary" (click)="rentMovie(film)">
+        Rent this movie
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+    mat-row
+    (click)="clickedRows.has(row) ? clickedRows.delete(row) : clickedRows.add(row)"
+    [class.row-is-clicked]="clickedRows.has(row)"
+    *matRowDef="let row; columns: displayedColumns"
+  ></tr>
+</table>
+
+<!-- <div>
+  <h3>Click Log</h3>
+</div>
+
+<div *ngIf="!clickedRows.size">Clicked rows will be logged here</div>
+
+<ul>
+  <li *ngFor="let clickedRow of clickedRows">Clicked on {{ clickedRow.title }}</li>
+</ul> -->

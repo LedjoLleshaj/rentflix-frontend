@@ -1,0 +1,31 @@
+.table {
+  width: 100%;
+}
+
+.rounded-button {
+  border-radius: 24px;
+  width: 60%;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+  background-color: #d1cdea;
+}
+
+.row-is-clicked {
+  font-weight: bold;
+}
+
+.colored-text {
+  color: #4b0082;
+}
