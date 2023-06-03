@@ -22,6 +22,7 @@ import { AuthService } from './shared/auth.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FilmViewComponent } from './film-view/film-view.component';
 import { HistoryViewComponent } from './history-view/history-view.component';
+import { FilmTableComponent } from './shared/components/film-table/film-table.component';
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent, LoginComponent, FilmViewComponent, HistoryViewComponent],
@@ -39,12 +40,10 @@ import { HistoryViewComponent } from './history-view/history-view.component';
     MatIconModule,
     MatSnackBarModule,
     GraphQLModule,
-    FormsModule
+    FormsModule,
+    FilmTableComponent,
   ],
-  providers: [
-    AuthService
-  ],
-  bootstrap: [AppComponent]
+  providers: [AuthService],
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
