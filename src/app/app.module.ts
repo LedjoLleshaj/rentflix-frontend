@@ -22,7 +22,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FilmViewComponent } from './film-view/film-view.component';
 import { HistoryViewComponent } from './history-view/history-view.component';
 import { FilmTableComponent } from './shared/components/film-table/film-table.component';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [AppComponent, LayoutComponent, LoginComponent, FilmViewComponent, HistoryViewComponent],
   imports: [
@@ -40,9 +40,10 @@ import { FilmTableComponent } from './shared/components/film-table/film-table.co
     MatSnackBarModule,
     GraphQLModule,
     FormsModule,
+    MatPaginatorModule,
     FilmTableComponent,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

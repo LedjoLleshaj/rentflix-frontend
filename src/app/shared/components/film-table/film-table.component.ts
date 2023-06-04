@@ -1,23 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { Apollo } from 'apollo-angular';
-import { FILMLIST_QUERY, FilmListModel } from 'src/app/graphql/film';
+import { FILMLIST_QUERY, FilmListModel, FilmModel } from 'src/app/graphql/film';
+import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-film-table',
   templateUrl: './film-table.component.html',
   styleUrls: ['./film-table.component.scss'],
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, NgIf, NgFor],
+  imports: [MatTableModule, MatButtonModule, MatPaginatorModule, NgIf, NgFor],
 })
 export class FilmTableComponent implements OnInit {
   displayedColumns: string[] = ['title', 'year', 'rating', 'category', 'language', 'rental_cost', 'rent'];
-  dataSource: any = [];
-  clickedRows = new Set<filmList>();
+  dataSource: FilmModel[] = [];
+  clickedRows = new Set<FilmModel>();
+  paginatedData: FilmModel[] = [];
 
   constructor(private apollo: Apollo) {}
+  @ViewChild(MatPaginatorModule) paginator!: MatPaginatorModule;
 
   ngOnInit() {
     this.apollo
@@ -27,19 +30,21 @@ export class FilmTableComponent implements OnInit {
       .subscribe(({ data }) => {
         console.log(data);
         this.dataSource = data.filmList;
+        this.paginatedData = this.dataSource.slice(0, 10);
       });
   }
 
   rentMovie(row: any) {
     console.log(row.title, row.year);
   }
-}
 
-export interface filmList {
-  title: string;
-  year: number;
-  rating: string;
-  category: string;
-  language: string;
-  cost: number;
+  nextPage(event: PageEvent) {
+    const startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+    if (endIndex > this.dataSource.length) {
+      endIndex = this.dataSource.length;
+    }
+    this.paginatedData = this.dataSource.slice(startIndex, endIndex);
+    console.log(this.paginatedData);
+  }
 }
