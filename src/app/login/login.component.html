@@ -1,14 +1,16 @@
-<h4 class='mv3'>Login</h4>
-<div class='flex flex-column'>
-  <input
-    [(ngModel)]="username"
-    type="text"
-    placeholder="Username">
-  <input
-    [(ngModel)]="password"
-    type="password"
-    placeholder="Password">
-</div>
-<div class='flex mt3'>
-  <button mat-flat-button color="primary" (click)="confirm()">Login</button>
+<div class="container">
+  <mat-card class="mat-elevation-z8">
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+      <form>
+        <mat-form-field>
+          <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+        </mat-form-field>
+        <button mat-flat-button color="primary" (click)="confirm()">Login</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>

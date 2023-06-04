@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
-import { AuthService } from '../shared/auth.service';
 import { CreateUserQueryResponse, LOGIN_QUERY } from '../graphql/login';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LS_AUTH_TOKEN } from '../shared/constants';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   password: string = '';
 
   constructor(private router: Router,
-              private authService: AuthService,
               private apollo: Apollo,
               private snackBar: MatSnackBar
   ) {
@@ -33,7 +32,7 @@ export class LoginComponent implements OnInit {
       }
     }).subscribe({
       next: ({ data }) => {
-        this.authService.saveUserData(data.login.token);
+        localStorage.setItem(LS_AUTH_TOKEN, data.login.token);
         this.router.navigate(['/']);
       },
       error: (error) => {

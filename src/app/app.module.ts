@@ -18,7 +18,6 @@ import { LayoutComponent } from './layout/layout.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { GraphQLModule } from './graphql.module';
-import { AuthService } from './shared/auth.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FilmViewComponent } from './film-view/film-view.component';
 import { HistoryViewComponent } from './history-view/history-view.component';
@@ -43,7 +42,7 @@ import { FilmTableComponent } from './shared/components/film-table/film-table.co
     FormsModule,
     FilmTableComponent,
   ],
-  providers: [AuthService],
-  bootstrap: [AppComponent],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

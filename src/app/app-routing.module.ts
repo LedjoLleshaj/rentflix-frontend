@@ -5,14 +5,16 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './shared/auth.guard';
 import { FilmViewComponent } from './film-view/film-view.component';
 import { HistoryViewComponent } from './history-view/history-view.component';
+import { PublicGuard } from './shared/public.guard';
 
 const routes: Routes = [
   {
     path: '', component: LayoutComponent,
     children: [
-      { path: '', component: FilmViewComponent },
+      { path: '', component: FilmViewComponent, },
       { path: 'history', component: HistoryViewComponent }
-    ]
+    ],
+    canActivate: [PublicGuard]
   },
   { path: 'login', component: LoginComponent }
 ];
