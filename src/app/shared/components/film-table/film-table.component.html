@@ -81,17 +81,14 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr
-    mat-row
-    (click)="clickedRows.has(row) ? clickedRows.delete(row) : clickedRows.add(row)"
-    [class.row-is-clicked]="clickedRows.has(row)"
-    *matRowDef="let row; columns: displayedColumns"
-  ></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
 <mat-paginator
+  class="mat-elevation-z1"
   [length]="this.dataSource.length"
   [pageSize]="10"
   [pageSizeOptions]="[5, 10, 25, 50]"
   showFirstLastButtons
   (page)="nextPage($event)"
+  aria-label="Pagination Navigation"
 ></mat-paginator>
