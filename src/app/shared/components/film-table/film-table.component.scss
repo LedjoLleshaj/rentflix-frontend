@@ -1,31 +1,15 @@
-.table {
-  width: 100%;
+table {
+  button {
+    border-radius: 8px;
+  }
+
 }
 
-.rounded-button {
-  border-radius: 24px;
-  width: 60%;
+.rf-table-row {
+  border-bottom: 1px solid #d1cdea;
 }
 
-.text-align-center {
-  text-align: center;
-}
-
-.mat-mdc-row .mat-mdc-cell {
-  border-bottom: 1px solid transparent;
-  border-top: 1px solid transparent;
-  cursor: pointer;
-}
-
-.mat-mdc-row:hover .mat-mdc-cell {
-  border-color: currentColor;
-  background-color: #d1cdea;
-}
-
-.row-is-clicked {
-  font-weight: bold;
-}
-
-.colored-text {
-  color: #4b0082;
+.mat-mdc-row:hover {
+  cursor: pointer !important;
+  background-color: #d1cdea !important;
 }
