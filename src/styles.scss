@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
@@ -17,39 +16,90 @@ $rf-default-theme: mat.define-light-theme((
   color: (
     primary: mat.define-palette(mat.$indigo-palette),
     accent: mat.define-palette(mat.$pink-palette, A200, A100, A400),
-    warn: mat.define-palette(mat.$red-palette),
-  )
+    warn: mat.define-palette(mat.$red-palette)
+  ),
+  typography: mat.define-typography-config(),
+  density: 0
+));
+
+$rf-dark-theme: mat.define-dark-theme((
+  color: (
+    primary: mat.define-palette(mat.$cyan-palette),
+    accent: mat.define-palette(mat.$blue-grey-palette, A200, A100, A400),
+    warn: mat.define-palette(mat.$amber-palette),
+  ),
+  typography: mat.define-typography-config(),
+  density: 0
 ));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
+@include mat.typography-hierarchy($rf-default-theme);
+
 @include mat.all-component-themes($rf-default-theme);
 
-.rf-dark-theme{
+.rf-dark-theme {
+  @include mat.typography-hierarchy($rf-dark-theme);
   @include mat.all-component-colors(
-    mat.define-dark-theme((
-      color: (
-        primary: mat.define-palette(mat.$cyan-palette),
-        accent: mat.define-palette(mat.$blue-grey-palette, A200, A100, A400),
-        warn: mat.define-palette(mat.$amber-palette),
-      )
-    ))
+      $rf-dark-theme
   );
 }
 
-/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body {
+html, body {
+  height: 100%;
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  color: #4a4a4a !important;
 }
 
+// custom material components
 
-.rf-flex-column-stretch {
+mat-card {
+  border-radius: 16px !important;
+}
+
+// rentflix tags
+
+.rf-w-full {
+  width: 100% !important;
+}
+
+.rf-h-full {
+  height: 100% !important;
+}
+
+// flex tags
+
+.rf-d-flex {
+  display: flex;
+}
+
+.rf-d-flex-col {
   display: flex;
   flex-direction: column;
+}
+
+.rf-items-center {
+  align-items: center;
+}
+
+.rf-items-stretch {
   align-items: stretch;
+}
+
+.rf-items-end {
+  align-items: end;
+}
+
+.rf-justify-center {
+  justify-content: center;
+}
+
+.rf-justify-end {
+  justify-content: flex-end;
+}
+
+// margin tags
+
+.rf-m-0 {
+  margin: 0 !important;
 }

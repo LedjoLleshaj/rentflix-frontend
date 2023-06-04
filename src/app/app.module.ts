@@ -4,20 +4,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthComponent } from './auth/auth.component';
+import { LoginComponent } from './login/login.component';
 import { CustomMaterialModule } from './material.modules';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './shared/authconfig.interceptor';
-
-import { FilmService } from './shared/film.service';
+// import { AuthInterceptor } from './shared/authconfig.interceptor';
+// import { FilmService } from './shared/film.service';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { LayoutComponent } from './layout/layout.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { GraphQLModule } from './graphql.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FilmViewComponent } from './film-view/film-view.component';
+import { HistoryViewComponent } from './history-view/history-view.component';
 
 @NgModule({
-  declarations: [AppComponent, AuthComponent],
+  declarations: [AppComponent, LayoutComponent, LoginComponent, FilmViewComponent, HistoryViewComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -28,15 +34,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatSnackBarModule,
+    GraphQLModule,
+    FormsModule
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
-    FilmService,
-  ],
-  bootstrap: [AppComponent],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}
