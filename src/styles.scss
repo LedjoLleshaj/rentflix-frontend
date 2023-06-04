@@ -108,3 +108,72 @@ mat-card {
 .rf-text-center {
   text-align: center !important;
 }
+
+
+// zoom tags
+div.rf-zoom {
+  z-index: 1;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 1rem;
+  right: 1rem;
+
+  p {
+    margin: 0 10px !important;
+  }
+}
+
+.rf-zoom-80 {
+  zoom: 80%;
+}
+
+.rf-zoom-90 {
+  zoom: 90%;
+}
+
+.rf-zoom-100 {
+  zoom: 100%;
+}
+
+.rf-zoom-110 {
+  zoom: 110%;
+}
+
+.rf-zoom-120 {
+  zoom: 120%;
+}
+
+.rf-zoom-130 {
+  zoom: 130%;
+}
+
+.rf-zoom-140 {
+  zoom: 140%;
+}
+
+.rf-zoom-150 {
+  zoom: 150%;
+}
+
+.rf-zoom-160 {
+  zoom: 160%;
+}
+
+.rf-zoom-170 {
+  zoom: 170%;
+}
+
+.rf-zoom-180 {
+  zoom: 180%;
+}
+
+.rf-zoom-190 {
+  zoom: 190%;
+}
+
+.rf-zoom-200 {
+  zoom: 200%;
+}
+
