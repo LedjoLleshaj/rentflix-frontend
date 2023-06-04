@@ -21,7 +21,7 @@ export const FILMLIST_QUERY = gql`
       rating
       category
       language
-      ycost
+      cost
     }
   }
 `;

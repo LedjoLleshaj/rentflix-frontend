@@ -4,11 +4,12 @@ import { ApolloClientOptions, ApolloLink, InMemoryCache } from '@apollo/client/c
 import { HttpLink } from 'apollo-angular/http';
 import { setContext } from '@apollo/client/link/context';
 import { HttpClientModule } from '@angular/common/http';
+import { LS_AUTH_TOKEN } from './shared/constants';
 
 const uri = 'http://localhost:4000/'; // <-- add the URL of the GraphQL server here
 
 export function createApollo(httpLink: HttpLink) {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem(LS_AUTH_TOKEN);
   const basic = setContext((operation, context) => ({
     headers: {
       Authorization: token ? `Bearer ${token}` : '',
