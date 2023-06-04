@@ -1,9 +1,9 @@
 <mat-sidenav-container>
   <mat-sidenav
+    class='rf-sidenav'
     #rfnav
     [mode]="mobileQuery.matches ? 'over' : 'side'"
     [style.width]='mobileQuery.matches ? "215px" : "250px"'
-    class='rf-sidenav'
     role='region'
     fixedInViewport='true'>
     <div class='rf-d-flex rf-justify-end' *ngIf='mobileQuery.matches'>
@@ -13,17 +13,16 @@
     </div>
 
     <div class='rf-avatar-container'>
-      <i class='material-icons mat-background-primary'>account_circle</i>
+      <i class='material-icons'>account_circle</i>
       <div class='mat-typography'>
-        <p class='mat-headline-6' style='margin:0'>Username</p>
-        <p class='mat-body-2' style='margin:0'>Surname Name</p>
+        <p class='rf-m-0 mat-headline-6'>Username</p>
+        <p class='rf-m-0 mat-body-2'>Surname Name</p>
       </div>
     </div>
     <mat-divider></mat-divider>
     <mat-nav-list>
       <button mat-list-item
               aria-label='Open movies view'
-              style='border:none; text-align: left'
               [activated]="this.router.url==='/'"
               (click)='this.router.navigate([""])'
       >
@@ -31,9 +30,7 @@
         <div matListItemTitle>Movies</div>
       </button>
       <button mat-list-item
-              aria-label='Open history view '
-
-              style='border:none; text-align: left'
+              aria-label='Open history view'
               [activated]="this.router.url==='/history'"
               (click)='this.router.navigate(["/history"])'
       >
@@ -43,17 +40,32 @@
     </mat-nav-list>
   </mat-sidenav>
 
-  <mat-sidenav-content style='height: calc(100vh); !important;'
+  <mat-sidenav-content style='height: 100vh;'
                        role='main'>
-    <mat-toolbar class='mat-elevation-z1'>
-      <button mat-icon-button (click)='rfnav.toggle()'
-              [attr.aria-label]="rfnav.opened ? 'Close sidenav' : 'Open sidenav'"
-      >
-        <mat-icon>menu</mat-icon>
+    <mat-toolbar class='rf-toolbar mat-elevation-z1'>
+      <!-- open menu and title -->
+      <div class='rf-d-flex rf-items-center'>
+        <button mat-icon-button (click)='rfnav.toggle()'
+                [attr.aria-label]="rfnav.opened ? 'Close sidenav' : 'Open sidenav'"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+        <h1>Rentflix</h1>
+      </div>
+      <!-- dark/light mode -->
+      <button (click)='toggleDarkMode()' *ngIf='darkMode' mat-stroked-button aria-label='Active light mode'>
+        <mat-icon>light_mode</mat-icon>
+        Light mode
       </button>
-      <h1 style='margin:0'>Rentflix</h1>
+      <button (click)='toggleDarkMode()' *ngIf='!darkMode' mat-stroked-button aria-label='Active dark mode'>
+        <mat-icon>dark_mode</mat-icon>
+        Dark mode
+      </button>
     </mat-toolbar>
-    <router-outlet></router-outlet>
-
+    <!-- main content -->
+    <div class='rf-main-content'>
+      <router-outlet></router-outlet>
+    </div>
+    <!-- end main content -->
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,6 +1,21 @@
+.rf-toolbar {
+  display: flex;
+  justify-content: space-between;
+
+  h1 {
+    margin: 0 0 0 5px;
+  }
+}
+
+
 .rf-sidenav {
   mat-icon {
     margin-right: 1.2rem !important;
+  }
+
+  button {
+    border: none;
+    text-align: left;
   }
 }
 
@@ -14,6 +29,7 @@ div.rf-avatar-container {
   i {
     font-size: 2.3rem;
     margin-right: 0.7rem;
+    color: #c9c9c9;
   }
 
   div {
@@ -22,4 +38,8 @@ div.rf-avatar-container {
     padding: 0.2rem 0;
   }
 
+}
+
+div.rf-main-content {
+  padding: 20px;
 }

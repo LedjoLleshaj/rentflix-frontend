@@ -46,13 +46,18 @@ $rf-dark-theme: mat.define-dark-theme((
   );
 }
 
-
-/* You can add global styles to this file, and also import other style files */
-
 html, body {
   height: 100%;
   margin: 0;
 }
+
+// custom material components
+
+mat-card {
+  border-radius: 16px !important;
+}
+
+// rentflix tags
 
 .rf-w-full {
   width: 100% !important;
@@ -61,6 +66,8 @@ html, body {
 .rf-h-full {
   height: 100% !important;
 }
+
+// flex tags
 
 .rf-d-flex {
   display: flex;
@@ -91,6 +98,8 @@ html, body {
   justify-content: flex-end;
 }
 
-mat-card {
-  border-radius: 16px !important;
+// margin tags
+
+.rf-m-0 {
+  margin: 0 !important;
 }
