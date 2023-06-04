@@ -59,9 +59,9 @@
       class="rf-text-center rf-table-row"
       mat-cell
       *matCellDef="let film"
-      [attr.aria-label]="'Rental cost ' + film.rental_cost"
+      [attr.aria-label]="'Rental cost ' + film.cost"
     >
-      {{ film.rental_cost }}
+      {{ film.cost + ' €' }}
     </td>
   </ng-container>
 
