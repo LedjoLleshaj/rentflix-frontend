@@ -9,9 +9,8 @@ export class AppComponent {
   zoomPercentage = 100;
 
   zoom(direciton: number) {
+    const className = document.body.className.replace(` rf-zoom-${this.zoomPercentage}`, '');
     this.zoomPercentage += direciton;
-    let className = document.body.className;
-    className = className.replace(/rf-zoom-\d/g, '');
-    document.body.className += className + ` rf-zoom-${(this.zoomPercentage)}`;
+    document.body.className = className + ` rf-zoom-${(this.zoomPercentage)}`;
   }
 }

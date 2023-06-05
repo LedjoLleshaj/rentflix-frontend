@@ -114,15 +114,25 @@ mat-card {
 div.rf-zoom {
   z-index: 1;
   position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   bottom: 1rem;
   right: 1rem;
 
   p {
     margin: 0 10px !important;
   }
+
+  button {
+    box-shadow: none;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
 }
 
 .rf-zoom-80 {
