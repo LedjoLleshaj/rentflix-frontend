@@ -35,6 +35,10 @@ $rf-dark-theme: mat.define-dark-theme((
   background: #f0f0f0;
 }
 
+.rf-title {
+  color: #3f51b5;
+}
+
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
@@ -50,6 +54,10 @@ $rf-dark-theme: mat.define-dark-theme((
 
   .rf-login-background {
     background: transparent !important;
+  }
+
+  .rf-title {
+    color: #00bcd4 !important;
   }
 }
 
