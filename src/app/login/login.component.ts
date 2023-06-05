@@ -9,12 +9,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   // username: string = '';
   // password: string = '';
   loginForm: FormGroup;
+  darkMode: boolean = false;
 
   constructor(private router: Router,
               private apollo: Apollo,
@@ -27,6 +28,9 @@ export class LoginComponent implements OnInit {
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.minLength(4))
     });
+    // make the opposite of the current value cause toggleDarkMode() will negate it
+    this.darkMode = !(localStorage.getItem(LOCAL_STORAGE_KEYS.DARK_MODE) === 'true');
+    this.toggleDarkMode();
   }
 
   get username() {
@@ -38,7 +42,6 @@ export class LoginComponent implements OnInit {
   }
 
   confirm() {
-    console.log(this.username, this.password);
     this.apollo.query<CreateUserQueryResponse>({
       query: LOGIN_QUERY,
       variables: {
@@ -60,6 +63,17 @@ export class LoginComponent implements OnInit {
       }
     });
 
+  }
+
+
+  toggleDarkMode() {
+    this.darkMode = !this.darkMode;
+    localStorage.setItem(LOCAL_STORAGE_KEYS.DARK_MODE, this.darkMode.toString());
+    if (this.darkMode) {
+      document.body.classList.add('rf-dark-theme');
+      return;
+    }
+    document.body.classList.remove('rf-dark-theme');
   }
 
 

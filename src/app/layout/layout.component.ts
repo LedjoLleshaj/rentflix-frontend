@@ -9,8 +9,8 @@ import { LOCAL_STORAGE_KEYS } from '../shared/constants';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent {
+  _mobileQueryListener: () => void;
   mobileQuery: MediaQueryList;
-  private _mobileQueryListener: () => void;
   darkMode: boolean = true;
   username: string = '';
   firstName: string = '';
@@ -26,13 +26,9 @@ export class LayoutComponent {
     this.username = localStorage.getItem(LOCAL_STORAGE_KEYS.USERNAME) || '';
     this.firstName = localStorage.getItem(LOCAL_STORAGE_KEYS.FIRST_NAME) || '';
     this.lastName = localStorage.getItem(LOCAL_STORAGE_KEYS.LAST_NAME) || '';
-    this.darkMode = localStorage.getItem(LOCAL_STORAGE_KEYS.DARK_MODE) === 'true';
-    if (this.darkMode && !document.body.classList.contains('rf-dark-theme')) {
-      document.body.classList.add('rf-dark-theme');
-      return;
-    } else {
-      document.body.classList.remove('rf-dark-theme');
-    }
+    // make the opposite of the current value cause toggleDarkMode() will negate it
+    this.darkMode = !(localStorage.getItem(LOCAL_STORAGE_KEYS.DARK_MODE) === 'true');
+    this.toggleDarkMode();
   }
 
   toggleDarkMode() {
@@ -50,7 +46,12 @@ export class LayoutComponent {
   }
 
   logout() {
-    Object.values(LOCAL_STORAGE_KEYS).forEach(key => localStorage.removeItem(key));
+    Object.values(LOCAL_STORAGE_KEYS).forEach(key => {
+        if (key !== LOCAL_STORAGE_KEYS.DARK_MODE) {
+          localStorage.removeItem(key);
+        }
+      }
+    );
     document.body.classList.remove('rf-dark-theme');
     this.router.navigate(['/login']);
   }

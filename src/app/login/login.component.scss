@@ -1,9 +1,21 @@
-.rf-container {
+div.rf-theme {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  width: 100%;
+
+  button {
+    width: 150px;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
+
+.rf-login-form {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: #f0f0f0;
+  height: calc(100vh - 60px);
 }
 
 mat-card-title {

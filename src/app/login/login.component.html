@@ -1,25 +1,39 @@
-<main class='rf-container'>
-  <mat-card class='mat-elevation-z1'>
-    <mat-card-title>Login</mat-card-title>
-    <mat-card-content>
-      <form [formGroup]='loginForm'>
-        <mat-form-field>
-          <input matInput placeholder='Username' formControlName='username' name='username' required>
+<main class='rf-login-background'>
+  <div class='rf-theme'>
+    <button *ngIf='darkMode' (click)='toggleDarkMode()' mat-stroked-button aria-label='Active light mode'
+            title='Active light mode'>
+      <mat-icon>light_mode</mat-icon>
+      Light mode
+    </button>
+    <button *ngIf='!darkMode' (click)='toggleDarkMode()' mat-stroked-button aria-label='Active dark mode'
+            title='Active dark mode'>
+      <mat-icon>dark_mode</mat-icon>
+      Dark mode
+    </button>
+  </div>
+  <div class='rf-login-form'>
+    <mat-card class='mat-elevation-z1'>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]='loginForm'>
+          <mat-form-field>
+            <input matInput placeholder='Username' formControlName='username' name='username' required>
 
-          <mat-error
-            *ngIf="loginForm.controls?.['username']?.errors && (loginForm.touched || loginForm.dirty)">
-            Username is required
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput type='password' placeholder='Password' formControlName='password' name='password' required>
-          <mat-error
-            *ngIf="loginForm.controls?.['password']?.errors && (loginForm.touched || loginForm.dirty)">
-            Password is required with a minimum of 4 characters
-          </mat-error>
-        </mat-form-field>
-        <button mat-flat-button color='primary' [disabled]='!loginForm.valid' (click)='confirm()'>Login</button>
-      </form>
-    </mat-card-content>
-  </mat-card>
+            <mat-error
+              *ngIf="loginForm.controls?.['username']?.errors && (loginForm.touched || loginForm.dirty)">
+              Username is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type='password' placeholder='Password' formControlName='password' name='password' required>
+            <mat-error
+              *ngIf="loginForm.controls?.['password']?.errors && (loginForm.touched || loginForm.dirty)">
+              Password is required with a minimum of 4 characters
+            </mat-error>
+          </mat-form-field>
+          <button mat-flat-button color='primary' [disabled]='!loginForm.valid' (click)='confirm()'>Login</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </main>
