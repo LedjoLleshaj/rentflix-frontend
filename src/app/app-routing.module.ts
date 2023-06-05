@@ -14,9 +14,10 @@ const routes: Routes = [
       { path: '', component: FilmViewComponent, },
       { path: 'history', component: HistoryViewComponent }
     ],
-    canActivate: [PublicGuard]
+    canActivate: [AuthGuard]
+
   },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent, canActivate: [PublicGuard]}
 ];
 
 @NgModule({
