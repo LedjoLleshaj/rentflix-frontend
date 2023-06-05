@@ -1,0 +1,20 @@
+<div *ngIf="film">
+  <p>{{ film | json }}</p>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title style="vertical-align: middle;">
+        {{film.title}} ({{film.release_year}}) {{getFlagEmoji(film.language)}}
+        <mat-chip>{{film.length}}min</mat-chip>
+        <mat-chip>{{film.rating}}</mat-chip>
+      </mat-card-title>
+      <mat-card-subtitle>{{film.description}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>This card indeterminates progress bar.</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
