@@ -26,7 +26,7 @@ export class LayoutComponent {
     this.username = localStorage.getItem(LOCAL_STORAGE_KEYS.USERNAME) || '';
     this.firstName = localStorage.getItem(LOCAL_STORAGE_KEYS.FIRST_NAME) || '';
     this.lastName = localStorage.getItem(LOCAL_STORAGE_KEYS.LAST_NAME) || '';
-    this.darkMode = localStorage.getItem('darkMode') === 'true';
+    this.darkMode = localStorage.getItem(LOCAL_STORAGE_KEYS.DARK_MODE) === 'true';
     if (this.darkMode && !document.body.classList.contains('rf-dark-theme')) {
       document.body.classList.add('rf-dark-theme');
       return;
@@ -37,7 +37,7 @@ export class LayoutComponent {
 
   toggleDarkMode() {
     this.darkMode = !this.darkMode;
-    localStorage.setItem('darkMode', this.darkMode.toString());
+    localStorage.setItem(LOCAL_STORAGE_KEYS.DARK_MODE, this.darkMode.toString());
     if (this.darkMode) {
       document.body.classList.add('rf-dark-theme');
       return;
@@ -47,6 +47,12 @@ export class LayoutComponent {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
+  }
+
+  logout() {
+    Object.values(LOCAL_STORAGE_KEYS).forEach(key => localStorage.removeItem(key));
+    document.body.classList.remove('rf-dark-theme');
+    this.router.navigate(['/login']);
   }
 
 }

@@ -11,14 +11,28 @@
 
 
 .rf-sidenav {
+
   mat-icon {
     margin-right: 1.2rem !important;
   }
 
-  button {
-    border: none;
-    text-align: left;
+  mat-divider {
+    margin: 0.5rem 0 !important;
   }
+
+  mat-nav-list {
+    button {
+      border: none;
+      text-align: left;
+    }
+  }
+}
+
+div.test {
+  display: flex;
+  align-content: end;
+  background-color: black;
+  width: 100%;
 }
 
 div.rf-avatar-container {

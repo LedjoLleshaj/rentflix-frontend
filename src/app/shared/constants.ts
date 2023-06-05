@@ -3,7 +3,8 @@ export enum LOCAL_STORAGE_KEYS {
   AUTH_TOKEN = 'rf-auth-token',
   USERNAME = 'rf-username',
   FIRST_NAME = 'rf-first-name',
-  LAST_NAME = 'rf-last-name'
+  LAST_NAME = 'rf-last-name',
+  DARK_MODE = 'rf-dark-mode'
 }
 
 

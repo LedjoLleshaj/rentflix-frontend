@@ -7,11 +7,11 @@
     role='region'
     fixedInViewport='true'>
     <div class='rf-d-flex rf-justify-end' *ngIf='mobileQuery.matches'>
-      <button mat-icon-button aria-label='Close sidenav' (click)='rfnav.toggle()'>
+      <button mat-icon-button aria-label='Close sidenav' title='Close sidenav' (click)='rfnav.toggle()'>
         <mat-icon>close</mat-icon>
       </button>
     </div>
-
+    <!-- user info -->
     <div class='rf-avatar-container'>
       <i class='material-icons'>account_circle</i>
       <div class='mat-typography'>
@@ -19,10 +19,11 @@
         <p class='rf-m-0 mat-body-2'>{{ firstName }} {{ lastName }}</p>
       </div>
     </div>
-    <mat-divider></mat-divider>
+    <!-- navigation -->
     <mat-nav-list>
+      <mat-divider></mat-divider>
       <button mat-list-item
-              aria-label='Open movies view'
+              aria-label='Open movies view' title='Open movies view'
               [activated]="this.router.url==='/'"
               (click)='this.router.navigate([""])'
       >
@@ -30,7 +31,7 @@
         <div matListItemTitle>Movies</div>
       </button>
       <button mat-list-item
-              aria-label='Open history view'
+              aria-label='Open history view' title='Open history view'
               [activated]="this.router.url==='/history'"
               (click)='this.router.navigate(["/history"])'
       >
@@ -39,6 +40,7 @@
       </button>
     </mat-nav-list>
   </mat-sidenav>
+
 
   <mat-sidenav-content style='height: 100vh;'
                        role='main'>
@@ -52,15 +54,33 @@
         </button>
         <h1>Rentflix</h1>
       </div>
-      <!-- dark/light mode -->
-      <button (click)='toggleDarkMode()' *ngIf='darkMode' mat-stroked-button aria-label='Active light mode'>
-        <mat-icon>light_mode</mat-icon>
-        Light mode
+
+
+      <button mat-icon-button [matMenuTriggerFor]='rfMenu'
+              aria-label='Open menu' title='Open menu'>
+        <mat-icon>settings</mat-icon>
       </button>
-      <button (click)='toggleDarkMode()' *ngIf='!darkMode' mat-stroked-button aria-label='Active dark mode'>
-        <mat-icon>dark_mode</mat-icon>
-        Dark mode
-      </button>
+      <mat-menu #rfMenu='matMenu'>
+        <ng-template matMenuContent>
+          <!-- dark/light mode -->
+          <button (click)='toggleDarkMode()' *ngIf='darkMode' mat-menu-item
+                  aria-label='Active light mode' title='Active light mode'>
+            <mat-icon>light_mode</mat-icon>
+            Light mode
+          </button>
+          <button (click)='toggleDarkMode()' *ngIf='!darkMode' mat-menu-item
+                  aria-label='Active dark mode' title='Active dark mode'>
+            <mat-icon>dark_mode</mat-icon>
+            Dark mode
+          </button>
+          <!-- logout -->
+          <button (click)='logout()' mat-menu-item aria-label='Logout' title='logout'>
+            <mat-icon>logout</mat-icon>
+            Logout
+          </button>
+        </ng-template>
+      </mat-menu>
+
     </mat-toolbar>
     <!-- main content -->
     <div class='rf-main-content'>
