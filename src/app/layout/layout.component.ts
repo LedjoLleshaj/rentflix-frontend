@@ -1,6 +1,7 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { LOCAL_STORAGE_KEYS } from '../shared/constants';
 
 @Component({
   selector: 'app-layout',
@@ -11,6 +12,9 @@ export class LayoutComponent {
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   darkMode: boolean = true;
+  username: string = '';
+  firstName: string = '';
+  lastName: string = '';
 
   constructor(public router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -19,6 +23,9 @@ export class LayoutComponent {
   }
 
   ngOnInit(): void {
+    this.username = localStorage.getItem(LOCAL_STORAGE_KEYS.USERNAME) || '';
+    this.firstName = localStorage.getItem(LOCAL_STORAGE_KEYS.FIRST_NAME) || '';
+    this.lastName = localStorage.getItem(LOCAL_STORAGE_KEYS.LAST_NAME) || '';
     this.darkMode = localStorage.getItem('darkMode') === 'true';
     if (this.darkMode && !document.body.classList.contains('rf-dark-theme')) {
       document.body.classList.add('rf-dark-theme');

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { CreateUserQueryResponse, LOGIN_QUERY } from '../graphql/login';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { LS_AUTH_TOKEN } from '../shared/constants';
+import { LOCAL_STORAGE_KEYS } from '../shared/constants';
 
 @Component({
   selector: 'app-login',
@@ -32,8 +32,12 @@ export class LoginComponent implements OnInit {
       }
     }).subscribe({
       next: ({ data }) => {
-        localStorage.setItem(LS_AUTH_TOKEN, data.login.token);
-        console.log(data);
+        const token = data.login.token;
+        const userData = atob(token.split('.')[1]);
+        localStorage.setItem(LOCAL_STORAGE_KEYS.AUTH_TOKEN, data.login.token);
+        localStorage.setItem(LOCAL_STORAGE_KEYS.USERNAME, JSON.parse(userData).username);
+        localStorage.setItem(LOCAL_STORAGE_KEYS.FIRST_NAME, data.login.first_name);
+        localStorage.setItem(LOCAL_STORAGE_KEYS.LAST_NAME, data.login.last_name);
         this.router.navigate(['/']);
       },
       error: (error) => {
