@@ -1,16 +1,25 @@
-<div class="container">
-  <mat-card class="mat-elevation-z8">
+<main class='rf-container'>
+  <mat-card class='mat-elevation-z1'>
     <mat-card-title>Login</mat-card-title>
     <mat-card-content>
-      <form>
+      <form [formGroup]='loginForm'>
         <mat-form-field>
-          <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+          <input matInput placeholder='Username' formControlName='username' name='username' required>
+
+          <mat-error
+            *ngIf="loginForm.controls?.['username']?.errors && (loginForm.touched || loginForm.dirty)">
+            Username is required
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+          <input matInput type='password' placeholder='Password' formControlName='password' name='password' required>
+          <mat-error
+            *ngIf="loginForm.controls?.['password']?.errors && (loginForm.touched || loginForm.dirty)">
+            Password is required with a minimum of 4 characters
+          </mat-error>
         </mat-form-field>
-        <button mat-flat-button color="primary" (click)="confirm()">Login</button>
+        <button mat-flat-button color='primary' [disabled]='!loginForm.valid' (click)='confirm()'>Login</button>
       </form>
     </mat-card-content>
   </mat-card>
-</div>
+</main>

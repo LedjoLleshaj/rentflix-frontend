@@ -4,6 +4,7 @@ import { Apollo } from 'apollo-angular';
 import { CreateUserQueryResponse, LOGIN_QUERY } from '../graphql/login';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LOCAL_STORAGE_KEYS } from '../shared/constants';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +12,9 @@ import { LOCAL_STORAGE_KEYS } from '../shared/constants';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username: string = '';
-  password: string = '';
+  // username: string = '';
+  // password: string = '';
+  loginForm: FormGroup;
 
   constructor(private router: Router,
               private apollo: Apollo,
@@ -21,14 +23,27 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loginForm = new FormGroup({
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.minLength(4))
+    });
+  }
+
+  get username() {
+    return this.loginForm.get('username');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
   }
 
   confirm() {
+    console.log(this.username, this.password);
     this.apollo.query<CreateUserQueryResponse>({
       query: LOGIN_QUERY,
       variables: {
-        username: this.username,
-        password: this.password
+        username: this.username?.value,
+        password: this.password?.value
       }
     }).subscribe({
       next: ({ data }) => {
@@ -46,4 +61,6 @@ export class LoginComponent implements OnInit {
     });
 
   }
+
+
 }
