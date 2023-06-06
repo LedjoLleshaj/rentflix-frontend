@@ -1,61 +1,43 @@
 .rf-toolbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 2.3rem 0.7rem;
-  border-bottom: 1px solid #e0e0e0;
-
-  h1 {
-    margin: 0 0 0 5px;
-  }
+  @apply flex justify-between;
+  @apply border-b border-gray-300;
+  @apply px-2 py-9;
 }
-
 
 .rf-sidenav {
 
   mat-icon {
-    margin-right: 1.2rem !important;
+    @apply mr-3;
   }
 
   mat-divider {
-    margin: 0.5rem 0 !important;
+    @apply my-1;
   }
 
   mat-nav-list {
     button {
-      border: none;
-      text-align: left;
+      @apply border-none text-left;
     }
   }
 }
 
-div.test {
-  display: flex;
-  align-content: end;
-  background-color: black;
-  width: 100%;
-}
-
 div.rf-avatar-container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-left: 0.7rem;
-  margin: 0.5rem 0;
+  @apply flex justify-start items-center;
+  @apply pl-2;
+  @apply my-0;
+  p {
+    @apply m-0;
+  }
 
   i {
+    @apply mr-4;
     font-size: 2.3rem;
-    margin-right: 0.7rem;
     color: #c9c9c9;
   }
 
   div {
-    display: flex;
-    flex-direction: column;
-    padding: 0.2rem 0;
+    @apply flex flex-col;
+    @apply py-1;
   }
 
-}
-
-div.rf-main-content {
-  padding: 20px;
 }

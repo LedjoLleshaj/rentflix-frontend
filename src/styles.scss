@@ -69,7 +69,8 @@ mat-card {
 
 // zoom tags
 div.rf-zoom {
-  @apply fixed bottom-0 right-0 z-10 mb-2 mr-2;
+  @apply fixed bottom-0 right-0 mb-2 mr-2;
+  z-index: 1;
 
   p {
     margin: 0 10px !important;
