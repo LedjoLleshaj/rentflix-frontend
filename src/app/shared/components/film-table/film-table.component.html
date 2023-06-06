@@ -2,32 +2,29 @@
   <caption>
     Available Films in the store
   </caption>
-  <!-- title Column -->
-  <ng-container matColumnDef='title'>
+
+  <ng-container *ngIf="columns.includes('title')" matColumnDef='title'>
     <th mat-header-cell *matHeaderCellDef class='rf-text-center' role='columnheader' scope='col'>Title</th>
     <td class='rf-text-center rf-table-row' *matCellDef='let film' [attr.aria-label]="'Title ' + film.title">
       <button mat-flat-button [attr.aria-label]="'Open ' + film.title + ' info'">{{ film.title }}</button>
     </td>
   </ng-container>
 
-  <!-- year Column -->
-  <ng-container matColumnDef='release_year'>
+  <ng-container *ngIf="columns.includes('release_year')" matColumnDef='release_year'>
     <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Year</th>
     <td class='rf-text-center rf-table-row' mat-cell *matCellDef='let film' [attr.aria-label]="'Year ' + film.year">
       {{ film.release_year }}
     </td>
   </ng-container>
 
-  <!-- rating Column -->
-  <ng-container matColumnDef='rating'>
+  <ng-container *ngIf="columns.includes('rating')" matColumnDef='rating'>
     <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Rating</th>
     <td class='rf-text-center rf-table-row' mat-cell *matCellDef='let film' [attr.aria-label]="'Rating ' + film.rating">
       {{ film.rating }}
     </td>
   </ng-container>
 
-  <!-- category Column -->
-  <ng-container matColumnDef='category'>
+  <ng-container *ngIf="columns.includes('category')" matColumnDef='category'>
     <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Category</th>
     <td
       class='rf-text-center rf-table-row'
@@ -39,8 +36,7 @@
     </td>
   </ng-container>
 
-  <!-- language Column -->
-  <ng-container matColumnDef='language'>
+  <ng-container *ngIf="columns.includes('language')" matColumnDef='language'>
     <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Language</th>
     <td
       class='rf-text-center rf-table-row'
@@ -52,8 +48,7 @@
     </td>
   </ng-container>
 
-  <!-- rental_cost Column -->
-  <ng-container matColumnDef='rental_rate'>
+  <ng-container *ngIf="columns.includes('rental_rate')" matColumnDef='rental_rate'>
     <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Rental cost</th>
     <td
       class='rf-text-center rf-table-row'
@@ -65,8 +60,7 @@
     </td>
   </ng-container>
 
-  <!-- rent movie button -->
-  <ng-container matColumnDef='rent'>
+  <ng-container *ngIf="columns.includes('rent')" matColumnDef='rent'>
     <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Rent a movie</th>
     <td
       class='rf-text-center rf-table-row'
@@ -80,8 +74,9 @@
     </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
-  <tr mat-row *matRowDef='let row; columns: displayedColumns'></tr>
+
+  <tr mat-header-row *matHeaderRowDef='columns'></tr>
+  <tr mat-row *matRowDef='let row; columns: columns'></tr>
 </table>
 <mat-paginator
   class='mat-elevation-z1'

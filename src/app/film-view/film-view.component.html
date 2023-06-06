@@ -1,5 +1,6 @@
 <div class='pb-16'>
   <h1>Фильмы</h1>
-  <app-film-table></app-film-table>
+  {{this.columns}}
+  <app-film-table [inputColumns]='this.columns'></app-film-table>
 </div>
 
