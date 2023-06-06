@@ -6,7 +6,7 @@
     [style.width]='mobileQuery.matches ? "215px" : "250px"'
     role='region'
     fixedInViewport='true'>
-    <div class='rf-d-flex rf-justify-end' *ngIf='mobileQuery.matches'>
+    <div class='flex justify-end' *ngIf='mobileQuery.matches'>
       <button mat-icon-button aria-label='Close sidenav' title='Close sidenav' (click)='rfnav.toggle()'>
         <mat-icon>close</mat-icon>
       </button>
@@ -15,8 +15,8 @@
     <div class='rf-avatar-container'>
       <i class='material-icons'>account_circle</i>
       <div class='mat-typography'>
-        <p class='rf-m-0 mat-headline-6'>{{ username }}</p>
-        <p class='rf-m-0 mat-body-2'>{{ firstName }} {{ lastName }}</p>
+        <p class='mat-headline-6'>{{ username }}</p>
+        <p class='mat-body-2'>{{ firstName }} {{ lastName }}</p>
       </div>
     </div>
     <!-- navigation -->
@@ -46,7 +46,7 @@
                        role='main'>
     <mat-toolbar class='rf-toolbar'>
       <!-- open menu and title -->
-      <div class='rf-d-flex rf-items-center'>
+      <div class='flex items-center'>
         <button mat-icon-button (click)='rfnav.toggle()'
                 [attr.aria-label]="rfnav.opened ? 'Close sidenav' : 'Open sidenav'"
         >
@@ -83,7 +83,7 @@
 
     </mat-toolbar>
     <!-- main content -->
-    <div class='rf-main-content'>
+    <div class='p-4'>
       <router-outlet></router-outlet>
     </div>
     <!-- end main content -->
