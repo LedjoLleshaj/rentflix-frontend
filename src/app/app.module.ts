@@ -24,6 +24,7 @@ import { HistoryViewComponent } from './history-view/history-view.component';
 import { FilmTableComponent } from './shared/components/film-table/film-table.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
+import { ChipsComponent } from './shared/components/chips/chips.component';
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent, LoginComponent, FilmViewComponent, HistoryViewComponent],
@@ -44,10 +45,10 @@ import { MatMenuModule } from '@angular/material/menu';
     FormsModule,
     MatPaginatorModule,
     FilmTableComponent,
-    MatMenuModule
+    MatMenuModule,
+    ChipsComponent,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
