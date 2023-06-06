@@ -21,6 +21,9 @@ import { GraphQLModule } from './graphql.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FilmViewComponent } from './film-view/film-view.component';
 import { HistoryViewComponent } from './history-view/history-view.component';
+import { FilmTableComponent } from './shared/components/film-table/film-table.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent, LoginComponent, FilmViewComponent, HistoryViewComponent],
@@ -38,7 +41,10 @@ import { HistoryViewComponent } from './history-view/history-view.component';
     MatIconModule,
     MatSnackBarModule,
     GraphQLModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule,
+    FilmTableComponent,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

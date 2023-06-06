@@ -1,0 +1,94 @@
+<table mat-table [dataSource]="paginatedData" class="mat-elevation-z1 table">
+  <caption>
+    Available Films in the store
+  </caption>
+  <!-- title Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef class="rf-text-center" role="columnheader" scope="col">Title</th>
+    <td class="rf-text-center rf-table-row" *matCellDef="let film" [attr.aria-label]="'Title ' + film.title">
+      <button mat-flat-button [attr.aria-label]="'Open ' + film.title + ' info'">{{ film.title }}</button>
+    </td>
+  </ng-container>
+
+  <!-- year Column -->
+  <ng-container matColumnDef="year">
+    <th class="rf-text-center" mat-header-cell *matHeaderCellDef role="columnheader" scope="col">Year</th>
+    <td class="rf-text-center rf-table-row" mat-cell *matCellDef="let film" [attr.aria-label]="'Year ' + film.year">
+      {{ film.year }}
+    </td>
+  </ng-container>
+
+  <!-- rating Column -->
+  <ng-container matColumnDef="rating">
+    <th class="rf-text-center" mat-header-cell *matHeaderCellDef role="columnheader" scope="col">Rating</th>
+    <td class="rf-text-center rf-table-row" mat-cell *matCellDef="let film" [attr.aria-label]="'Rating ' + film.rating">
+      {{ film.rating }}
+    </td>
+  </ng-container>
+
+  <!-- category Column -->
+  <ng-container matColumnDef="category">
+    <th class="rf-text-center" mat-header-cell *matHeaderCellDef role="columnheader" scope="col">Category</th>
+    <td
+      class="rf-text-center rf-table-row"
+      mat-cell
+      *matCellDef="let film"
+      [attr.aria-label]="'Category ' + film.category"
+    >
+      {{ film.category }}
+    </td>
+  </ng-container>
+
+  <!-- language Column -->
+  <ng-container matColumnDef="language">
+    <th class="rf-text-center" mat-header-cell *matHeaderCellDef role="columnheader" scope="col">Language</th>
+    <td
+      class="rf-text-center rf-table-row"
+      mat-cell
+      *matCellDef="let film"
+      [attr.aria-label]="'Language ' + film.language"
+    >
+      {{ film.language }}
+    </td>
+  </ng-container>
+
+  <!-- rental_cost Column -->
+  <ng-container matColumnDef="rental_cost">
+    <th class="rf-text-center" mat-header-cell *matHeaderCellDef role="columnheader" scope="col">Rental cost</th>
+    <td
+      class="rf-text-center rf-table-row"
+      mat-cell
+      *matCellDef="let film"
+      [attr.aria-label]="'Rental cost ' + film.cost"
+    >
+      {{ film.cost + ' €' }}
+    </td>
+  </ng-container>
+
+  <!-- rent movie button -->
+  <ng-container matColumnDef="rent">
+    <th class="rf-text-center" mat-header-cell *matHeaderCellDef role="columnheader" scope="col">Rent a movie</th>
+    <td
+      class="rf-text-center rf-table-row"
+      mat-cell
+      *matCellDef="let film"
+      [attr.aria-label]="'Rent movie ' + film.title"
+    >
+      <button mat-raised-button class="rounded-button" color="primary" (click)="rentMovie(film)">
+        Rent this movie
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<mat-paginator
+  class="mat-elevation-z1"
+  [length]="this.dataSource.length"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 50]"
+  showFirstLastButtons
+  (page)="nextPage($event)"
+  aria-label="Pagination Navigation"
+></mat-paginator>

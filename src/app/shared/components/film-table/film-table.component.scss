@@ -1,0 +1,14 @@
+table {
+  button {
+    border-radius: 24px;
+  }
+}
+
+.rf-table-row {
+  border-bottom: 1px solid #d1cdea;
+}
+
+.mat-mdc-row:hover {
+  cursor: pointer !important;
+  background-color: #d1cdea !important;
+}

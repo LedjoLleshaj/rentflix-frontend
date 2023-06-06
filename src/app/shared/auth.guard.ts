@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
-import { LS_AUTH_TOKEN } from './constants';
+import { LOCAL_STORAGE_KEYS } from './constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard {
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+  }
 
   canActivate(): boolean {
-    if (localStorage.getItem(LS_AUTH_TOKEN) === null) {
+    if (localStorage.getItem(LOCAL_STORAGE_KEYS.AUTH_TOKEN) === null) {
       this.router.navigate(['/login']);
       return false;
     }

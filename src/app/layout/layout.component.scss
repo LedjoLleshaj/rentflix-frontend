@@ -1,6 +1,8 @@
 .rf-toolbar {
   display: flex;
   justify-content: space-between;
+  padding: 2.3rem 0.7rem;
+  border-bottom: 1px solid #e0e0e0;
 
   h1 {
     margin: 0 0 0 5px;
@@ -9,14 +11,28 @@
 
 
 .rf-sidenav {
+
   mat-icon {
     margin-right: 1.2rem !important;
   }
 
-  button {
-    border: none;
-    text-align: left;
+  mat-divider {
+    margin: 0.5rem 0 !important;
   }
+
+  mat-nav-list {
+    button {
+      border: none;
+      text-align: left;
+    }
+  }
+}
+
+div.test {
+  display: flex;
+  align-content: end;
+  background-color: black;
+  width: 100%;
 }
 
 div.rf-avatar-container {
@@ -24,7 +40,7 @@ div.rf-avatar-container {
   justify-content: flex-start;
   align-items: center;
   padding-left: 0.7rem;
-  margin: 0.7rem 0;
+  margin: 0.5rem 0;
 
   i {
     font-size: 2.3rem;

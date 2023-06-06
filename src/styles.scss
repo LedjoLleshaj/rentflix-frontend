@@ -31,6 +31,13 @@ $rf-dark-theme: mat.define-dark-theme((
   typography: mat.define-typography-config(),
   density: 0
 ));
+.rf-login-background {
+  background: #f0f0f0;
+}
+
+.rf-title {
+  color: #3f51b5;
+}
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -44,6 +51,14 @@ $rf-dark-theme: mat.define-dark-theme((
   @include mat.all-component-colors(
       $rf-dark-theme
   );
+
+  .rf-login-background {
+    background: transparent !important;
+  }
+
+  .rf-title {
+    color: #00bcd4 !important;
+  }
 }
 
 html, body {
@@ -74,8 +89,8 @@ mat-card {
 }
 
 .rf-d-flex-col {
-  display: flex;
-  flex-direction: column;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .rf-items-center {
@@ -94,6 +109,10 @@ mat-card {
   justify-content: center;
 }
 
+.rf-justify-between {
+  justify-content: space-between !important;
+}
+
 .rf-justify-end {
   justify-content: flex-end;
 }
@@ -103,3 +122,91 @@ mat-card {
 .rf-m-0 {
   margin: 0 !important;
 }
+
+// text tags
+.rf-text-center {
+  text-align: center !important;
+}
+
+.rf-text-left {
+  text-align: left !important;
+}
+
+
+// zoom tags
+div.rf-zoom {
+  z-index: 1;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+
+  p {
+    margin: 0 10px !important;
+  }
+
+  button {
+    box-shadow: none;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+}
+
+.rf-zoom-80 {
+  zoom: 80%;
+}
+
+.rf-zoom-90 {
+  zoom: 90%;
+}
+
+.rf-zoom-100 {
+  zoom: 100%;
+}
+
+.rf-zoom-110 {
+  zoom: 110%;
+}
+
+.rf-zoom-120 {
+  zoom: 120%;
+}
+
+.rf-zoom-130 {
+  zoom: 130%;
+}
+
+.rf-zoom-140 {
+  zoom: 140%;
+}
+
+.rf-zoom-150 {
+  zoom: 150%;
+}
+
+.rf-zoom-160 {
+  zoom: 160%;
+}
+
+.rf-zoom-170 {
+  zoom: 170%;
+}
+
+.rf-zoom-180 {
+  zoom: 180%;
+}
+
+.rf-zoom-190 {
+  zoom: 190%;
+}
+
+.rf-zoom-200 {
+  zoom: 200%;
+}
+
