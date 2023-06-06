@@ -61,6 +61,10 @@ $rf-dark-theme: mat.define-dark-theme((
   }
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html, body {
   height: 100%;
   margin: 0;
