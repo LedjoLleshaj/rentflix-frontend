@@ -13,15 +13,25 @@ export interface FilmListModel {
   filmList: FilmModel[];
 }
 
-export const FILMLIST_QUERY = gql`
-  query filmList {
-    filmList {
-      title
-      year
-      rating
-      category
-      language
-      cost
+export const GET_FILMS_QUERY = gql`
+  input GetFilmsFilterInput {
+    title: String
+    categories: [Int!]
+    page: Int
+    filmPerPage: Int
+    orderBy: String
+    sort: Sort
+  }
+
+  query GetFilms($filter: GetFilmsFilterInput) {
+    getFilms(filter: $filter) {
+      films {
+        title
+        rating
+        category
+        language
+      }
     }
   }
 `;
+export const FILMLIST_QUERY = GET_FILMS_QUERY;
