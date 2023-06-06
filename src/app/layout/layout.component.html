@@ -6,7 +6,7 @@
     [style.width]='mobileQuery.matches ? "215px" : "250px"'
     role='region'
     fixedInViewport='true'>
-    <div class='rf-d-flex rf-justify-end' *ngIf='mobileQuery.matches'>
+    <div class='flex rf-justify-end' *ngIf='mobileQuery.matches'>
       <button mat-icon-button aria-label='Close sidenav' title='Close sidenav' (click)='rfnav.toggle()'>
         <mat-icon>close</mat-icon>
       </button>
@@ -46,7 +46,7 @@
                        role='main'>
     <mat-toolbar class='rf-toolbar'>
       <!-- open menu and title -->
-      <div class='rf-d-flex rf-items-center'>
+      <div class='flex rf-items-center'>
         <button mat-icon-button (click)='rfnav.toggle()'
                 [attr.aria-label]="rfnav.opened ? 'Close sidenav' : 'Open sidenav'"
         >
