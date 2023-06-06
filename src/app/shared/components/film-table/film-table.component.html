@@ -11,10 +11,10 @@
   </ng-container>
 
   <!-- year Column -->
-  <ng-container matColumnDef="year">
+  <ng-container matColumnDef="release_year">
     <th class="rf-text-center" mat-header-cell *matHeaderCellDef role="columnheader" scope="col">Year</th>
     <td class="rf-text-center rf-table-row" mat-cell *matCellDef="let film" [attr.aria-label]="'Year ' + film.year">
-      {{ film.year }}
+      {{ film.release_year }}
     </td>
   </ng-container>
 
@@ -53,15 +53,15 @@
   </ng-container>
 
   <!-- rental_cost Column -->
-  <ng-container matColumnDef="rental_cost">
+  <ng-container matColumnDef="rental_rate">
     <th class="rf-text-center" mat-header-cell *matHeaderCellDef role="columnheader" scope="col">Rental cost</th>
     <td
       class="rf-text-center rf-table-row"
       mat-cell
       *matCellDef="let film"
-      [attr.aria-label]="'Rental cost ' + film.cost"
+      [attr.aria-label]="'Rental cost ' + film.remtal_rate"
     >
-      {{ film.cost + ' €' }}
+      {{ film.rental_rate + ' €' }}
     </td>
   </ng-container>
 
@@ -85,7 +85,7 @@
 </table>
 <mat-paginator
   class="mat-elevation-z1"
-  [length]="this.dataSource.length"
+  [length]="this.total"
   [pageSize]="10"
   [pageSizeOptions]="[5, 10, 25, 50]"
   showFirstLastButtons
