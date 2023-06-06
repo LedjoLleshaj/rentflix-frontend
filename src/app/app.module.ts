@@ -25,7 +25,7 @@ import { FilmTableComponent } from './shared/components/film-table/film-table.co
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
 import { FilmDetailsComponent } from './film-details/film-details.component';
-import { DialogComponent } from './dialog/dialog.component';
+import { DialogComponent } from './shared/components/film-details-dialog/film-details-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatChipsModule} from '@angular/material/chips';
 

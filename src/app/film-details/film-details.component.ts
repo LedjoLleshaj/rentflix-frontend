@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component'; // Import the dialog component
+import { DialogComponent } from '../shared/components/film-details-dialog/film-details-dialog.component'; // Import the dialog component
 
 
 @Component({

@@ -3,8 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss']
+  templateUrl: './film-details-dialog.component.html',
+  styleUrls: ['./film-details-dialog.component.scss']
 })
 export class DialogComponent {
   film: any;
@@ -46,12 +46,26 @@ export class DialogComponent {
     this.dialogRef.close();
   }
 
+  startRent(): void {
+    this.dialogRef.close();
+
+    // TODO: Open rent dialog
+  }
+
   getFlagEmoji(language: string): string {
     // Map language codes to flag emojis
     const flagMap: { [key: string]: string } = {
       English: "\uD83C\uDDEC\uD83C\uDDE7", // England
       French: "\uD83C\uDDEB\uD83C\uDDF7", // France
       Deutch: "\uD83C\uDDE9\uD83C\uDDEA", // Germany
+      Italian: "\uD83C\uDDEE\uD83C\uDDF9", // Italy
+      Spanish: "\uD83C\uDDEA\uD83C\uDDF8", // Spain
+      Japanese: "\uD83C\uDDEF\uD83C\uDDF5", // Japan
+      Chinese: "\uD83C\uDDE8\uD83C\uDDF3", // China
+      Russian: "\uD83C\uDDF7\uD83C\uDDFA", // Russia
+      Korean: "\uD83C\uDDF0\uD83C\uDDF7", // South Korea
+      Hindi: "\uD83C\uDDED\uD83C\uDDF3", // India
+      Arabic: "\uD83C\uDDE6\uD83C\uDDEA", // Saudi Arabia
       // Add more language codes and corresponding flag emojis here
     };
 

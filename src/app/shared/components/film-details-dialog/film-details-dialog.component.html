@@ -1,0 +1,82 @@
+
+<div *ngIf="film" class="flex flex-col rounded-2xl m-2 p-2">
+  <!-- Header -->
+  <div class="flex">
+    <div class="flex items-center">
+      <span class="text-2xl font-bold m-0">{{film.title}} ({{film.release_year}}) {{getFlagEmoji(film.language)}}
+      </span>
+    </div>
+    <div class="ml-1 flex">
+      <div class="flex items-center px-1">
+        <span
+          class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">{{film.length}}min</span>
+      </div>
+      <div class="flex items-center px-1">
+        <span
+          class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">{{film.rating}}</span>
+      </div>
+    </div>
+  </div>
+  <p class="text-gray-500 text-base">{{film.description}}</p>
+  <!-- Film and rent details -->
+  <div class="mb-4">
+    <div class="container mx-auto flex">
+      <div class="bg-gray-100 w-full p-4 rounded-lg mr-2">
+        <div class="flex mb-2">
+          <div class="flex items-center px-1">
+            <span
+              class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 text-base">Actors</span>
+          </div>
+          <div class="flex items-center">
+            <span class='text-base font-normal'> {{film.actors}} </span>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="flex items-center px-1">
+            <span
+              class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 text-base">Categories</span>
+          </div>
+          <div class="flex items-center">
+            <span class='text-base font-normal'> {{film.category}} </span>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gray-100 w-full p-4 rounded-lg ml-2">
+        <div class="flex mb-2">
+          <div class="flex items-center px-1">
+            <span
+              class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 text-base">Max rent duration</span>
+          </div>
+          <div class="flex items-center">
+            <span class='text-base font-normal'> {{film.rental_duration}} days </span>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="flex items-center px-1">
+            <span
+              class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 text-base">Price</span>
+          </div>
+          <div class="flex items-center">
+            <span class='text-base font-normal'> {{film.rental_rate}}/day </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Available store -->
+  <div class="bg-gray-100 w-full p-4 rounded-lg mr-4">
+    <!-- Title -->
+    <span class="text-base font-bold"> Availability </span>
+    <div class="flex flex-wrap">
+      <div *ngFor="let store of film.disponibility" class="flex items-center px-1 py-1">
+        <span
+          class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs text-gray-600 ring-1 ring-inset ring-gray-500/10 text-base">{{store.street}} ({{store.city}}, {{store.region}})</span>
+      </div>
+    </div>
+  </div>
+  <!-- Rent button -->
+  <div class="flex justify-end mt-4">
+    <!-- <button class="bg-blue-500 text-white px-4 py-2 rounded">Rent</button> -->
+    <button mat-flat-button color='primary' (click)='startRent()'>Rent</button>
+  </div>
+</div>
