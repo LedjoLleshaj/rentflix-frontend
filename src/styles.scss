@@ -31,9 +31,6 @@ $rf-dark-theme: mat.define-dark-theme((
   typography: mat.define-typography-config(),
   density: 0
 ));
-.rf-login-background {
-  background: #f0f0f0;
-}
 
 .rf-title {
   color: #3f51b5;
@@ -52,9 +49,6 @@ $rf-dark-theme: mat.define-dark-theme((
       $rf-dark-theme
   );
 
-  .rf-login-background {
-    background: transparent !important;
-  }
 
   .rf-title {
     color: #00bcd4 !important;
@@ -66,97 +60,31 @@ $rf-dark-theme: mat.define-dark-theme((
 @tailwind utilities;
 
 html, body {
-  height: 100%;
-  margin: 0;
+  @apply h-full m-0;
 }
-
-// custom material components
 
 mat-card {
-  border-radius: 16px !important;
+  @apply rounded-xl;
 }
-
-// rentflix tags
-
-.rf-w-full {
-  width: 100% !important;
-}
-
-.rf-h-full {
-  height: 100% !important;
-}
-
-// flex tags
-
-.rf-d-flex {
-  display: flex;
-}
-
-.rf-d-flex-col {
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-.rf-items-center {
-  align-items: center;
-}
-
-.rf-items-stretch {
-  align-items: stretch;
-}
-
-.rf-items-end {
-  align-items: end;
-}
-
-.rf-justify-center {
-  justify-content: center;
-}
-
-.rf-justify-between {
-  justify-content: space-between !important;
-}
-
-.rf-justify-end {
-  justify-content: flex-end;
-}
-
-// margin tags
-
-.rf-m-0 {
-  margin: 0 !important;
-}
-
-// text tags
-.rf-text-center {
-  text-align: center !important;
-}
-
-.rf-text-left {
-  text-align: left !important;
-}
-
 
 // zoom tags
 div.rf-zoom {
+  @apply fixed bottom-0 right-0 mb-2 mr-2;
   z-index: 1;
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
 
   p {
     margin: 0 10px !important;
   }
 
   button {
-    box-shadow: none;
+    @apply shadow-none;
 
     &:hover {
-      box-shadow: none;
+      @apply shadow-none;
     }
 
     &:focus {
-      box-shadow: none;
+      @apply shadow-none;
     }
   }
 
