@@ -26,11 +26,14 @@ export class FilmTableComponent implements OnInit {
     this.apollo
       .query<FilmListModel>({
         query: FILMLIST_QUERY,
+        variables: {
+          filter: {},
+        },
       })
       .subscribe(({ data }) => {
         console.log(data);
         this.dataSource = data.filmList;
-        this.paginatedData = this.dataSource.slice(0, 10);
+        this.paginatedData = this.dataSource;
       });
   }
 
