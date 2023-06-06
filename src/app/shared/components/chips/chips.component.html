@@ -1,8 +1,6 @@
 <p>chips works!</p>
-<mat-chip-listbox aria-label="Category selection">
-  <!--<mat-chip-option *ngFor="let category of categories">{{ category }}</mat-chip-option>-->
-  <mat-chip-option>Action</mat-chip-option>
-  <mat-chip-option>Adventure</mat-chip-option>
-  <mat-chip-option>Documentary</mat-chip-option>
-  <mat-chip-option>Classics</mat-chip-option>
+<mat-chip-listbox aria-label="Category selection" tabindex="0">
+  <ng-container *ngFor="let category of categories">
+    <mat-chip-option [value]="category" role="category option">{{ category }}</mat-chip-option>
+  </ng-container>
 </mat-chip-listbox>
