@@ -5,7 +5,7 @@ import { CreateUserQueryResponse, LOGIN_QUERY } from '../graphql/login';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LOCAL_STORAGE_KEYS } from '../shared/constants';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DarkModeService } from '../shared/services/darkMode/dark-mode.service';
+import { DarkModeService } from '../shared/services/dark-mode/dark-mode.service';
 
 @Component({
   selector: 'app-login',

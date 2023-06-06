@@ -5,6 +5,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { Apollo } from 'apollo-angular';
 import { FILMLIST_QUERY, FilmListModel, FilmModel } from 'src/app/graphql/film';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { GetFilmsFilterInput } from 'src/app/graphql/film';
+import { GetFilmsService } from '../../services/get-films/get-films.service';
 
 @Component({
   selector: 'app-film-table',
@@ -12,29 +14,29 @@ import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/p
   styleUrls: ['./film-table.component.scss'],
   standalone: true,
   imports: [MatTableModule, MatButtonModule, MatPaginatorModule, NgIf, NgFor],
+  providers: [GetFilmsService]
 })
+
+
 export class FilmTableComponent implements OnInit {
   displayedColumns: string[] = ['title', 'year', 'rating', 'category', 'language', 'rental_cost', 'rent'];
   dataSource: FilmModel[] = [];
   clickedRows = new Set<FilmModel>();
   paginatedData: FilmModel[] = [];
 
-  constructor(private apollo: Apollo) {}
+  constructor(private GetFilmsService: GetFilmsService) {
+  }
+
   @ViewChild(MatPaginatorModule) paginator!: MatPaginatorModule;
 
   ngOnInit() {
-    this.apollo
-      .query<FilmListModel>({
-        query: FILMLIST_QUERY,
-        variables: {
-          filter: {},
-        },
-      })
-      .subscribe(({ data }) => {
-        console.log(data);
-        this.dataSource = data.filmList;
-        this.paginatedData = this.dataSource;
-      });
+    const films = this.GetFilmsService.getFilms({
+      page: 2,
+      filmPerPage: 10
+    } as GetFilmsFilterInput).subscribe((data) => {
+      this.dataSource = data.getFilms.films;
+      this.paginatedData = this.dataSource;
+    });
   }
 
   rentMovie(row: any) {
@@ -42,12 +44,12 @@ export class FilmTableComponent implements OnInit {
   }
 
   nextPage(event: PageEvent) {
-    const startIndex = event.pageIndex * event.pageSize;
-    let endIndex = startIndex + event.pageSize;
-    if (endIndex > this.dataSource.length) {
-      endIndex = this.dataSource.length;
-    }
-    this.paginatedData = this.dataSource.slice(startIndex, endIndex);
-    console.log(this.paginatedData);
+    //const startIndex = event.pageIndex * event.pageSize;
+    //let endIndex = startIndex + event.pageSize;
+    //if (endIndex > this.dataSource.length) {
+    //  endIndex = this.dataSource.length;
+    //}
+    //this.paginatedData = this.dataSource.slice(startIndex, endIndex);
+    //console.log(this.paginatedData);
   }
 }
