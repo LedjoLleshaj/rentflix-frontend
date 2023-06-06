@@ -2,7 +2,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LOCAL_STORAGE_KEYS } from '../shared/constants';
-import { DarkModeService } from '../shared/services/darkMode/dark-mode.service';
+import { DarkModeService } from '../shared/services/dark-mode/dark-mode.service';
 
 @Component({
   selector: 'app-layout',
