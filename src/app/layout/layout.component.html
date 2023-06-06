@@ -63,12 +63,12 @@
       <mat-menu #rfMenu='matMenu'>
         <ng-template matMenuContent>
           <!-- dark/light mode -->
-          <button (click)='toggleDarkMode()' *ngIf='darkMode' mat-menu-item
+          <button *ngIf='this.darkModeService.darkMode' (click)='this.darkModeService.toggleDarkMode()' mat-menu-item
                   aria-label='Active light mode' title='Active light mode'>
             <mat-icon>light_mode</mat-icon>
             Light mode
           </button>
-          <button (click)='toggleDarkMode()' *ngIf='!darkMode' mat-menu-item
+          <button *ngIf='!this.darkModeService.darkMode' (click)='this.darkModeService.toggleDarkMode()' mat-menu-item
                   aria-label='Active dark mode' title='Active dark mode'>
             <mat-icon>dark_mode</mat-icon>
             Dark mode

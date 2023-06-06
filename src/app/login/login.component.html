@@ -1,11 +1,13 @@
 <main class='rf-login-background'>
   <div class='rf-theme'>
-    <button *ngIf='darkMode' (click)='toggleDarkMode()' mat-stroked-button aria-label='Active light mode'
+    <button *ngIf='this.darkModeService.darkMode' (click)='this.darkModeService.toggleDarkMode()' mat-stroked-button
+            aria-label='Active light mode'
             title='Active light mode'>
       <mat-icon>light_mode</mat-icon>
       Light mode
     </button>
-    <button *ngIf='!darkMode' (click)='toggleDarkMode()' mat-stroked-button aria-label='Active dark mode'
+    <button *ngIf='!this.darkModeService.darkMode' (click)='this.darkModeService.toggleDarkMode()' mat-stroked-button
+            aria-label='Active dark mode'
             title='Active dark mode'>
       <mat-icon>dark_mode</mat-icon>
       Dark mode

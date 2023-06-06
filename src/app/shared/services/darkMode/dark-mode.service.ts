@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { LOCAL_STORAGE_KEYS } from '../../constants';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class DarkModeService {
-  private darkMode: boolean = false;
+  public darkMode: boolean = false;
 
-  constructor() {
+  initDarkModeSettings(): void {
     this.loadDarkModeSetting();
     this.applyDarkMode();
   }

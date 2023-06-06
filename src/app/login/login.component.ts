@@ -10,27 +10,25 @@ import { DarkModeService } from '../shared/services/darkMode/dark-mode.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  // username: string = '';
-  // password: string = '';
   loginForm: FormGroup;
-  darkMode: boolean = false;
 
   constructor(
     private router: Router,
     private apollo: Apollo,
     private snackBar: MatSnackBar,
-    private darkModeService: DarkModeService
-  ) {}
+    public darkModeService: DarkModeService
+  ) {
+  }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.minLength(4)),
+      password: new FormControl('', Validators.minLength(4))
     });
-    // make the opposite of the current value cause toggleDarkMode() will negate it
+    this.darkModeService.initDarkModeSettings();
   }
 
   get username() {
@@ -47,8 +45,8 @@ export class LoginComponent implements OnInit {
         query: LOGIN_QUERY,
         variables: {
           username: this.username?.value,
-          password: this.password?.value,
-        },
+          password: this.password?.value
+        }
       })
       .subscribe({
         next: ({ data }) => {
@@ -62,12 +60,8 @@ export class LoginComponent implements OnInit {
         },
         error: (error) => {
           this.snackBar.open('Username or password not correct');
-        },
+        }
       });
   }
 
-  toggleDarkMode() {
-    this.darkModeService.toggleDarkMode();
-    this.darkMode = !this.darkMode;
-  }
 }
