@@ -50,6 +50,8 @@ export interface GetCategoriesModel {
 
 export const GET_CATEGORIES_QUERY = gql`
   query GetCategories {
-    getCategories
+    getCategories {
+      name
+    }
   }
 `;

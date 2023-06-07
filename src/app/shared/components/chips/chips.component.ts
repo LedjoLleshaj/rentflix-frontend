@@ -22,8 +22,7 @@ export class ChipsComponent implements OnInit {
         query: GET_CATEGORIES_QUERY,
       })
       .subscribe((data: any) => {
-        console.log(data);
-        this.categories = [...data.data.getCategories];
+        this.categories = data.data.getCategories.map((category: any) => category.name);
       });
   }
 }
