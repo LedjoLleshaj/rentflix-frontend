@@ -1,3 +1,10 @@
+export interface FilmColumn {
+  title: string;
+  field: string;
+  sortable?: boolean;
+}
+
+
 export interface FilmModel {
   film_id: number;
   title: string;
