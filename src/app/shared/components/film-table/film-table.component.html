@@ -35,7 +35,7 @@
       *matCellDef="let film"
       [attr.aria-label]="'Category ' + film.category"
     >
-      {{ film.category.category_id }}
+      {{ film.category.name }}
     </td>
   </ng-container>
 
@@ -48,7 +48,7 @@
       *matCellDef="let film"
       [attr.aria-label]="'Language ' + film.language"
     >
-      {{ film.language.language_id }}
+      {{ film.language.name }}
     </td>
   </ng-container>
 
