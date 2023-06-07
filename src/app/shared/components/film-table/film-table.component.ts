@@ -6,15 +6,14 @@ import { FilmModel } from 'src/app/graphql/film';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
-
 @Component({
   selector: 'app-film-table',
   templateUrl: './film-table.component.html',
   styleUrls: ['./film-table.component.scss'],
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, MatPaginatorModule, NgIf, NgFor, MatSortModule]
+  imports: [MatTableModule, MatButtonModule, MatPaginatorModule, NgIf, NgFor, MatSortModule],
 })
-export class FilmTableComponent implements OnInit {
+export class FilmTableComponent {
   columns: string[] = ['title', 'release_year', 'rating', 'category', 'language', 'rental_rate', 'rent'];
   @Input() data: FilmModel[];
   @Input() total: number;
@@ -23,9 +22,4 @@ export class FilmTableComponent implements OnInit {
   @Output() infoMovie: EventEmitter<any> = new EventEmitter();
 
   @ViewChild(MatPaginatorModule) paginator!: MatPaginatorModule;
-
-  ngOnInit() {
-  }
-
-
 }
