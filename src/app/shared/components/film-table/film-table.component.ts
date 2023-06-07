@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { NgIf, NgFor } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
-import { FilmModel } from 'src/app/graphql/film';
+import { Film } from 'src/app/graphql/film';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
@@ -16,7 +16,7 @@ import { MatSortModule } from '@angular/material/sort';
 })
 export class FilmTableComponent implements OnInit {
   columns: string[] = ['title', 'release_year', 'rating', 'category', 'language', 'rental_rate', 'rent'];
-  @Input() data: FilmModel[];
+  @Input() data: Film[];
   @Input() total: number;
   @Output() nextPage: EventEmitter<any> = new EventEmitter();
   @Output() rentMovie: EventEmitter<any> = new EventEmitter();

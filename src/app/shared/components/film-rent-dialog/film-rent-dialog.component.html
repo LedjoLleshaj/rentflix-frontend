@@ -1,0 +1,30 @@
+
+<div class="flex flex-col rounded-2xl m-2 p-2">
+  <!-- Header -->
+  <span class="text-2xl font-bold m-0">Rent film</span>
+
+  <mat-stepper linear #stepper>
+    <mat-step>
+        <ng-template matStepLabel>Select a store</ng-template>
+        <!-- Show list of stores -->
+
+        <div>
+          <button mat-button (click)="this.dialogRef.close()" class="mr-2">Cancel</button>
+          <button mat-flat-button matStepperNext class='rounded-button' color='primary' >
+            Next
+          </button>
+        </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+          <button mat-flat-button matStepperNext class='rounded-button' color='primary'>
+            Confirm
+          </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+
+</div>

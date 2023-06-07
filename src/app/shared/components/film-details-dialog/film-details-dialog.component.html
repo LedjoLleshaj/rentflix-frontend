@@ -3,7 +3,7 @@
   <!-- Header -->
   <div class="flex">
     <div class="flex items-center">
-      <span class="text-2xl font-bold m-0">{{film.title}} ({{film.release_year}}) {{getFlagEmoji(film.language)}}
+      <span class="text-2xl font-bold m-0">{{film.title}} ({{film.release_year}}) {{getFlagEmoji(film.language?.name ?? '')}}
       </span>
     </div>
     <div class="ml-1 flex">
@@ -28,7 +28,7 @@
               class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 text-base">Actors</span>
           </div>
           <div class="flex items-center">
-            <span class='text-base font-normal'> {{film.actors}} </span>
+            <span *ngIf="film.actors" class='text-base font-normal'> {{ actorsList() }}</span>
           </div>
         </div>
         <div class="flex">
@@ -37,7 +37,7 @@
               class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 text-base">Categories</span>
           </div>
           <div class="flex items-center">
-            <span class='text-base font-normal'> {{film.category}} </span>
+            <span class='text-base font-normal'> {{film.category?.name}} </span>
           </div>
         </div>
       </div>
@@ -68,15 +68,14 @@
     <!-- Title -->
     <span class="text-base font-bold"> Availability </span>
     <div class="flex flex-wrap">
-      <div *ngFor="let store of film.disponibility" class="flex items-center px-1 py-1">
+      <div *ngFor="let store of film.availableStores" class="flex items-center px-1 py-1">
         <span
-          class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs text-gray-600 ring-1 ring-inset ring-gray-500/10 text-base">{{store.street}} ({{store.city}}, {{store.region}})</span>
+          class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs text-gray-600 ring-1 ring-inset ring-gray-500/10 text-base">{{store.address.address}} ({{store.address.city.city}}, {{store.address.city.country.country}})</span>
       </div>
     </div>
   </div>
   <!-- Rent button -->
   <div class="flex justify-end mt-4">
-    <!-- <button class="bg-blue-500 text-white px-4 py-2 rounded">Rent</button> -->
     <button mat-flat-button color='primary' (click)='startRent()'>Rent</button>
   </div>
 </div>

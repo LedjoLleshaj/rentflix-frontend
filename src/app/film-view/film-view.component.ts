@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { GetFilmsService } from '../shared/services/get-films/get-films.service';
-import { FilmModel, GetFilmsFilterInput } from '../graphql/film';
+import { Component } from '@angular/core';
+import { GetFilmsService } from '../shared/services/films/get-films.service';
+import { Film, GetFilmsFilterInput } from '../graphql/film';
 import { PageEvent } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { FilmDetailsDialogComponent } from '../shared/components/film-details-dialog/film-details-dialog.component';
+import { GetFilmService } from '../shared/services/films/get-film.service';
+import { FilmRentDialogComponent } from '../shared/components/film-rent-dialog/film-rent-dialog.component';
 
 @Component({
   selector: 'app-film-view',
@@ -12,11 +16,11 @@ import { PageEvent } from '@angular/material/paginator';
 
 
 export class FilmViewComponent {
-  data: FilmModel[];
+  data: Film[];
   total: number = 0;
   searchTitle: string = '';
 
-  constructor(private GetFilmsService: GetFilmsService) {
+  constructor(private GetFilmsService: GetFilmsService, private GetFilmService: GetFilmService ,private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -43,11 +47,27 @@ export class FilmViewComponent {
     });
   }
 
-  rentMovie(film: FilmModel) {
-    console.log(film);
+  rentMovie(film: Film) {
+    this.GetFilmService.getFilm(film.film_id).subscribe((film) => {
+      this.dialog.open(FilmRentDialogComponent, {
+        width: '900px',
+        data: film
+      }).afterClosed().subscribe((result) => {
+        if (result === 1) {
+          // TODO: Add rent mutation
+        }
+      });
+    });
   }
 
-  infoMovie(film: FilmModel) {
-    console.log(film);
+  infoMovie(film: Film) {
+    this.GetFilmService.getFilm(film.film_id).subscribe((film) => {
+      this.dialog.open(FilmDetailsDialogComponent, {
+        width: '900px',
+        data: film
+      }).afterClosed().subscribe((result) => {
+        if (result === 1) this.rentMovie(film);
+      });
+    });
   }
 }

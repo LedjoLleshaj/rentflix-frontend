@@ -1,17 +1,43 @@
 import { gql } from 'apollo-angular';
 
-export interface FilmModel {
+export interface Film {
+  film_id: string;
   title: string;
+  description?: string;
   release_year?: number;
+  language_id?: number;
+  language?: {
+    name: string;
+  };
+  rental_duration?: number;
+  rental_rate?: number;
+  length?: number;
+  replacement_cost?: number;
   rating?: string;
-  category?: string;
-  language?: string;
-  rental_rate: number;
+  category?: {
+    name: string;
+  };
+  actors?: {
+    first_name: string;
+    last_name: string;
+  }[];
+  availableStores?: {
+    store_id: number;
+    address: {
+      address: string;
+      city: {
+        city: string;
+        country: {
+          country: string;
+        };
+      };
+    };
+  }[];
 }
 
 export interface FilmListModel {
   getFilms: {
-    films: FilmModel[];
+    films: Film[];
     total: number;
   };
 }
@@ -29,6 +55,7 @@ export const GET_FILMS_QUERY = gql`
   query GetFilms($filter: GetFilmsFilterInput) {
     getFilms(filter: $filter) {
       films {
+        film_id
         title
         release_year
         language {

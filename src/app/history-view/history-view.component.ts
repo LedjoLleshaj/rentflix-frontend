@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FilmColumn } from '../models/film.model';
-import { FilmModel, GetFilmsFilterInput } from '../graphql/film';
-import { GetFilmsService } from '../shared/services/get-films/get-films.service';
+import { Film, GetFilmsFilterInput } from '../graphql/film';
+import { GetFilmsService } from '../shared/services/films/get-films.service';
 
 @Component({
   selector: 'app-history-view',
@@ -48,7 +48,7 @@ export class HistoryViewComponent {
     }
   ];
 
-  data: FilmModel[];
+  data: Film[];
   total: number = 0;
 
   constructor(private GetFilmsService: GetFilmsService) {
