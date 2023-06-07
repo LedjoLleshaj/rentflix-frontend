@@ -6,5 +6,7 @@
 <app-chips></app-chips>
 
 <div class="pb-16">
-  <app-film-table></app-film-table>
+  <app-film-table [data]='data' [total]='total' (nextPage)='nextPage($event)' (rentMovie)='rentMovie($event)'
+                  (infoMovie)='infoMovie($event)'
+  ></app-film-table>
 </div>
