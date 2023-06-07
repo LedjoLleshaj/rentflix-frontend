@@ -14,16 +14,15 @@ import { FilmColumn } from '../../../models/film.model';
   templateUrl: './film-table.component.html',
   styleUrls: ['./film-table.component.scss'],
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, MatPaginatorModule, NgIf, NgFor],
-  providers: [GetFilmsService]
+  imports: [MatTableModule, MatButtonModule, MatPaginatorModule, NgIf, NgFor]
 })
 export class FilmTableComponent implements OnInit {
-  @Input() inputColumns: FilmColumn[];
+  @Input() columns: FilmColumn[];
+  @Input() data: FilmModel[];
+  @Input() total: number;
+  columnsName: string[] = [];
   // dataSource: FilmModel[] = [];
   // clickedRows = new Set<FilmModel>();
-  columns: string[] = [];
-  paginatedData: FilmModel[] = [];
-  total = 0;
 
 
   @ViewChild(MatPaginatorModule) paginator!: MatPaginatorModule;
@@ -38,7 +37,7 @@ export class FilmTableComponent implements OnInit {
     //  this.dataSource = data.getFilms.films;
     //  this.paginatedData = this.dataSource;
     //});
-    this.columns = this.inputColumns.map((column) => column.field);
+    this.columnsName = this.columns.map((column) => column.field);
   }
 
   rentMovie(row: any) {
