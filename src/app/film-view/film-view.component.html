@@ -3,10 +3,14 @@
   <input matInput placeholder="Search by title" value="" (input)="onSearchTitleChange($event)" name="title" />
 </mat-form-field>
 
-<app-chips></app-chips>
+<app-chips (selectedCategories)="handleSelectedCategories($event)"></app-chips>
 
 <div class="pb-16">
-  <app-film-table [data]='data' [total]='total' (nextPage)='nextPage($event)' (rentMovie)='rentMovie($event)'
-                  (infoMovie)='infoMovie($event)'
+  <app-film-table
+    [data]="data"
+    [total]="total"
+    (nextPage)="nextPage($event)"
+    (rentMovie)="rentMovie($event)"
+    (infoMovie)="infoMovie($event)"
   ></app-film-table>
 </div>

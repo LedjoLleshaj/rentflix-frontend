@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { MatChipsModule } from '@angular/material/chips';
 import { Apollo } from 'apollo-angular';
@@ -13,6 +13,8 @@ import { GET_CATEGORIES_QUERY } from 'src/app/graphql/film';
 })
 export class ChipsComponent implements OnInit {
   categories: string[];
+  selected: string[] = [];
+  @Output() selectedCategories = new EventEmitter<string[]>();
 
   constructor(private apollo: Apollo) {}
 
@@ -24,5 +26,15 @@ export class ChipsComponent implements OnInit {
       .subscribe((data: any) => {
         this.categories = data.data.getCategories.map((category: any) => category.name);
       });
+  }
+
+  onChipSelectionChange(event: any): void {
+    const cat = event.source.value;
+    if (this.selected.includes(cat)) {
+      this.selected = this.selected.filter((item) => item !== cat);
+    } else {
+      this.selected.push(cat);
+    }
+    this.selectedCategories.emit(this.selected);
   }
 }
