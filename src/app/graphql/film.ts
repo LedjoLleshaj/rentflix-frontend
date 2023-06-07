@@ -44,7 +44,6 @@ export const GET_FILMS_QUERY = gql`
     }
   }
 `;
-export const FILMLIST_QUERY = GET_FILMS_QUERY;
 
 export interface GetCategoriesModel {
   getCategories: {

@@ -1,0 +1,79 @@
+<table mat-table [dataSource]='data'
+       class='mat-elevation-z1 table'>
+  <caption>
+    Film rental history
+  </caption>
+  <!-- title -->
+  <ng-container matColumnDef='title'>
+    <th mat-header-cell *matHeaderCellDef class='rf-text-center' role='columnheader' scope='col'>Title</th>
+    <td class='rf-text-center rf-table-row' *matCellDef='let rent' [attr.aria-label]="'Title ' + rent.title">
+      <button mat-flat-button [attr.aria-label]="'Open ' + rent.title + ' info'"
+              (click)='this.infoMovie.emit(rent)'>{{ rent.title }}</button>
+    </td>
+  </ng-container>
+
+  <!-- rental_date -->
+
+  <ng-container matColumnDef='rental_date'>
+    <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Rental date</th>
+    <td
+      class='rf-text-center rf-table-row'
+      mat-cell
+      *matCellDef='let rent'
+      [attr.aria-label]="'Rental date ' + rent.rental_date"
+    >
+      {{ rent.rental_date }}
+    </td>
+  </ng-container>
+
+  <!-- return_date -->
+  <ng-container matColumnDef='return_date'>
+    <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Return date</th>
+    <td
+      class='rf-text-center rf-table-row'
+      mat-cell
+      *matCellDef='let rent'
+      [attr.aria-label]="'Return date ' + rent.return_date"
+    >
+      {{ rent.return_date }}
+    </td>
+  </ng-container>
+
+  <!-- address -->
+  <ng-container matColumnDef='address'>
+    <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Address</th>
+    <td
+      class='rf-text-center rf-table-row'
+      mat-cell
+      *matCellDef='let rent'
+      [attr.aria-label]="'Address ' + rent.address"
+    >
+      {{ rent.address }}
+    </td>
+  </ng-container>
+
+  <!-- amount -->
+  <ng-container matColumnDef='amount'>
+    <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Amount</th>
+    <td
+      class='rf-text-center rf-table-row'
+      mat-cell
+      *matCellDef='let rent'
+      [attr.aria-label]="'Amount ' + rent.amount"
+    >
+      {{ rent.amount + ' €' }}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef='columns'></tr>
+  <tr mat-row *matRowDef='let row; columns: columns'></tr>
+</table>
+<mat-paginator
+  class='mat-elevation-z1'
+  [length]='this.total'
+  [pageSize]='10'
+  [pageSizeOptions]='[5, 10, 25, 50]'
+  showFirstLastButtons
+  (page)='this.nextPage.emit($event)'
+  aria-label='Pagination Navigation'
+></mat-paginator>
