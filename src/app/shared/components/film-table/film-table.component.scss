@@ -1,7 +1,14 @@
 table {
+  min-width: 600px !important;
+  width: 100%;
+
   button {
     border-radius: 24px;
   }
+}
+
+mat-paginator {
+  min-width: 600px !important;
 }
 
 .rf-table-row {
@@ -10,5 +17,5 @@ table {
 
 .mat-mdc-row:hover {
   cursor: pointer !important;
-  background-color: #d1cdea !important;
+  opacity: 0.8 !important;
 }

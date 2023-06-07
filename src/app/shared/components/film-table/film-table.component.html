@@ -6,7 +6,7 @@
   <!-- title Column -->
   <ng-container matColumnDef='title'>
     <th mat-header-cell *matHeaderCellDef class='rf-text-center' role='columnheader' scope='col'>Title</th>
-    <td class='rf-text-center rf-table-row' *matCellDef='let film' [attr.aria-label]="'Title ' + film.title">
+    <td class='rf-text-center rf-table-row' mat-cell *matCellDef='let film' [attr.aria-label]="'Title ' + film.title">
       <button mat-flat-button [attr.aria-label]="'Open ' + film.title + ' info'"
               (click)='this.infoMovie.emit(film)'>{{ film.title }}</button>
     </td>
@@ -86,7 +86,7 @@
   <tr mat-row *matRowDef='let row; columns: columns'></tr>
 </table>
 <mat-paginator
-  class='mat-elevation-z1'
+  class='mat-elevation-z1 my-paginator'
   [length]='this.total'
   [pageSize]='10'
   [pageSizeOptions]='[5, 10, 25, 50]'
