@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { FilmModel } from '../../../graphql/film';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,5 +32,5 @@ export class HistoryTableComponent {
     const days = Math.ceil(diff / (1000 * 3600 * 24));
     return days + ' days';
   }
-  
+
 }
