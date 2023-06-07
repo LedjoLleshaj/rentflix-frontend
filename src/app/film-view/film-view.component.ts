@@ -13,14 +13,19 @@ export class FilmViewComponent {
   data: FilmModel[];
   total: number = 0;
   searchTitle: string = '';
+  filter: GetFilmsFilterInput = {
+    title: '',
+    categories: [],
+    page: 1,
+    filmPerPage: 10,
+    orderBy: 'title',
+    sort: 'asc',
+  };
 
   constructor(private FilmsApiService: FilmsApiService) {}
 
   ngOnInit() {
-    this.FilmsApiService.getFilms({
-      page: 1,
-      filmPerPage: 10,
-    } as GetFilmsFilterInput).subscribe((data) => {
+    this.FilmsApiService.getFilms(this.filter).subscribe((data) => {
       this.data = data.getFilms.films;
       this.total = data.getFilms.total;
     });
@@ -32,10 +37,10 @@ export class FilmViewComponent {
   }
 
   nextPage(event: PageEvent) {
-    this.FilmsApiService.getFilms({
-      page: event.pageIndex + 1,
-      filmPerPage: event.pageSize,
-    } as GetFilmsFilterInput).subscribe((data) => {
+    this.filter.page = event.pageIndex + 1;
+    this.filter.filmPerPage = event.pageSize;
+    console.log(this.filter);
+    this.FilmsApiService.getFilms(this.filter).subscribe((data) => {
       this.data = data.getFilms.films;
       this.total = data.getFilms.total;
     });
@@ -49,7 +54,13 @@ export class FilmViewComponent {
     console.log(film);
   }
 
-  handleSelectedCategories(category: string[]) {
-    console.log(category);
+  handleSelectedCategories(category: number[]) {
+    console.log(this.filter);
+    this.filter.categories = [...category];
+    console.log(this.filter);
+    this.FilmsApiService.getFilms(this.filter).subscribe((data) => {
+      this.data = data.getFilms.films;
+      this.total = data.getFilms.total;
+    });
   }
 }

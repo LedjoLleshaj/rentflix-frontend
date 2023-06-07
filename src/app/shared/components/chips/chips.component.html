@@ -1,7 +1,10 @@
 <mat-chip-listbox multiple aria-label="Category selection" tabindex="0">
   <ng-container *ngFor="let category of categories">
-    <mat-chip-option [value]="category" role="category option" (selectionChange)="onChipSelectionChange($event)">{{
-      category
-    }}</mat-chip-option>
+    <mat-chip-option
+      [value]="category.category_id"
+      role="category option"
+      (selectionChange)="onChipSelectionChange($event)"
+      >{{ category.name }}</mat-chip-option
+    >
   </ng-container>
 </mat-chip-listbox>

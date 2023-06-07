@@ -46,15 +46,15 @@ export const GET_FILMS_QUERY = gql`
 `;
 
 export interface GetCategoriesModel {
-  getCategories: {
-    categories: string[];
-  };
+  name: string;
+  category_id: number;
 }
 
 export const GET_CATEGORIES_QUERY = gql`
   query GetCategories {
     getCategories {
       name
+      category_id
     }
   }
 `;

@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { MatChipsModule } from '@angular/material/chips';
 import { Apollo } from 'apollo-angular';
-import { GET_CATEGORIES_QUERY } from 'src/app/graphql/film';
+import { GET_CATEGORIES_QUERY, GetCategoriesModel } from 'src/app/graphql/film';
 
 @Component({
   selector: 'app-chips',
@@ -12,9 +12,9 @@ import { GET_CATEGORIES_QUERY } from 'src/app/graphql/film';
   imports: [MatChipsModule, NgFor],
 })
 export class ChipsComponent implements OnInit {
-  categories: string[];
+  categories: GetCategoriesModel[] = [];
   selected: string[] = [];
-  @Output() selectedCategories = new EventEmitter<string[]>();
+  @Output() selectedCategories = new EventEmitter<number[]>();
 
   constructor(private apollo: Apollo) {}
 
@@ -24,7 +24,7 @@ export class ChipsComponent implements OnInit {
         query: GET_CATEGORIES_QUERY,
       })
       .subscribe((data: any) => {
-        this.categories = data.data.getCategories.map((category: any) => category.name);
+        this.categories = data.data.getCategories;
       });
   }
 
@@ -35,6 +35,6 @@ export class ChipsComponent implements OnInit {
     } else {
       this.selected.push(cat);
     }
-    this.selectedCategories.emit(this.selected);
+    this.selectedCategories.emit(this.selected.map((item) => parseInt(item)));
   }
 }
