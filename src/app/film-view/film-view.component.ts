@@ -25,6 +25,7 @@ export class FilmViewComponent {
       this.total = data.getFilms.total;
     });
   }
+
   onSearchTitleChange(event: any) {
     this.searchTitle = event.target.value;
     console.log(this.searchTitle);
