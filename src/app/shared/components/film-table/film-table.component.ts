@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,7 +17,7 @@ export class FilmTableComponent {
   columns: string[] = ['title', 'release_year', 'rating', 'category', 'language', 'rental_rate', 'rent'];
   @Input() data: FilmModel[];
   @Input() total: number;
-  @Output() nextPage: EventEmitter<any> = new EventEmitter();
+  @Output() nextPage: EventEmitter<PageEvent> = new EventEmitter();
   @Output() rentMovie: EventEmitter<any> = new EventEmitter();
   @Output() infoMovie: EventEmitter<any> = new EventEmitter();
 

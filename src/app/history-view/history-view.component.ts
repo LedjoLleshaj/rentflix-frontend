@@ -7,20 +7,18 @@ import { PageEvent } from '@angular/material/paginator';
   selector: 'app-history-view',
   templateUrl: './history-view.component.html',
   styleUrls: ['./history-view.component.scss'],
-  providers: [RentalApiService]
+  providers: [RentalApiService],
 })
 export class HistoryViewComponent {
-
   data: Rent[];
   total: number = 0;
 
-  constructor(private RentalApiService: RentalApiService) {
-  }
+  constructor(private RentalApiService: RentalApiService) {}
 
   ngOnInit() {
     this.RentalApiService.getRentsOfCustomer({
       page: 1,
-      filmPerPage: 10
+      filmPerPage: 10,
     } as GetRentalOfCustomerFilter).subscribe((data) => {
       this.total = data.total;
       this.data = data.rents;
