@@ -3,7 +3,7 @@ import { FilmModel } from '../../../graphql/film';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
-import { NgFor, NgIf } from '@angular/common';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { MatSortModule } from '@angular/material/sort';
 import { Rent } from '../../../models/rental.model';
 
@@ -12,7 +12,7 @@ import { Rent } from '../../../models/rental.model';
   templateUrl: './history-table.component.html',
   styleUrls: ['./history-table.component.scss'],
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, MatPaginatorModule, NgIf, NgFor, MatSortModule]
+  imports: [MatTableModule, MatButtonModule, MatPaginatorModule, NgIf, NgFor, MatSortModule, DatePipe]
 })
 
 export class HistoryTableComponent {

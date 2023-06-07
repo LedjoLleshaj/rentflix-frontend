@@ -3,6 +3,8 @@ import { FilmModel, GetFilmsFilterInput } from '../graphql/film';
 import { GetFilmsService } from '../shared/services/get-films/get-films.service';
 import { RentalApiService } from '../shared/services/rental-api/rental-api.service';
 import { GetRentalOfCustomerFilter, Rent } from '../models/rental.model';
+import { PageEvent } from '@angular/material/paginator';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-history-view',
@@ -28,4 +30,13 @@ export class HistoryViewComponent {
       this.data = data.rents;
     });
   }
+
+  nextPage(event: PageEvent) {
+    console.log(event);
+  }
+
+  infoMovie(rent: Rent) {
+    console.log(rent);
+  }
+
 }

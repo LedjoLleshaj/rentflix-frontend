@@ -1,6 +1,9 @@
-<p>history-view works!
+<div class='pb-16'>
   <app-history-table
     [data]='data'
     [total]='total'
+    (nextPage)='nextPage($event)'
+    (infoMovie)='infoMovie($event)'
   ></app-history-table>
-</p>
+</div>
+
