@@ -7,6 +7,8 @@ import { FILMLIST_QUERY, FilmListModel, FilmModel } from 'src/app/graphql/film';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { GetFilmsFilterInput } from 'src/app/graphql/film';
 import { GetFilmsService } from '../../services/get-films/get-films.service';
+import { FilmDetailsDialogComponent } from '../film-details-dialog/film-details-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-film-table',
@@ -24,7 +26,7 @@ export class FilmTableComponent implements OnInit {
   clickedRows = new Set<FilmModel>();
   paginatedData: FilmModel[] = [];
 
-  constructor(private GetFilmsService: GetFilmsService) {
+  constructor(private GetFilmsService: GetFilmsService, private dialog: MatDialog) {
   }
 
   @ViewChild(MatPaginatorModule) paginator!: MatPaginatorModule;
@@ -40,7 +42,15 @@ export class FilmTableComponent implements OnInit {
   }
 
   rentMovie(row: any) {
-    console.log(row.title, row.year);
+    // console.log(row.title, row.year);
+    const dialogRef = this.dialog.open(FilmDetailsDialogComponent, {
+      width: '900px',
+      data: { id: row.film_id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   nextPage(event: PageEvent) {

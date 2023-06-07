@@ -24,13 +24,12 @@ import { HistoryViewComponent } from './history-view/history-view.component';
 import { FilmTableComponent } from './shared/components/film-table/film-table.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
-import { FilmDetailsComponent } from './film-details/film-details.component';
-import { DialogComponent } from './shared/components/film-details-dialog/film-details-dialog.component';
+import { FilmDetailsDialogComponent } from './shared/components/film-details-dialog/film-details-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
-  declarations: [AppComponent, LayoutComponent, LoginComponent, FilmViewComponent, HistoryViewComponent, FilmDetailsComponent, DialogComponent],
+  declarations: [AppComponent, LayoutComponent, LoginComponent, FilmViewComponent, HistoryViewComponent, FilmDetailsDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

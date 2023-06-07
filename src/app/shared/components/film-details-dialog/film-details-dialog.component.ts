@@ -6,11 +6,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './film-details-dialog.component.html',
   styleUrls: ['./film-details-dialog.component.scss']
 })
-export class DialogComponent {
+export class FilmDetailsDialogComponent {
   film: any;
 
   constructor(
-    public dialogRef: MatDialogRef<DialogComponent>,
+    public dialogRef: MatDialogRef<FilmDetailsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
