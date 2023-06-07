@@ -7,10 +7,10 @@ enum Sort {
 
 export interface Rent {
   rental_id: number;
-  rental_date: Date;
+  rental_date: number;
   inventory_id: number;
   customer_id: number;
-  return_date: Date;
+  return_date: number;
   staff_id: number;
   last_update: Date;
 }

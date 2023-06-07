@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import { FilmModel, GetFilmsFilterInput } from '../graphql/film';
-import { GetFilmsService } from '../shared/services/get-films/get-films.service';
 import { RentalApiService } from '../shared/services/rental-api/rental-api.service';
 import { GetRentalOfCustomerFilter, Rent } from '../models/rental.model';
 import { PageEvent } from '@angular/material/paginator';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-history-view',
@@ -25,18 +22,27 @@ export class HistoryViewComponent {
       page: 1,
       filmPerPage: 10
     } as GetRentalOfCustomerFilter).subscribe((data) => {
-      console.log(data);
       this.total = data.total;
       this.data = data.rents;
     });
   }
 
   nextPage(event: PageEvent) {
-    console.log(event);
+    this.RentalApiService.getRentsOfCustomer({
+      page: event.pageIndex + 1,
+      filmPerPage: event.pageSize
+    } as GetRentalOfCustomerFilter).subscribe((data) => {
+      this.total = data.total;
+      this.data = data.rents;
+    });
   }
 
   infoMovie(rent: Rent) {
     console.log(rent);
+  }
+
+  announceSortChange(sort: any) {
+    console.log(sort);
   }
 
 }
