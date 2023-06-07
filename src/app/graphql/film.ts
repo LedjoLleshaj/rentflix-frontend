@@ -29,44 +29,15 @@ export const GET_FILMS_QUERY = gql`
   query GetFilms($filter: GetFilmsFilterInput) {
     getFilms(filter: $filter) {
       films {
-        film_id
         title
-        description
         release_year
-        language_id
         language {
-          language_id
+          name
         }
-        rental_duration
         rental_rate
-        length
-        replacement_cost
         rating
         category {
-          category_id
-        }
-        actors {
-          actor_id
-          first_name
-          last_name
-        }
-        availableStores {
-          address_id
-          address {
-            address
-            address2
-            city_id
-            city {
-              city
-              country_id
-              country {
-                country
-                country_id
-              }
-            }
-          }
-          manager_staff_id
-          store_id
+          name
         }
       }
       total
