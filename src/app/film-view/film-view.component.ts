@@ -32,14 +32,16 @@ export class FilmViewComponent {
   }
 
   onSearchTitleChange(event: any) {
-    this.searchTitle = event.target.value;
-    console.log(this.searchTitle);
+    this.filter.title = event.target.value;
+    this.FilmsApiService.getFilms(this.filter).subscribe((data) => {
+      this.data = data.getFilms.films;
+      this.total = data.getFilms.total;
+    });
   }
 
   nextPage(event: PageEvent) {
     this.filter.page = event.pageIndex + 1;
     this.filter.filmPerPage = event.pageSize;
-    console.log(this.filter);
     this.FilmsApiService.getFilms(this.filter).subscribe((data) => {
       this.data = data.getFilms.films;
       this.total = data.getFilms.total;
@@ -55,9 +57,7 @@ export class FilmViewComponent {
   }
 
   handleSelectedCategories(category: number[]) {
-    console.log(this.filter);
-    this.filter.categories = [...category];
-    console.log(this.filter);
+    this.filter.categories = category;
     this.FilmsApiService.getFilms(this.filter).subscribe((data) => {
       this.data = data.getFilms.films;
       this.total = data.getFilms.total;
