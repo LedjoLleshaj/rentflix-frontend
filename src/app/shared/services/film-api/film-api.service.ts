@@ -4,11 +4,10 @@ import { Apollo } from 'apollo-angular';
 import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class GetFilmsService {
-  constructor(private apollo: Apollo) {
-  }
+export class FilmsApiService {
+  constructor(private apollo: Apollo) {}
 
   getFilms(filter: GetFilmsFilterInput = {} as GetFilmsFilterInput) {
     let response = new Subject<FilmListModel>();
@@ -16,8 +15,8 @@ export class GetFilmsService {
       .query<FilmListModel>({
         query: GET_FILMS_QUERY,
         variables: {
-          filter: filter
-        }
+          filter: filter,
+        },
       })
       .subscribe({
         next: ({ data }) => {
@@ -26,7 +25,7 @@ export class GetFilmsService {
         error: (error) => {
           console.log('Error: ', error);
           response.next(error);
-        }
+        },
       });
     return response.asObservable();
   }

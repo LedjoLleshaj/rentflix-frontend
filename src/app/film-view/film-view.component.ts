@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GetFilmsService } from '../shared/services/get-films/get-films.service';
+import { FilmsApiService } from '../shared/services/film-api/film-api.service';
 import { FilmModel, GetFilmsFilterInput } from '../graphql/film';
 import { PageEvent } from '@angular/material/paginator';
 
@@ -7,17 +7,17 @@ import { PageEvent } from '@angular/material/paginator';
   selector: 'app-film-view',
   templateUrl: './film-view.component.html',
   styleUrls: ['./film-view.component.scss'],
-  providers: [GetFilmsService],
+  providers: [FilmsApiService],
 })
 export class FilmViewComponent {
   data: FilmModel[];
   total: number = 0;
   searchTitle: string = '';
 
-  constructor(private GetFilmsService: GetFilmsService) {}
+  constructor(private FilmsApiService: FilmsApiService) {}
 
   ngOnInit() {
-    this.GetFilmsService.getFilms({
+    this.FilmsApiService.getFilms({
       page: 1,
       filmPerPage: 10,
     } as GetFilmsFilterInput).subscribe((data) => {
@@ -31,7 +31,7 @@ export class FilmViewComponent {
   }
 
   nextPage(event: PageEvent) {
-    this.GetFilmsService.getFilms({
+    this.FilmsApiService.getFilms({
       page: event.pageIndex + 1,
       filmPerPage: event.pageSize,
     } as GetFilmsFilterInput).subscribe((data) => {
