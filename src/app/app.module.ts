@@ -28,6 +28,7 @@ import { FilmDetailsDialogComponent } from './shared/components/film-details-dia
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatChipsModule} from '@angular/material/chips';
 import { ChipsComponent } from './shared/components/chips/chips.component';
+import { HistoryTableComponent } from './shared/components/history-table/history-table.component';
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent, LoginComponent, FilmViewComponent, HistoryViewComponent, FilmDetailsDialogComponent],
@@ -52,8 +53,10 @@ import { ChipsComponent } from './shared/components/chips/chips.component';
     MatDialogModule,
     MatChipsModule,
     ChipsComponent,
+    HistoryTableComponent
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

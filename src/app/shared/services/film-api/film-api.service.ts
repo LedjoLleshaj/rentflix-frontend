@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
-import { FILMLIST_QUERY, FilmListModel, GetFilmsFilterInput } from '../../../graphql/film';
+import { GET_FILMS_QUERY, FilmListModel, GetFilmsFilterInput, Film } from '../../../graphql/film';
 import { Apollo } from 'apollo-angular';
 import { Subject } from 'rxjs';
+import { GET_FILM_QUERY } from 'src/app/graphql/get-film';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GetFilmsService {
+export class FilmsApiService {
   constructor(private apollo: Apollo) {}
 
   getFilms(filter: GetFilmsFilterInput = {} as GetFilmsFilterInput) {
     let response = new Subject<FilmListModel>();
     this.apollo
       .query<FilmListModel>({
-        query: FILMLIST_QUERY,
+        query: GET_FILMS_QUERY,
         variables: {
           filter: filter,
         },
@@ -21,6 +22,27 @@ export class GetFilmsService {
       .subscribe({
         next: ({ data }) => {
           response.next(data);
+        },
+        error: (error) => {
+          console.log('Error: ', error);
+          response.next(error);
+        },
+      });
+    return response.asObservable();
+  }
+
+  getFilm(id: string) {
+    let response = new Subject<Film>();
+    this.apollo
+      .query<any>({
+        query: GET_FILM_QUERY,
+        variables: {
+          filmId: id,
+        },
+      })
+      .subscribe({
+        next: ({ data }) => {
+          response.next(data.getFilm);
         },
         error: (error) => {
           console.log('Error: ', error);

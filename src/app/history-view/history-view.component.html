@@ -1,7 +1,10 @@
-<p>history-view works!
-  <!--<app-film-table
-    [columns]='columns'
-    [total]='total'
+<div class='pb-16'>
+  <app-history-table
     [data]='data'
-  ></app-film-table>-->
-</p>
+    [total]='total'
+    (nextPage)='nextPage($event)'
+    (infoMovie)='infoMovie($event)'
+    (announceSortChange)='announceSortChange($event)'
+  ></app-history-table>
+</div>
+
