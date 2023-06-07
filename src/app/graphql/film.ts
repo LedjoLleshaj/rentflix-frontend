@@ -29,15 +29,62 @@ export const GET_FILMS_QUERY = gql`
   query GetFilms($filter: GetFilmsFilterInput) {
     getFilms(filter: $filter) {
       films {
+        film_id
         title
+        description
         release_year
-        rating
-        category
-        language
+        language_id
+        language {
+          language_id
+        }
+        rental_duration
         rental_rate
+        length
+        replacement_cost
+        rating
+        category {
+          category_id
+        }
+        actors {
+          actor_id
+          first_name
+          last_name
+        }
+        availableStores {
+          address_id
+          address {
+            address
+            address2
+            city_id
+            city {
+              city
+              country_id
+              country {
+                country
+                country_id
+              }
+            }
+          }
+          manager_staff_id
+          store_id
+        }
       }
       total
     }
   }
 `;
 export const FILMLIST_QUERY = GET_FILMS_QUERY;
+
+export interface GetCategoriesModel {
+  getCategories: {
+    categories: string[];
+  };
+}
+
+export const GET_CATEGORIES_QUERY = gql`
+  query GetCategories {
+    getCategories {
+      name
+    }
+  }
+`;
