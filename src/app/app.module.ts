@@ -26,12 +26,20 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
 import { FilmDetailsDialogComponent } from './shared/components/film-details-dialog/film-details-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 import { ChipsComponent } from './shared/components/chips/chips.component';
 import { HistoryTableComponent } from './shared/components/history-table/history-table.component';
+import { StatCardComponent } from './shared/components/stat-card/stat-card.component';
 
 @NgModule({
-  declarations: [AppComponent, LayoutComponent, LoginComponent, FilmViewComponent, HistoryViewComponent, FilmDetailsDialogComponent],
+  declarations: [
+    AppComponent,
+    LayoutComponent,
+    LoginComponent,
+    FilmViewComponent,
+    HistoryViewComponent,
+    FilmDetailsDialogComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -53,10 +61,10 @@ import { HistoryTableComponent } from './shared/components/history-table/history
     MatDialogModule,
     MatChipsModule,
     ChipsComponent,
-    HistoryTableComponent
+    HistoryTableComponent,
+    StatCardComponent,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
