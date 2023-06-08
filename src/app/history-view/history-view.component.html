@@ -1,13 +1,13 @@
-<div class="flex flex-wrap">
-  <app-stat-card class="pr-6 mb-4" *ngFor="let card of cardData" [card]="card"></app-stat-card>
+<div class='flex flex-wrap items-stretch justify-start gap-4 pr-4'>
+  <app-stat-card *ngFor='let card of cardData' [card]='card'></app-stat-card>
 </div>
 
-<div class="pb-16 py-6 rounded-md">
+<div class='pb-16 py-6 rounded-md'>
   <app-history-table
-    [data]="data"
-    [total]="total"
-    (nextPage)="nextPage($event)"
-    (infoMovie)="infoMovie($event)"
-    (announceSortChange)="announceSortChange($event)"
+    [data]='data'
+    [total]='total'
+    (nextPage)='nextPage($event)'
+    (infoMovie)='infoMovie($event)'
+    (announceSortChange)='announceSortChange($event)'
   ></app-history-table>
 </div>
