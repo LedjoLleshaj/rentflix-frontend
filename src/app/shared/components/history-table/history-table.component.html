@@ -144,9 +144,13 @@
       >
         Amount
       </th>
-      <!--TODO fix this when the api from backend filters null payments?-->
-      <td class="rf-text-center rf-table-row" mat-cell *matCellDef="let rent" [attr.aria-label]="'Amount ' + 0 + ' €'">
-        {{ 2.0 + ' €' }}
+      <td
+        class="rf-text-center rf-table-row"
+        mat-cell
+        *matCellDef="let rent"
+        [attr.aria-label]="rent.payment ? rent.payment.amount + ' €' : 'In progress...'"
+      >
+        {{ rent.payment ? rent.payment.amount + ' €' : 'In progress...' }}
       </td>
     </ng-container>
 
