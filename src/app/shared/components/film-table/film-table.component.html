@@ -1,5 +1,11 @@
 <div>
-  <table mat-table [dataSource]="data" class="mat-elevation-z1 table">
+  <table
+    mat-table
+    [dataSource]="data"
+    tabindex="0"
+    class="mat-elevation-z1 table"
+    aria-label="Available films in the store"
+  >
     <caption>
       Available Films in the store
     </caption>
@@ -16,7 +22,13 @@
     <!-- year Column -->
     <ng-container matColumnDef="release_year">
       <th class="rf-text-center" mat-header-cell *matHeaderCellDef role="columnheader" scope="col">Year</th>
-      <td class="rf-text-center rf-table-row" mat-cell *matCellDef="let film" [attr.aria-label]="'Year ' + film.year">
+      <td
+        class="rf-text-center rf-table-row"
+        mat-cell
+        tabindex="0"
+        *matCellDef="let film"
+        [attr.aria-label]="film.title + ' was released in ' + film.release_year"
+      >
         {{ film.release_year }}
       </td>
     </ng-container>
@@ -27,6 +39,7 @@
       <td
         class="rf-text-center rf-table-row"
         mat-cell
+        tabindex="0"
         *matCellDef="let film"
         [attr.aria-label]="'Rating ' + film.rating"
       >
@@ -40,8 +53,9 @@
       <td
         class="rf-text-center rf-table-row"
         mat-cell
+        tabindex="0"
         *matCellDef="let film"
-        [attr.aria-label]="'Category ' + film.category"
+        [attr.aria-label]="'Category ' + film.category.name"
       >
         {{ film.category.name }}
       </td>
@@ -53,8 +67,9 @@
       <td
         class="rf-text-center rf-table-row"
         mat-cell
+        tabindex="0"
         *matCellDef="let film"
-        [attr.aria-label]="'Language ' + film.language"
+        [attr.aria-label]="'Language ' + film.language.name"
       >
         {{ film.language.name }}
       </td>
@@ -66,8 +81,9 @@
       <td
         class="rf-text-center rf-table-row"
         mat-cell
+        tabindex="0"
         *matCellDef="let film"
-        [attr.aria-label]="'Rental cost ' + film.remtal_rate"
+        [attr.aria-label]="'Rental cost ' + film.rental_rate + ' €'"
       >
         {{ film.rental_rate + ' €' }}
       </td>
