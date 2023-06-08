@@ -3,7 +3,6 @@ import { RentalApiService } from '../shared/services/rental-api/rental-api.servi
 import { GetRentalFilterInput, Rent } from '../models/rental.model';
 import { PageEvent } from '@angular/material/paginator';
 import { CardInput } from '../shared/components/stat-card/stat-card.component';
-import { RentalStats } from '../graphql/rents';
 
 @Component({
   selector: 'app-history-view',
@@ -14,47 +13,46 @@ import { RentalStats } from '../graphql/rents';
 export class HistoryViewComponent {
   data: Rent[];
   total: number;
-  stats: RentalStats = {} as RentalStats;
+  filter: GetRentalFilterInput = {
+    page: 1,
+    itemsPerPage: 10,
+    orderBy: '',
+    sort: 'asc',
+  };
+
   @Output() cardData: CardInput[];
 
   constructor(private RentalApiService: RentalApiService) {}
 
   ngOnInit() {
-    this.RentalApiService.getRentsOfCustomer({
-      page: 1,
-      itemsPerPage: 10,
-    } as GetRentalFilterInput).subscribe((data) => {
+    this.RentalApiService.getRentsOfCustomer(this.filter).subscribe((data) => {
       this.total = data.getRentals.total;
       this.data = data.getRentals.rentals;
-      // console.log(data);
     });
 
     this.RentalApiService.getRentalsStats().subscribe((data) => {
-      this.stats = data.getUser.rental_stats;
-      console.log(this.stats.most_frequent_category.name);
-
       this.cardData = [
         {
           icon: 'upcoming',
-          stat: String(this.stats.current_rentals),
+          stat: String(data.getUser.rental_stats.current_rentals),
           description: 'Rentals in progress',
           iconColor: 'text-orange-400',
         },
         {
           icon: 'wallet',
-          stat: String(this.stats.total_amount) + ' €',
+          stat: String(data.getUser.rental_stats.total_amount) + ' €',
           description: 'Total spendings (€)',
           iconColor: 'text-green-700',
         },
         {
           icon: 'category',
-          stat: this.stats?.most_frequent_category?.name,
+          stat: data.getUser.rental_stats?.most_frequent_category?.name,
           description: 'Favorite category  ',
           iconColor: 'text-cyan-700',
         },
         {
           icon: 'timeline',
-          stat: String(this.stats.total_rentals),
+          stat: String(data.getUser.rental_stats.total_rentals),
           description: 'Total rentals      ',
           iconColor: 'text-violet-800',
         },
@@ -63,10 +61,9 @@ export class HistoryViewComponent {
   }
 
   nextPage(event: PageEvent) {
-    this.RentalApiService.getRentsOfCustomer({
-      page: event.pageIndex + 1,
-      itemsPerPage: event.pageSize,
-    } as GetRentalFilterInput).subscribe((data) => {
+    this.filter.page = event.pageIndex + 1;
+    this.filter.itemsPerPage = event.pageSize;
+    this.RentalApiService.getRentsOfCustomer(this.filter).subscribe((data) => {
       this.total = data.getRentals.total;
       this.data = data.getRentals.rentals;
       console.log(this.data);
@@ -77,7 +74,24 @@ export class HistoryViewComponent {
     console.log(rent);
   }
 
+  updateFilter(sort: any) {
+    this.filter.sort = this.filter.sort === 'asc' ? 'desc' : 'asc';
+    if (sort.active === 'title') this.filter.orderBy = 'film.title';
+    else if (sort.active === 'amount') this.filter.orderBy = 'payment.amount';
+    else if (sort.active === 'rental_date') this.filter.orderBy = 'rental_date';
+    else if (sort.active === 'return_date') this.filter.orderBy = 'return_date';
+    else if (sort.active === 'rental_period') this.filter.orderBy = 'rental_period';
+    else if (sort.active === 'address') this.filter.orderBy = 'store.address';
+    else this.filter.orderBy = '';
+  }
+
   announceSortChange(sort: any) {
-    console.log(sort);
+    this.updateFilter(sort);
+    console.log(this.filter.orderBy);
+    this.RentalApiService.getRentsOfCustomer(this.filter).subscribe((data) => {
+      this.total = data.getRentals.total;
+      this.data = data.getRentals.rentals;
+      console.log(this.data);
+    });
   }
 }

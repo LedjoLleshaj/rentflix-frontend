@@ -31,7 +31,7 @@ export interface GetRentalFilterInput {
   page: number;
   itemsPerPage: number;
   orderBy: string;
-  sort: Sort;
+  sort: string;
 }
 
 export interface GetRentalAPI {
