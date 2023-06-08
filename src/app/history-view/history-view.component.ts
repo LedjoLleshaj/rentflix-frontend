@@ -66,7 +66,6 @@ export class HistoryViewComponent {
     this.RentalApiService.getRentsOfCustomer(this.filter).subscribe((data) => {
       this.total = data.getRentals.total;
       this.data = data.getRentals.rentals;
-      console.log(this.data);
     });
   }
 
@@ -75,23 +74,24 @@ export class HistoryViewComponent {
   }
 
   updateFilter(sort: any) {
+    const orderByMapping: { [key: string]: string } = {
+      title: 'film.title',
+      amount: 'payment.amount',
+      rental_date: 'rental_date',
+      return_date: 'return_date',
+      rental_period: 'rental_period',
+      address: 'store.address',
+    };
+
     this.filter.sort = this.filter.sort === 'asc' ? 'desc' : 'asc';
-    if (sort.active === 'title') this.filter.orderBy = 'film.title';
-    else if (sort.active === 'amount') this.filter.orderBy = 'payment.amount';
-    else if (sort.active === 'rental_date') this.filter.orderBy = 'rental_date';
-    else if (sort.active === 'return_date') this.filter.orderBy = 'return_date';
-    else if (sort.active === 'rental_period') this.filter.orderBy = 'rental_period';
-    else if (sort.active === 'address') this.filter.orderBy = 'store.address';
-    else this.filter.orderBy = '';
+    this.filter.orderBy = orderByMapping[sort.active] || '';
   }
 
   announceSortChange(sort: any) {
     this.updateFilter(sort);
-    console.log(this.filter.orderBy);
     this.RentalApiService.getRentsOfCustomer(this.filter).subscribe((data) => {
       this.total = data.getRentals.total;
       this.data = data.getRentals.rentals;
-      console.log(this.data);
     });
   }
 }
