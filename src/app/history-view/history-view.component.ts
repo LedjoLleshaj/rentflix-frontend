@@ -42,20 +42,20 @@ export class HistoryViewComponent {
         },
         {
           icon: 'wallet',
-          stat: String(this.stats.total_amount),
-          description: 'Total spent on rentals',
+          stat: String(this.stats.total_amount) + ' €',
+          description: 'Total spendings (€)',
           iconColor: 'text-green-700',
         },
         {
           icon: 'category',
           stat: this.stats?.most_frequent_category?.name,
-          description: 'Your favorite category',
+          description: 'Favorite category  ',
           iconColor: 'text-cyan-700',
         },
         {
           icon: 'timeline',
           stat: String(this.stats.total_rentals),
-          description: 'Total rentals bought',
+          description: 'Total rentals      ',
           iconColor: 'text-violet-800',
         },
       ];

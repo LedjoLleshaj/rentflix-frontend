@@ -24,10 +24,4 @@ export class HistoryTableComponent {
   @ViewChild(MatPaginatorModule) paginator!: MatPaginatorModule;
 
   ngOnInit() {}
-
-  rentDuration(rent: Rent) {
-    let diff = Math.abs(rent.return_date - rent.rental_date);
-    const days = Math.ceil(diff / (1000 * 3600 * 24));
-    return days + ' days';
-  }
 }
