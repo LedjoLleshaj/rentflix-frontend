@@ -57,9 +57,10 @@ export class FilmViewComponent {
       this.dialog.open(FilmRentDialogComponent, {
         width: '900px',
         data: film
-      }).afterClosed().subscribe((result) => {
-        if (result === 1) {
+      }).afterClosed().subscribe((rental) => {
+        if (rental) {
           // TODO: Add rent mutation
+          console.log(rental)
         }
       });
     });

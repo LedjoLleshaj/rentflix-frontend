@@ -1,26 +1,40 @@
 
-<div class="flex flex-col rounded-2xl m-2 p-2">
+<div *ngIf="film" class="flex flex-col rounded-2xl m-2 p-2">
   <!-- Header -->
   <span class="text-2xl font-bold m-0">Rent film</span>
-
   <mat-stepper linear #stepper>
-    <mat-step>
-        <ng-template matStepLabel>Select a store</ng-template>
+    <mat-step [stepControl]="rentalForm">
+      <ng-template matStepLabel>Rental information</ng-template>
+      <form [formGroup]="rentalForm">
         <!-- Show list of stores -->
-
+        <!-- <app-select-store [availableStores]="film.availableStores!" [selectedStore]="selectedStore"/> -->
+        <mat-chip-listbox aria-label="Store selection" [multiple]="false" [required]="true" formControlName="selectedStoreControl">
+          <mat-chip-option *ngFor="let store of film.availableStores" [value]="store">{{store.address.address}} ({{store.address.city.city}}, {{store.address.city.country.country}})</mat-chip-option>
+        </mat-chip-listbox>
+        <mat-chip-listbox aria-label="Rental date selection" [multiple]="false" [required]="true" formControlName="selectedDateControl">
+          <mat-chip-option [value]="getToday()">Today - {{formatDate(getToday())}} </mat-chip-option>
+          <mat-chip-option [value]="getDatePlusNDays(1)">Tomorrow - {{ formatDate(getDatePlusNDays(1)) }}</mat-chip-option>
+          <mat-chip-option [value]="getDatePlusNDays(2)">{{ formatDate(getDatePlusNDays(2)) }}</mat-chip-option>
+        </mat-chip-listbox>
+        <!-- <ng-template matStepLabel>In which store do you want to rent it?</ng-template>
+        <ng-template matStepLabel>What day do you want to rent it?</ng-template> -->
+        <!-- <mat-error *ngIf="rentalForm.controls['selectedStoreControl'].invalid && rentalForm.controls['selectedStoreControl'].touched">
+          Chips are required.
+        </mat-error> -->
         <div>
           <button mat-button (click)="this.dialogRef.close()" class="mr-2">Cancel</button>
-          <button mat-flat-button matStepperNext class='rounded-button' color='primary' >
+          <button mat-flat-button matStepperNext class='rounded-button' color='primary'>
             Next
           </button>
         </div>
+      </form>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
+      <ng-template matStepLabel>Confirm rental</ng-template>
       <p>You are now done.</p>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-          <button mat-flat-button matStepperNext class='rounded-button' color='primary'>
+          <button mat-flat-button matStepperNext class='rounded-button' color='primary' (click)="createRental()">
             Confirm
           </button>
       </div>
