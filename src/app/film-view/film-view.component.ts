@@ -55,7 +55,7 @@ export class FilmViewComponent {
   rentMovie(film: Film) {
     this.filmsApiService.getFilm(film.film_id).subscribe((film) => {
       this.dialog.open(FilmRentDialogComponent, {
-        width: '900px',
+        width: '560px',
         data: film
       }).afterClosed().subscribe((rental) => {
         if (rental) {

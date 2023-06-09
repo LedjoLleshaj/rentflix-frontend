@@ -71,6 +71,36 @@ export class FilmRentDialogComponent {
     return date.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit' });
   }
 
+  get isValidData() {
+    return this.selectedStore && this.selectedDate;
+  }
+
+  get selectedStore() {
+    return this.rentalForm.get('selectedStoreControl')?.value;
+  }
+
+  get selectedDate() {
+    return this.rentalForm.get('selectedDateControl')?.value;
+  }
+
+  get storeLabel () {
+    const address = this.selectedStore.address.address;
+    const city = this.selectedStore.address.city.city;
+    const country = this.selectedStore.address.city.country.country;
+    return address +'(' + city + ', ' + country + ')';
+  }
+
+  get dateLabel() {
+    const date = this.formatDate(this.selectedDate);
+    if (this.selectedDate.toISOString()  == this.getToday().toISOString() ) {
+      return 'Today - ' + date;
+    } else if (this.selectedDate.toISOString()  === this.getDatePlusNDays(1).toISOString() ) {
+      return 'Tomorrow - ' + date;
+    } else {
+      return date;
+    }
+  }
+
   createRental() {
     const selectedStore = this.rentalForm.get('selectedStoreControl')?.value;
     const selectedDate = this.rentalForm.get('selectedDateControl')?.value;
