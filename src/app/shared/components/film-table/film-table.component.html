@@ -1,4 +1,4 @@
-<div>
+<div class='table-responsive'>
   <table
     mat-table
     [dataSource]='data'
@@ -10,7 +10,7 @@
       Available Films in the store
     </caption>
     <!-- title Column -->
-    <ng-container matColumnDef='title'>
+    <ng-container matColumnDef='title' sticky>
       <th mat-header-cell *matHeaderCellDef class='rf-text-center' role='columnheader' scope='col'>Title</th>
       <td mat-cell class='rf-text-center rf-table-row' *matCellDef='let film' [attr.aria-label]="'Title ' + film.title">
         <button mat-flat-button [attr.aria-label]="'Open ' + film.title + ' info'" (click)='this.infoMovie.emit(film)'>
@@ -23,7 +23,6 @@
     <ng-container matColumnDef='release_year'>
       <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Year</th>
       <td
-        class='rf-text-center rf-table-row'
         mat-cell
         tabindex='0'
         *matCellDef='let film'
@@ -37,7 +36,6 @@
     <ng-container matColumnDef='rating'>
       <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Rating</th>
       <td
-        class='rf-text-center rf-table-row'
         mat-cell
         tabindex='0'
         *matCellDef='let film'
@@ -51,7 +49,6 @@
     <ng-container matColumnDef='category'>
       <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Category</th>
       <td
-        class='rf-text-center rf-table-row'
         mat-cell
         tabindex='0'
         *matCellDef='let film'
@@ -65,7 +62,6 @@
     <ng-container matColumnDef='language'>
       <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Language</th>
       <td
-        class='rf-text-center rf-table-row'
         mat-cell
         tabindex='0'
         *matCellDef='let film'
@@ -79,7 +75,6 @@
     <ng-container matColumnDef='rental_rate'>
       <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Rental cost</th>
       <td
-        class='rf-text-center rf-table-row'
         mat-cell
         tabindex='0'
         *matCellDef='let film'
@@ -90,10 +85,9 @@
     </ng-container>
 
     <!-- rent movie button -->
-    <ng-container matColumnDef='rent'>
+    <ng-container matColumnDef='rent' sticky>
       <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Rent a movie</th>
       <td
-        class='rf-text-center rf-table-row'
         mat-cell
         *matCellDef='let film'
         [attr.aria-label]="'Rent movie ' + film.title"
@@ -107,13 +101,13 @@
     <tr mat-header-row *matHeaderRowDef='columns'></tr>
     <tr mat-row *matRowDef='let row; columns: columns'></tr>
   </table>
-  <mat-paginator
-    class='mat-elevation-z1 my-0.5'
-    [length]='this.total'
-    [pageSize]='10'
-    [pageSizeOptions]='[5, 10, 25, 50]'
-    showFirstLastButtons
-    (page)='this.nextPage.emit($event)'
-    aria-label='Pagination Navigation'
-  ></mat-paginator>
 </div>
+<mat-paginator
+  class='mat-elevation-z1 my-0.5'
+  [length]='this.total'
+  [pageSize]='10'
+  [pageSizeOptions]='[5, 10, 25, 50]'
+  showFirstLastButtons
+  (page)='this.nextPage.emit($event)'
+  aria-label='Pagination Navigation'
+></mat-paginator>

@@ -1,4 +1,4 @@
-<div class='table-container'>
+<div class='table-responsive'>
   <table
     mat-table
     tabindex='0'
@@ -46,7 +46,7 @@
 
     <ng-container matColumnDef='rental_date'>
       <th
-        class='rf-text-center table-column-100'
+        class='rf-text-center'
         mat-header-cell
         *matHeaderCellDef
         role='columnheader'
@@ -57,7 +57,7 @@
         Rental date
       </th>
       <td
-        class='rf-text-center rf-table-row table-column-100'
+        class='rf-text-center rf-table-row'
         mat-cell
         tabindex='0'
         *matCellDef='let rent'
@@ -70,7 +70,7 @@
     <!-- return_date -->
     <ng-container matColumnDef='return_date'>
       <th
-        class='rf-text-center table-column-100'
+        class='rf-text-center'
         mat-header-cell
         *matHeaderCellDef
         role='columnheader'
@@ -81,7 +81,7 @@
         Return date
       </th>
       <td
-        class='rf-text-center rf-table-row table-column-100'
+        class='rf-text-center rf-table-row'
         mat-cell
         tabindex='0'
         *matCellDef='let rent'
@@ -94,7 +94,7 @@
     <!-- rental period -->
     <ng-container matColumnDef='rental_period'>
       <th
-        class='rf-text-center table-column-100'
+        class='rf-text-center'
         mat-header-cell
         *matHeaderCellDef
         role='columnheader'
@@ -105,7 +105,7 @@
         Rental period
       </th>
       <td
-        class='rf-text-center rf-table-row table-column-100'
+        class='rf-text-center rf-table-row'
         mat-cell
         tabindex='0'
         *matCellDef='let rent'
@@ -118,7 +118,7 @@
     <!-- address -->
     <ng-container matColumnDef='address'>
       <th
-        class='rf-text-center table-column-100'
+        class='rf-text-center'
         mat-header-cell
         *matHeaderCellDef
         role='columnheader'
@@ -129,7 +129,7 @@
         Address
       </th>
       <td
-        class='rf-text-center rf-table-row table-column-100'
+        class='rf-text-center rf-table-row'
         mat-cell
         tabindex='0'
         *matCellDef='let rent'
@@ -142,7 +142,7 @@
     <!-- amount -->
     <ng-container matColumnDef='amount'>
       <th
-        class='rf-text-center table-column-100'
+        class='rf-text-center'
         mat-header-cell
         *matHeaderCellDef
         role='columnheader'
@@ -153,7 +153,7 @@
         Amount
       </th>
       <td
-        class='rf-text-center rf-table-row table-column-100'
+        class='rf-text-center rf-table-row'
         mat-cell
         tabindex='0'
         *matCellDef='let rent'
@@ -166,14 +166,13 @@
     <tr mat-header-row *matHeaderRowDef='columns'></tr>
     <tr mat-row *matRowDef='let row; columns: columns'></tr>
   </table>
-  <mat-paginator
-    class='mat-elevation-z1'
-    [length]='this.total'
-    [pageSize]='10'
-    [pageSizeOptions]='[5, 10, 25, 50]'
-    showFirstLastButtons
-    (page)='this.nextPage.emit($event)'
-    aria-label='Pagination Navigation'
-  ></mat-paginator>
-
 </div>
+<mat-paginator
+  class='mat-elevation-z1'
+  [length]='this.total'
+  [pageSize]='10'
+  [pageSizeOptions]='[5, 10, 25, 50]'
+  showFirstLastButtons
+  (page)='this.nextPage.emit($event)'
+  aria-label='Pagination Navigation'
+></mat-paginator>
