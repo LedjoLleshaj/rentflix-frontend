@@ -33,6 +33,7 @@
         <button
           mat-flat-button
           color='primary'
+          class='xl:w-2/3 w-full rf-text-center'
           title='Open movie info'
           [attr.aria-label]="'Open ' + rent.inventory.film.title + ' info'"
           (click)='this.infoMovie.emit(rent)'
