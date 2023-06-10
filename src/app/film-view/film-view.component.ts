@@ -10,7 +10,7 @@ import { FilmRentDialogComponent } from '../shared/components/film-rent-dialog/f
   selector: 'app-film-view',
   templateUrl: './film-view.component.html',
   styleUrls: ['./film-view.component.scss'],
-  providers: [FilmsApiService],
+  providers: [FilmsApiService]
 })
 export class FilmViewComponent {
   data: Film[];
@@ -22,7 +22,7 @@ export class FilmViewComponent {
     page: 1,
     filmPerPage: 10,
     orderBy: 'title',
-    sort: 'asc',
+    sort: 'asc'
   };
 
   constructor(private filmsApiService: FilmsApiService, private dialog: MatDialog) {
@@ -60,7 +60,7 @@ export class FilmViewComponent {
       }).afterClosed().subscribe((rental) => {
         if (rental) {
           // TODO: Add rent mutation
-          console.log(rental)
+          console.log(rental);
         }
       });
     });
@@ -70,7 +70,8 @@ export class FilmViewComponent {
     this.filmsApiService.getFilm(film.film_id).subscribe((film) => {
       this.dialog.open(FilmDetailsDialogComponent, {
         width: '900px',
-        data: film
+        data: film,
+        panelClass: 'mat-app-background'
       }).afterClosed().subscribe((result) => {
         if (result === 1) this.rentMovie(film);
       });

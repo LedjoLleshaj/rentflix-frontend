@@ -2,15 +2,16 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AvailableStore, Film, RentalRequest } from 'src/app/graphql/film';
 
-import {FormBuilder, Validators, FormsModule, ReactiveFormsModule, FormGroup, FormControl} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatButtonModule} from '@angular/material/button';
+import { FormBuilder, Validators, FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
 import { SelectStoreComponent } from '../select-store/select-store.component';
 
 import { NgForOf, NgIf } from '@angular/common';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-film-rent-dialog',
@@ -28,7 +29,8 @@ import { MatChipsModule } from '@angular/material/chips';
     NgIf,
     NgForOf,
     MatChipsModule,
-  ],
+    MatCardModule
+  ]
 })
 export class FilmRentDialogComponent {
 
@@ -40,21 +42,21 @@ export class FilmRentDialogComponent {
   constructor(
     private _formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<FilmRentDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public film: Film,
+    @Inject(MAT_DIALOG_DATA) public film: Film
   ) {
     this.rentalForm = this._formBuilder.group({
       selectedStoreControl: new FormControl<AvailableStore | null>(null, Validators.required),
-      selectedDateControl: new FormControl<Date | null>(null, Validators.required,),
+      selectedDateControl: new FormControl<Date | null>(null, Validators.required)
     });
 
-    if(film.availableStores?.length === 1) {
+    if (film.availableStores?.length === 1) {
       this.rentalForm.get('selectedStoreControl')?.setValue(film.availableStores[0]);
     }
   }
 
 
   getToday() {
-    const date =  new Date();
+    const date = new Date();
     date.setHours(0, 0, 0, 0);
     return date;
   }
@@ -83,18 +85,18 @@ export class FilmRentDialogComponent {
     return this.rentalForm.get('selectedDateControl')?.value;
   }
 
-  get storeLabel () {
+  get storeLabel() {
     const address = this.selectedStore.address.address;
     const city = this.selectedStore.address.city.city;
     const country = this.selectedStore.address.city.country.country;
-    return address +'(' + city + ', ' + country + ')';
+    return address + '(' + city + ', ' + country + ')';
   }
 
   get dateLabel() {
     const date = this.formatDate(this.selectedDate);
-    if (this.selectedDate.toISOString()  == this.getToday().toISOString() ) {
+    if (this.selectedDate.toISOString() == this.getToday().toISOString()) {
       return 'Today - ' + date;
-    } else if (this.selectedDate.toISOString()  === this.getDatePlusNDays(1).toISOString() ) {
+    } else if (this.selectedDate.toISOString() === this.getDatePlusNDays(1).toISOString()) {
       return 'Tomorrow - ' + date;
     } else {
       return date;
@@ -104,7 +106,7 @@ export class FilmRentDialogComponent {
   createRental() {
     const selectedStore = this.rentalForm.get('selectedStoreControl')?.value;
     const selectedDate = this.rentalForm.get('selectedDateControl')?.value;
-    const rentalRequest = new  RentalRequest(this.film.film_id, selectedStore?.store_id, selectedDate);
+    const rentalRequest = new RentalRequest(this.film.film_id, selectedStore?.store_id, selectedDate);
     this.dialogRef.close(rentalRequest);
   }
 }
