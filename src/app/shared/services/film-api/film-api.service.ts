@@ -4,13 +4,13 @@ import {
   FilmListModel,
   GetFilmsFilterInput,
   Film,
-  RentFilmInput,
-  Rental,
   rentFilm,
 } from '../../../graphql/film';
 import { Apollo } from 'apollo-angular';
 import { Subject } from 'rxjs';
 import { GET_FILM_QUERY } from 'src/app/graphql/get-film';
+import { RentFilmInput } from 'src/app/graphql/rents';
+import { Rental } from 'src/app/models/rental.model';
 
 @Injectable({
   providedIn: 'root',

@@ -25,12 +25,13 @@ import { FilmTableComponent } from './shared/components/film-table/film-table.co
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
 import { FilmDetailsDialogComponent } from './shared/components/film-details-dialog/film-details-dialog.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogContent, MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { ChipsComponent } from './shared/components/chips/chips.component';
 import { HistoryTableComponent } from './shared/components/history-table/history-table.component';
 import { StatCardComponent } from './shared/components/stat-card/stat-card.component';
 import { MatStepperModule } from '@angular/material/stepper';
+import { RentalDetailsDialogComponent } from './shared/components/rental-details-dialog/rental-details-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MatStepperModule } from '@angular/material/stepper';
     LoginComponent,
     FilmViewComponent,
     HistoryViewComponent,
-    FilmDetailsDialogComponent
+    FilmDetailsDialogComponent,
+    RentalDetailsDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,7 @@ import { MatStepperModule } from '@angular/material/stepper';
     ChipsComponent,
     HistoryTableComponent,
     StatCardComponent,
-    MatStepperModule
+    MatStepperModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

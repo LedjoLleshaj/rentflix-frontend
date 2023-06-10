@@ -163,6 +163,21 @@
       </td>
     </ng-container>
 
+    <!-- rental info button -->
+    <ng-container matColumnDef='rental-info' sticky>
+      <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Rent a movie</th>
+      <td
+        mat-cell
+        *matCellDef='let rental'
+        [attr.aria-label]="'Info rental of movie ' + rental.inventory.film.title"
+      >
+        <button class='xl:w-2/3 w-full rf-text-center' mat-flat-button color='primary'
+                (click)='this.infoRental.emit(rental)'>
+          Dettagli
+        </button>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef='columns'></tr>
     <tr mat-row *matRowDef='let row; columns: columns'></tr>
   </table>

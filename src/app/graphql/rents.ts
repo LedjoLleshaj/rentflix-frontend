@@ -1,5 +1,11 @@
 import { gql } from 'apollo-angular';
 
+export interface RentFilmInput {
+  film_id: number;
+  store_id: number;
+  rental_date: string;
+}
+
 export interface RentalStats {
   current_rentals: number;
   total_rentals: number;
