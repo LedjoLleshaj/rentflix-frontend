@@ -11,3 +11,11 @@
   @apply text-xs font-medium text-red-700 bg-red-50;
   @apply ring-1 ring-inset ring-red-600/10 ;
 }
+
+.rf-label-bordered {
+  //inline-flex items-center p-2 rounded-md text-xs ring-1 ring-inset
+  @apply inline-flex items-center rounded-md;
+  @apply p-2;
+  @apply text-xs font-medium;
+  @apply ring-1 ring-inset;
+}

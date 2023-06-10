@@ -30,6 +30,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ChipsComponent } from './shared/components/chips/chips.component';
 import { HistoryTableComponent } from './shared/components/history-table/history-table.component';
 import { StatCardComponent } from './shared/components/stat-card/stat-card.component';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { StatCardComponent } from './shared/components/stat-card/stat-card.compo
     LoginComponent,
     FilmViewComponent,
     HistoryViewComponent,
-    FilmDetailsDialogComponent,
+    FilmDetailsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -63,8 +64,10 @@ import { StatCardComponent } from './shared/components/stat-card/stat-card.compo
     ChipsComponent,
     HistoryTableComponent,
     StatCardComponent,
+    MatStepperModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}
