@@ -13,7 +13,6 @@
 }
 
 .rf-label-bordered {
-  //inline-flex items-center p-2 rounded-md text-xs ring-1 ring-inset
   @apply inline-flex items-center rounded-md;
   @apply p-2;
   @apply text-xs font-medium;

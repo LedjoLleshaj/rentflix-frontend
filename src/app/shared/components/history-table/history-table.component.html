@@ -6,7 +6,7 @@
     aria-label='Film rental history'
     (matSortChange)='this.announceSortChange.emit($event)'
     [dataSource]='data'
-    class='mat-elevation-z1 table'
+    class='mat-elevation-z1'
   >
     <caption>
       Film rental history
@@ -31,11 +31,10 @@
         [attr.aria-label]="'Title ' + rent.inventory.film.title"
       >
         <button
-          mat-flat-button
-          color='primary'
+          mat-stroked-button color='primary'
           class='xl:w-2/3 w-full rf-text-center'
-          title='Open movie info'
           [attr.aria-label]="'Open ' + rent.inventory.film.title + ' info'"
+          [title]="'Open ' + rent.inventory.film.title + ' info'"
           (click)='this.infoMovie.emit(rent)'
         >
           {{ rent.inventory.film.title }}
