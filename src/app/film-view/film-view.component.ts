@@ -59,14 +59,21 @@ export class FilmViewComponent {
           data: film,
         })
         .afterClosed()
-        .subscribe((rental) => {
-          if (rental) {
-            console.log(rental);
+        .subscribe({
+          next: (rental) => {
+            if (rental) {
+              console.log(rental);
 
-            this.filmsApiService.rentFilm(rental).subscribe((data) => {
-              console.log(data);
+              this.filmsApiService.rentFilm(rental).subscribe((data) => {
+                console.log(data);
+              });
+            }
+            this.filmsApiService.getFilms(this.filter).subscribe((data) => {
+              console.log('Refreshed films', data);
+              this.data = data.getFilms.films;
+              this.total = data.getFilms.total;
             });
-          }
+          },
         });
     });
   }

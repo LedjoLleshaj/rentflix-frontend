@@ -9,28 +9,31 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$rf-default-theme: mat.define-light-theme((
-  color: (
-    primary: mat.define-palette(mat.$indigo-palette),
-    accent: mat.define-palette(mat.$pink-palette, A200, A100, A400),
-    warn: mat.define-palette(mat.$red-palette)
-  ),
-  typography: mat.define-typography-config(),
-  density: 0
-));
+$rf-default-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: mat.define-palette(mat.$indigo-palette),
+      accent: mat.define-palette(mat.$pink-palette, A200, A100, A400),
+      warn: mat.define-palette(mat.$red-palette),
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
 
-$rf-dark-theme: mat.define-dark-theme((
-  color: (
-    primary: mat.define-palette(mat.$cyan-palette),
-    accent: mat.define-palette(mat.$blue-grey-palette, A200, A100, A400),
-    warn: mat.define-palette(mat.$amber-palette),
-  ),
-  typography: mat.define-typography-config(),
-  density: 0
-));
+$rf-dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: mat.define-palette(mat.$cyan-palette),
+      accent: mat.define-palette(mat.$blue-grey-palette, A200, A100, A400),
+      warn: mat.define-palette(mat.$amber-palette),
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
 
 .rf-title {
   color: #3f51b5;
@@ -45,10 +48,7 @@ $rf-dark-theme: mat.define-dark-theme((
 
 .rf-dark-theme {
   @include mat.typography-hierarchy($rf-dark-theme);
-  @include mat.all-component-colors(
-      $rf-dark-theme
-  );
-
+  @include mat.all-component-colors($rf-dark-theme);
 
   .rf-title {
     color: #00bcd4 !important;
@@ -59,7 +59,8 @@ $rf-dark-theme: mat.define-dark-theme((
 @tailwind components;
 @tailwind utilities;
 
-html, body {
+html,
+body {
   @apply h-full m-0;
 }
 
@@ -87,7 +88,6 @@ div.rf-zoom {
       @apply shadow-none;
     }
   }
-
 }
 
 .rf-zoom-80 {
@@ -177,4 +177,3 @@ div.rf-zoom {
     overflow: hidden;
   }
 }
-

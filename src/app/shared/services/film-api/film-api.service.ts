@@ -10,13 +10,15 @@ import {
 } from '../../../graphql/film';
 import { Apollo } from 'apollo-angular';
 import { Subject } from 'rxjs';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+
 import { GET_FILM_QUERY } from 'src/app/graphql/get-film';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FilmsApiService {
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo, private snackBar: MatSnackBar) {}
 
   getFilms(filter: GetFilmsFilterInput = {} as GetFilmsFilterInput) {
     let response = new Subject<FilmListModel>();
@@ -32,7 +34,6 @@ export class FilmsApiService {
           response.next(data);
         },
         error: (error) => {
-          console.log('Error: ', error);
           response.next(error);
         },
       });
@@ -62,6 +63,8 @@ export class FilmsApiService {
 
   rentFilm(data: RentFilmInput) {
     let response = new Subject<Rental | any>();
+    const horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+    const verticalPosition: MatSnackBarVerticalPosition = 'top';
 
     this.apollo
       .mutate<Rental>({
@@ -74,6 +77,18 @@ export class FilmsApiService {
         next: ({ data }) => {
           console.log('data: ', data);
           response.next(data);
+          this.snackBar.open('✅ Booking successful ✅', 'Close', {
+            duration: 3000,
+            horizontalPosition,
+            verticalPosition,
+          });
+        },
+        error: (error) => {
+          this.snackBar.open('❌ Booking failed ❌', 'Close', {
+            duration: 3000,
+            horizontalPosition,
+            verticalPosition,
+          });
         },
       });
     return response.asObservable();
