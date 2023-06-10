@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
-import { GET_FILMS_QUERY, FilmListModel, GetFilmsFilterInput, Film } from '../../../graphql/film';
+import {
+  GET_FILMS_QUERY,
+  FilmListModel,
+  GetFilmsFilterInput,
+  Film,
+  RentFilmInput,
+  Rental,
+  rentFilm,
+} from '../../../graphql/film';
 import { Apollo } from 'apollo-angular';
 import { Subject } from 'rxjs';
 import { GET_FILM_QUERY } from 'src/app/graphql/get-film';
@@ -47,6 +55,25 @@ export class FilmsApiService {
         error: (error) => {
           console.log('Error: ', error);
           response.next(error);
+        },
+      });
+    return response.asObservable();
+  }
+
+  rentFilm(data: RentFilmInput) {
+    let response = new Subject<Rental | any>();
+
+    this.apollo
+      .mutate<Rental>({
+        mutation: rentFilm,
+        variables: {
+          data: data,
+        },
+      })
+      .subscribe({
+        next: ({ data }) => {
+          console.log('data: ', data);
+          response.next(data);
         },
       });
     return response.asObservable();

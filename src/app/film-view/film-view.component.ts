@@ -10,7 +10,7 @@ import { FilmRentDialogComponent } from '../shared/components/film-rent-dialog/f
   selector: 'app-film-view',
   templateUrl: './film-view.component.html',
   styleUrls: ['./film-view.component.scss'],
-  providers: [FilmsApiService]
+  providers: [FilmsApiService],
 })
 export class FilmViewComponent {
   data: Film[];
@@ -22,11 +22,10 @@ export class FilmViewComponent {
     page: 1,
     filmPerPage: 10,
     orderBy: 'title',
-    sort: 'asc'
+    sort: 'asc',
   };
 
-  constructor(private filmsApiService: FilmsApiService, private dialog: MatDialog) {
-  }
+  constructor(private filmsApiService: FilmsApiService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.filmsApiService.getFilms(this.filter).subscribe((data) => {
@@ -54,27 +53,36 @@ export class FilmViewComponent {
 
   rentMovie(film: Film) {
     this.filmsApiService.getFilm(film.film_id).subscribe((film) => {
-      this.dialog.open(FilmRentDialogComponent, {
-        width: '560px',
-        data: film
-      }).afterClosed().subscribe((rental) => {
-        if (rental) {
-          // TODO: Add rent mutation
-          console.log(rental);
-        }
-      });
+      this.dialog
+        .open(FilmRentDialogComponent, {
+          width: '560px',
+          data: film,
+        })
+        .afterClosed()
+        .subscribe((rental) => {
+          if (rental) {
+            console.log(rental);
+
+            this.filmsApiService.rentFilm(rental).subscribe((data) => {
+              console.log(data);
+            });
+          }
+        });
     });
   }
 
   infoMovie(film: Film) {
     this.filmsApiService.getFilm(film.film_id).subscribe((film) => {
-      this.dialog.open(FilmDetailsDialogComponent, {
-        width: '900px',
-        data: film,
-        panelClass: 'mat-app-background'
-      }).afterClosed().subscribe((result) => {
-        if (result === 1) this.rentMovie(film);
-      });
+      this.dialog
+        .open(FilmDetailsDialogComponent, {
+          width: '900px',
+          data: film,
+          panelClass: 'mat-app-background',
+        })
+        .afterClosed()
+        .subscribe((result) => {
+          if (result === 1) this.rentMovie(film);
+        });
     });
   }
 
