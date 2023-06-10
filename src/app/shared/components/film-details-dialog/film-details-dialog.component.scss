@@ -1,0 +1,13 @@
+.rf-blue-label {
+  @apply inline-flex items-center rounded-md;
+  @apply px-2 py-1;
+  @apply text-xs font-medium text-blue-700 bg-blue-50;
+  @apply ring-1 ring-inset ring-blue-700/10 ;
+}
+
+.rf-red-label {
+  @apply inline-flex items-center rounded-md;
+  @apply px-2 py-1;
+  @apply text-xs font-medium text-red-700 bg-red-50;
+  @apply ring-1 ring-inset ring-red-600/10 ;
+}
