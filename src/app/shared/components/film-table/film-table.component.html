@@ -12,8 +12,10 @@
     <!-- title Column -->
     <ng-container matColumnDef='title' sticky>
       <th mat-header-cell *matHeaderCellDef class='rf-text-center' role='columnheader' scope='col'>Title</th>
-      <td mat-cell class='rf-text-center rf-table-row' *matCellDef='let film' [attr.aria-label]="'Title ' + film.title">
-        <button mat-flat-button [attr.aria-label]="'Open ' + film.title + ' info'" (click)='this.infoMovie.emit(film)'>
+      <td mat-cell class='rf-text-center' *matCellDef='let film' [attr.aria-label]="'Title ' + film.title">
+        <button mat-stroked-button color='primary' [attr.aria-label]="'Open ' + film.title + ' info'"
+                class='xl:w-2/3 w-full rf-text-center'
+                (click)='this.infoMovie.emit(film)'>
           {{ film.title }}
         </button>
       </td>
@@ -92,8 +94,9 @@
         *matCellDef='let film'
         [attr.aria-label]="'Rent movie ' + film.title"
       >
-        <button mat-flat-button class='rounded-button' color='primary' (click)='this.rentMovie.emit(film)'>
-          Rent this movie
+        <button class='xl:w-2/3 w-full rf-text-center' mat-flat-button color='primary'
+                (click)='this.rentMovie.emit(film)'>
+          Rent
         </button>
       </td>
     </ng-container>
