@@ -99,3 +99,33 @@ export const GET_CATEGORIES_QUERY = gql`
     }
   }
 `;
+
+export interface RentFilmInput {
+  film_id: number;
+  store_id: number;
+  rental_date: string;
+}
+
+export interface Rental {
+  rental_id: number;
+  rental_date: string;
+  inventory: {
+    film: {
+      title: string;
+    };
+  };
+}
+
+export const rentFilm = gql`
+  mutation rentFilm($data: RentFilmInput!) {
+    rentFilm(data: $data) {
+      rental_id
+      rental_date
+      inventory {
+        film {
+          title
+        }
+      }
+    }
+  }
+`;

@@ -105,7 +105,11 @@ export class FilmRentDialogComponent {
     const selectedStore = this.rentalForm.get('selectedStoreControl')?.value;
     const selectedDate = this.rentalForm.get('selectedDateControl')?.value;
 
-    const rentalRequest = new RentalRequest(this.film.film_id, selectedStore?.store_id, selectedDate);
+    const rentalRequest = new RentalRequest(
+      this.film.film_id,
+      selectedStore?.store_id,
+      selectedDate.toString().slice(0, 24)
+    );
     this.dialogRef.close(rentalRequest);
   }
 }
