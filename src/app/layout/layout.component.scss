@@ -17,7 +17,7 @@
 
   mat-nav-list {
     button {
-      @apply border-none text-left;
+      @apply border-none text-left rounded-3xl;
     }
   }
 }
