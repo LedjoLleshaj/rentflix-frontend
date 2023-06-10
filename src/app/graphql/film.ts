@@ -21,18 +21,32 @@ export interface Film {
     first_name: string;
     last_name: string;
   }[];
-  availableStores?: {
-    store_id: number;
-    address: {
-      address: string;
-      city: {
-        city: string;
-        country: {
-          country: string;
-        };
+  availableStores?: AvailableStore[];
+}
+
+export class AvailableStore {
+  store_id: string;
+  address: {
+    address: string;
+    city: {
+      city: string;
+      country: {
+        country: string;
       };
     };
-  }[];
+  };
+}
+
+export class RentalRequest {
+  film_id: number;
+  store_id: number;
+  rental_date: Date;
+
+  constructor(film_id: string, store_id: string, rental_date: Date) {
+    this.film_id = parseInt(film_id);
+    this.store_id = parseInt(store_id);
+    this.rental_date = rental_date;
+  }
 }
 
 export interface FilmListModel {
