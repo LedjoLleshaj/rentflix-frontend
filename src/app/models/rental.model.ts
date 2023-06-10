@@ -5,26 +5,37 @@ enum Sort {
   desc = 'desc',
 }
 
-export interface Rent {
-  rental_date: number;
+export interface Rental {
+  rental_id: string;
+  inventory: Inventory;
+  rental_date: string;
   rental_period: number;
-  return_date: number;
-  rental_id: number;
-  inventory: {
-    film: {
-      title: string;
-    };
-    store: {
-      address: {
-        address: string;
-        address2: string;
+  return_date: string;
+  payment: Payment;
+}
+
+export interface Inventory {
+  film: {
+    title: string;
+    rental_rate: number;
+    replacement_cost: number;
+  };
+  store: {
+    address: {
+      address: string;
+      city: {
+        city: string;
+        country: {
+          country: string;
+        };
       };
     };
   };
-  payment: {
-    amount: number;
-    payment_date: number;
-  };
+}
+
+export interface Payment {
+  amount: number;
+  payment_date: string;
 }
 
 export interface GetRentalFilterInput {
@@ -36,7 +47,7 @@ export interface GetRentalFilterInput {
 
 export interface GetRentalAPI {
   getRentals: {
-    rentals: Rent[];
+    rentals: Rental[];
     total: number;
   };
 }

@@ -1,8 +1,10 @@
 import { Component, Output } from '@angular/core';
 import { RentalApiService } from '../shared/services/rental-api/rental-api.service';
-import { GetRentalFilterInput, Rent } from '../models/rental.model';
+import { GetRentalFilterInput, Rental } from '../models/rental.model';
 import { PageEvent } from '@angular/material/paginator';
 import { CardInput } from '../shared/components/stat-card/stat-card.component';
+import { MatDialog } from '@angular/material/dialog';
+import { RentalDetailsDialogComponent } from '../shared/components/rental-details-dialog/rental-details-dialog.component';
 
 @Component({
   selector: 'app-history-view',
@@ -11,7 +13,7 @@ import { CardInput } from '../shared/components/stat-card/stat-card.component';
   providers: [RentalApiService],
 })
 export class HistoryViewComponent {
-  data: Rent[];
+  data: Rental[];
   total: number;
   filter: GetRentalFilterInput = {
     page: 1,
@@ -22,15 +24,15 @@ export class HistoryViewComponent {
 
   @Output() cardData: CardInput[];
 
-  constructor(private RentalApiService: RentalApiService) {}
+  constructor(private rentalApiService: RentalApiService, private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.RentalApiService.getRentsOfCustomer(this.filter).subscribe((data) => {
+    this.rentalApiService.getRentsOfCustomer(this.filter).subscribe((data) => {
       this.total = data.getRentals.total;
       this.data = data.getRentals.rentals;
     });
 
-    this.RentalApiService.getRentalsStats().subscribe((data) => {
+    this.rentalApiService.getRentalsStats().subscribe((data) => {
       this.cardData = [
         {
           icon: 'upcoming',
@@ -63,14 +65,24 @@ export class HistoryViewComponent {
   nextPage(event: PageEvent) {
     this.filter.page = event.pageIndex + 1;
     this.filter.itemsPerPage = event.pageSize;
-    this.RentalApiService.getRentsOfCustomer(this.filter).subscribe((data) => {
+    this.rentalApiService.getRentsOfCustomer(this.filter).subscribe((data) => {
       this.total = data.getRentals.total;
       this.data = data.getRentals.rentals;
     });
   }
 
-  infoMovie(rent: Rent) {
+  infoMovie(rent: Rental) {
     console.log(rent);
+  }
+
+  infoRental(rental: Rental) {
+    this.rentalApiService.getRental(rental.rental_id).subscribe((rental) => {
+      this.dialog
+        .open(RentalDetailsDialogComponent, {
+          width: '532px',
+          data: rental,
+        })
+    });
   }
 
   updateFilter(sort: any) {
@@ -89,7 +101,7 @@ export class HistoryViewComponent {
 
   announceSortChange(sort: any) {
     this.updateFilter(sort);
-    this.RentalApiService.getRentsOfCustomer(this.filter).subscribe((data) => {
+    this.rentalApiService.getRentsOfCustomer(this.filter).subscribe((data) => {
       this.total = data.getRentals.total;
       this.data = data.getRentals.rentals;
     });

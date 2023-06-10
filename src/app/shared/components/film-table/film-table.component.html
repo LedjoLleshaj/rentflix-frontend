@@ -1,9 +1,9 @@
-<div class='table-responsive'>
+<div class='rf-table-responsive'>
   <table
     mat-table
     [dataSource]='data'
     tabindex='0'
-    class='mat-elevation-z1 table'
+    class='mat-elevation-z1'
     aria-label='Available films in the store'
   >
     <caption>
@@ -15,6 +15,7 @@
       <td mat-cell class='rf-text-center' *matCellDef='let film' [attr.aria-label]="'Title ' + film.title">
         <button mat-stroked-button color='primary' [attr.aria-label]="'Open ' + film.title + ' info'"
                 class='xl:w-2/3 w-full rf-text-center'
+                title="'Open ' + film.title + ' info'"
                 (click)='this.infoMovie.emit(film)'>
           {{ film.title }}
         </button>

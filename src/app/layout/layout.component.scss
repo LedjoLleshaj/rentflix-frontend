@@ -1,7 +1,8 @@
 .rf-toolbar {
   @apply flex justify-between;
-  @apply border-b border-gray-300;
+  @apply border-b;
   @apply px-2 py-9;
+  border-color: rgb(209 213 219);
 }
 
 .rf-sidenav {
@@ -16,7 +17,7 @@
 
   mat-nav-list {
     button {
-      @apply border-none text-left;
+      @apply border-none text-left rounded-3xl;
     }
   }
 }
@@ -30,7 +31,7 @@ div.rf-avatar-container {
   }
 
   i {
-    @apply mr-4;
+    @apply mr-2;
     font-size: 2.3rem;
     color: #c9c9c9;
   }

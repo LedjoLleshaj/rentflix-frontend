@@ -84,7 +84,6 @@ export class FilmViewComponent {
         .open(FilmDetailsDialogComponent, {
           width: '900px',
           data: film,
-          panelClass: 'mat-app-background',
         })
         .afterClosed()
         .subscribe((result) => {

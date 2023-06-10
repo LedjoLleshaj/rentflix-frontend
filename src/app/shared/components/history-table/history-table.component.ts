@@ -4,7 +4,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { MatSortModule } from '@angular/material/sort';
-import { Rent } from '../../../models/rental.model';
+import { Rental } from '../../../models/rental.model';
 
 @Component({
   selector: 'app-history-table',
@@ -14,11 +14,12 @@ import { Rent } from '../../../models/rental.model';
   imports: [MatTableModule, MatButtonModule, MatPaginatorModule, NgIf, NgFor, MatSortModule, DatePipe],
 })
 export class HistoryTableComponent {
-  columns: string[] = ['title', 'rental_date', 'return_date', 'rental_period', 'address', 'amount'];
-  @Input() data: Rent[] = [];
+  columns: string[] = ['title', 'rental_date', 'return_date', 'rental_period', 'address', 'amount', 'rental-info'];
+  @Input() data: Rental[] = [];
   @Input() total: number = 0;
   @Output() nextPage: EventEmitter<any> = new EventEmitter();
   @Output() infoMovie: EventEmitter<any> = new EventEmitter();
+  @Output() infoRental: EventEmitter<any> = new EventEmitter();
   @Output() announceSortChange: EventEmitter<any> = new EventEmitter();
 
   @ViewChild(MatPaginatorModule) paginator!: MatPaginatorModule;
