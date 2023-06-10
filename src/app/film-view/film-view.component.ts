@@ -55,11 +55,12 @@ export class FilmViewComponent {
   rentMovie(film: Film) {
     this.filmsApiService.getFilm(film.film_id).subscribe((film) => {
       this.dialog.open(FilmRentDialogComponent, {
-        width: '900px',
+        width: '560px',
         data: film
-      }).afterClosed().subscribe((result) => {
-        if (result === 1) {
+      }).afterClosed().subscribe((rental) => {
+        if (rental) {
           // TODO: Add rent mutation
+          console.log(rental)
         }
       });
     });
