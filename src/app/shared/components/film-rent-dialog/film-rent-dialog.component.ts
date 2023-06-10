@@ -29,11 +29,10 @@ import { MatCardModule } from '@angular/material/card';
     NgIf,
     NgForOf,
     MatChipsModule,
-    MatCardModule
-  ]
+    MatCardModule,
+  ],
 })
 export class FilmRentDialogComponent {
-
   // selectedStore?: AvailableStore;
   // rentalDate?: Date;
 
@@ -46,14 +45,13 @@ export class FilmRentDialogComponent {
   ) {
     this.rentalForm = this._formBuilder.group({
       selectedStoreControl: new FormControl<AvailableStore | null>(null, Validators.required),
-      selectedDateControl: new FormControl<Date | null>(null, Validators.required)
+      selectedDateControl: new FormControl<Date | null>(null, Validators.required),
     });
 
     if (film.availableStores?.length === 1) {
       this.rentalForm.get('selectedStoreControl')?.setValue(film.availableStores[0]);
     }
   }
-
 
   getToday() {
     const date = new Date();
@@ -106,6 +104,7 @@ export class FilmRentDialogComponent {
   createRental() {
     const selectedStore = this.rentalForm.get('selectedStoreControl')?.value;
     const selectedDate = this.rentalForm.get('selectedDateControl')?.value;
+
     const rentalRequest = new RentalRequest(this.film.film_id, selectedStore?.store_id, selectedDate);
     this.dialogRef.close(rentalRequest);
   }
