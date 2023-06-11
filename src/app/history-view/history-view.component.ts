@@ -5,12 +5,13 @@ import { PageEvent } from '@angular/material/paginator';
 import { CardInput } from '../shared/components/stat-card/stat-card.component';
 import { MatDialog } from '@angular/material/dialog';
 import { RentalDetailsDialogComponent } from '../shared/components/rental-details-dialog/rental-details-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-history-view',
   templateUrl: './history-view.component.html',
   styleUrls: ['./history-view.component.scss'],
-  providers: [RentalApiService],
+  providers: [RentalApiService, MatProgressSpinnerModule],
 })
 export class HistoryViewComponent {
   data: Rental[];
@@ -77,11 +78,10 @@ export class HistoryViewComponent {
 
   infoRental(rental: Rental) {
     this.rentalApiService.getRental(rental.rental_id).subscribe((rental) => {
-      this.dialog
-        .open(RentalDetailsDialogComponent, {
-          width: '532px',
-          data: rental,
-        })
+      this.dialog.open(RentalDetailsDialogComponent, {
+        width: '532px',
+        data: rental,
+      });
     });
   }
 

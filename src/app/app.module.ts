@@ -32,6 +32,7 @@ import { HistoryTableComponent } from './shared/components/history-table/history
 import { StatCardComponent } from './shared/components/stat-card/stat-card.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { RentalDetailsDialogComponent } from './shared/components/rental-details-dialog/rental-details-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -67,9 +68,9 @@ import { RentalDetailsDialogComponent } from './shared/components/rental-details
     HistoryTableComponent,
     StatCardComponent,
     MatStepperModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
