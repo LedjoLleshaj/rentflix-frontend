@@ -16,6 +16,7 @@ export class FilmViewComponent {
   data: Film[];
   total: number = 0;
   searchTitle: string = '';
+  timer: any;
   filter: GetFilmsFilterInput = {
     title: '',
     categories: [],
@@ -28,27 +29,22 @@ export class FilmViewComponent {
   constructor(private filmsApiService: FilmsApiService, private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.filmsApiService.getFilms(this.filter).subscribe((data) => {
-      this.data = data.getFilms.films;
-      this.total = data.getFilms.total;
-    });
+    this.fetchFilms();
+    this.refresh();
   }
 
   onSearchTitleChange(event: any) {
-    this.filter.title = event.target.value;
-    this.filmsApiService.getFilms(this.filter).subscribe((data) => {
-      this.data = data.getFilms.films;
-      this.total = data.getFilms.total;
-    });
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      this.filter.title = event.target.value;
+      this.fetchFilms();
+    }, 500);
   }
 
   nextPage(event: PageEvent) {
     this.filter.page = event.pageIndex + 1;
     this.filter.filmPerPage = event.pageSize;
-    this.filmsApiService.getFilms(this.filter).subscribe((data) => {
-      this.data = data.getFilms.films;
-      this.total = data.getFilms.total;
-    });
+    this.fetchFilms();
   }
 
   rentMovie(film: Film) {
@@ -68,11 +64,7 @@ export class FilmViewComponent {
                 console.log(data);
               });
             }
-            this.filmsApiService.getFilms(this.filter).subscribe((data) => {
-              console.log('Refreshed films', data);
-              this.data = data.getFilms.films;
-              this.total = data.getFilms.total;
-            });
+            this.fetchFilms();
           },
         });
     });
@@ -94,9 +86,21 @@ export class FilmViewComponent {
 
   handleSelectedCategories(category: number[]) {
     this.filter.categories = category;
+    this.fetchFilms();
+  }
+
+  fetchFilms() {
     this.filmsApiService.getFilms(this.filter).subscribe((data) => {
       this.data = data.getFilms.films;
       this.total = data.getFilms.total;
     });
+  }
+
+  refresh() {
+    this.fetchFilms();
+    setTimeout(() => {
+      console.log('refreshing data...');
+      this.refresh();
+    }, 30 * 1000);
   }
 }

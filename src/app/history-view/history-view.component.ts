@@ -28,11 +28,19 @@ export class HistoryViewComponent {
   constructor(private rentalApiService: RentalApiService, private dialog: MatDialog) {}
 
   ngOnInit() {
+    this.fetchHistory();
+    this.fetchStats();
+    this.refresh();
+  }
+
+  fetchHistory() {
     this.rentalApiService.getRentsOfCustomer(this.filter).subscribe((data) => {
       this.total = data.getRentals.total;
       this.data = data.getRentals.rentals;
     });
+  }
 
+  fetchStats() {
     this.rentalApiService.getRentalsStats().subscribe((data) => {
       this.cardData = [
         {
@@ -66,10 +74,7 @@ export class HistoryViewComponent {
   nextPage(event: PageEvent) {
     this.filter.page = event.pageIndex + 1;
     this.filter.itemsPerPage = event.pageSize;
-    this.rentalApiService.getRentsOfCustomer(this.filter).subscribe((data) => {
-      this.total = data.getRentals.total;
-      this.data = data.getRentals.rentals;
-    });
+    this.fetchHistory();
   }
 
   infoRental(rental: Rental) {
@@ -97,9 +102,15 @@ export class HistoryViewComponent {
 
   announceSortChange(sort: any) {
     this.updateFilter(sort);
-    this.rentalApiService.getRentsOfCustomer(this.filter).subscribe((data) => {
-      this.total = data.getRentals.total;
-      this.data = data.getRentals.rentals;
-    });
+    this.fetchHistory();
+  }
+
+  refresh() {
+    this.fetchHistory();
+    this.fetchStats();
+    setTimeout(() => {
+      console.log('refreshing data...');
+      this.refresh();
+    }, 30 * 1000);
   }
 }
