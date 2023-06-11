@@ -12,27 +12,27 @@
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
 $rf-default-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: mat.define-palette(mat.$indigo-palette),
-      accent: mat.define-palette(mat.$pink-palette, A200, A100, A400),
-      warn: mat.define-palette(mat.$red-palette),
-    ),
-    typography: mat.define-typography-config(),
-    density: 0,
-  )
+    (
+      color: (
+        primary: mat.define-palette(mat.$indigo-palette),
+        accent: mat.define-palette(mat.$pink-palette, A200, A100, A400),
+        warn: mat.define-palette(mat.$red-palette),
+      ),
+      typography: mat.define-typography-config(),
+      density: 0,
+    )
 );
 
 $rf-dark-theme: mat.define-dark-theme(
-  (
-    color: (
-      primary: mat.define-palette(mat.$cyan-palette),
-      accent: mat.define-palette(mat.$blue-grey-palette, A200, A100, A400),
-      warn: mat.define-palette(mat.$amber-palette),
-    ),
-    typography: mat.define-typography-config(),
-    density: 0,
-  )
+    (
+      color: (
+        primary: mat.define-palette(mat.$cyan-palette),
+        accent: mat.define-palette(mat.$blue-grey-palette, A200, A100, A400),
+        warn: mat.define-palette(mat.$amber-palette),
+      ),
+      typography: mat.define-typography-config(),
+      density: 0,
+    )
 );
 
 .rf-title {
@@ -154,7 +154,6 @@ div.rf-zoom {
 
 .rf-table-responsive {
   @apply block w-full overflow-x-auto;
-  @apply rounded-3xl;
 
   button {
     @apply shadow-none rounded-3xl;
