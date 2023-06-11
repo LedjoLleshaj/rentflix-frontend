@@ -9,9 +9,8 @@ import { MatSortModule } from '@angular/material/sort';
 @Component({
   selector: 'app-film-table',
   templateUrl: './film-table.component.html',
-  styleUrls: ['./film-table.component.scss'],
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, MatPaginatorModule, NgIf, NgFor, MatSortModule],
+  imports: [MatTableModule, MatButtonModule, MatPaginatorModule, NgIf, NgFor, MatSortModule]
 })
 export class FilmTableComponent {
   columns: string[] = ['title', 'release_year', 'rating', 'category', 'language', 'rental_rate', 'rent'];

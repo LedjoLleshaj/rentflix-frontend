@@ -16,7 +16,6 @@ import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-film-rent-dialog',
   templateUrl: './film-rent-dialog.component.html',
-  styleUrls: ['./film-rent-dialog.component.scss'],
   standalone: true,
   imports: [
     MatButtonModule,
@@ -29,8 +28,8 @@ import { MatCardModule } from '@angular/material/card';
     NgIf,
     NgForOf,
     MatChipsModule,
-    MatCardModule,
-  ],
+    MatCardModule
+  ]
 })
 export class FilmRentDialogComponent {
   // selectedStore?: AvailableStore;
@@ -45,7 +44,7 @@ export class FilmRentDialogComponent {
   ) {
     this.rentalForm = this._formBuilder.group({
       selectedStoreControl: new FormControl<AvailableStore | null>(null, Validators.required),
-      selectedDateControl: new FormControl<Date | null>(null, Validators.required),
+      selectedDateControl: new FormControl<Date | null>(null, Validators.required)
     });
 
     if (film.availableStores?.length === 1) {
