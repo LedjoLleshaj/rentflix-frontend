@@ -1,47 +1,50 @@
-<h1 mat-dialog-title class='text-2xl font-bold' style='margin:0'>Rental film</h1>
+<h1 mat-dialog-title class="text-2xl font-bold" style="margin: 0">Rental film</h1>
 <mat-divider />
-<mat-dialog-content>
-  <mat-stepper linear #stepper>
-    <mat-step [stepControl]='rentalForm'>
+<mat-dialog-content style="padding-left: 0">
+  <mat-stepper orientation="vertical" [linear]="true" #stepper>
+    <mat-step [stepControl]="rentalForm">
       <ng-template matStepLabel>Rental information</ng-template>
-      <form [formGroup]='rentalForm'>
+      <form class="my-2" [formGroup]="rentalForm">
         <!-- Show list of stores -->
-        <div class='border border-gray-200 rounded p-2'>
-          <p class='mat-body-1'>In which store do you want to rent it?</p>
+        <div class="border border-gray-200 rounded p-2">
+          <p class="mat-body-1">In which store do you want to rent it?</p>
           <mat-chip-listbox
-            aria-label='Store selection'
-            [multiple]='false'
-            [required]='true'
-            formControlName='selectedStoreControl'
+            aria-label="Store selection"
+            [multiple]="false"
+            [required]="true"
+            formControlName="selectedStoreControl"
           >
-            <mat-chip-option class='h-auto leading-4' *ngFor='let store of film.availableStores' [value]='store'
-            >{{ store.address.address }} ({{ store.address.city.city }}, {{ store.address.city.country.country }})
+            <mat-chip-option
+              class="overflow-hidden text-ellipsis whitespace-nowrap"
+              *ngFor="let store of film.availableStores"
+              [value]="store"
+              >{{ store.address.address }} ({{ store.address.city.city }}, {{ store.address.city.country.country }})
             </mat-chip-option>
           </mat-chip-listbox>
         </div>
-        <div class='border border-gray-200 rounded p-2 my-4'>
-          <p class='text-base'>What day do you want to rent it?</p>
+        <div class="border border-gray-200 rounded p-2 my-4">
+          <p class="text-base">What day do you want to rent it?</p>
           <mat-chip-listbox
-            aria-label='Rental date selection'
-            [multiple]='false'
-            [required]='true'
-            formControlName='selectedDateControl'
+            aria-label="Rental date selection"
+            [multiple]="false"
+            [required]="true"
+            formControlName="selectedDateControl"
           >
-            <mat-chip-option [value]='getToday()'>Today - {{ formatDate(getToday()) }} </mat-chip-option>
-            <mat-chip-option [value]='getDatePlusNDays(1)'
-            >Tomorrow - {{ formatDate(getDatePlusNDays(1)) }}</mat-chip-option
+            <mat-chip-option [value]="getToday()">Today - {{ formatDate(getToday()) }} </mat-chip-option>
+            <mat-chip-option [value]="getDatePlusNDays(1)"
+              >Tomorrow - {{ formatDate(getDatePlusNDays(1)) }}</mat-chip-option
             >
-            <mat-chip-option [value]='getDatePlusNDays(2)'>{{ formatDate(getDatePlusNDays(2)) }}</mat-chip-option>
+            <mat-chip-option [value]="getDatePlusNDays(2)">{{ formatDate(getDatePlusNDays(2)) }}</mat-chip-option>
           </mat-chip-listbox>
         </div>
-        <div class='flex justify-end'>
-          <button mat-button (click)='this.dialogRef.close()' class='mr-2'>Cancel</button>
+        <div class="flex justify-end">
+          <button mat-button (click)="this.dialogRef.close()" class="mr-2">Cancel</button>
           <button
             mat-flat-button
             matStepperNext
-            class='rounded-button'
-            color='primary'
-            [disabled]='!this.rentalForm.valid'
+            class="rounded-button"
+            color="primary"
+            [disabled]="!this.rentalForm.valid"
           >
             Next
           </button>
@@ -49,68 +52,68 @@
       </form>
     </mat-step>
 
-    <mat-step>
+    <mat-step [completed]="this.rentalForm.valid">
       <ng-template matStepLabel>Confirm rental</ng-template>
-      <div *ngIf='isValidData' class='border w-full p-4 rounded-lg mb-4'>
+      <div *ngIf="isValidData" class="border w-full p-4 rounded-lg my-4">
         <!-- Film title -->
-        <div class='flex mb-2'>
-          <div class='flex items-center px-1'>
+        <div class="flex mb-2">
+          <div class="flex items-center px-1">
             <span
-              class='inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 border'
+              class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 border"
             >
               Film
             </span>
           </div>
-          <div class='flex items-center'>
-            <span class='text-base font-normal'> {{ film.title }} ({{ film.release_year }}) </span>
+          <div class="flex items-center">
+            <span class="text-base font-normal"> {{ film.title }} ({{ film.release_year }}) </span>
           </div>
         </div>
 
         <!-- Store details -->
-        <div class='flex mb-2'>
-          <div class='flex items-center px-1'>
+        <div class="flex mb-2">
+          <div class="flex items-center px-1">
             <span
-              class='inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10'
+              class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10"
             >
               Store
             </span>
           </div>
-          <div class='flex items-center'>
-            <span class='text-base font-normal'>{{ storeLabel }}</span>
+          <div class="flex items-center">
+            <span class="text-xs md:text-base font-normal">{{ storeLabel }}</span>
           </div>
         </div>
 
         <!-- Rental date -->
-        <div class='flex mb-2'>
-          <div class='flex items-center px-1'>
+        <div class="flex mb-2">
+          <div class="flex items-center px-1">
             <span
-              class='inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10'
+              class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10"
             >
               Rental date
             </span>
           </div>
-          <div class='flex items-center'>
-            <span class='text-base font-normal'>{{ dateLabel }}</span>
+          <div class="flex items-center">
+            <span class="text-base font-normal">{{ dateLabel }}</span>
           </div>
         </div>
 
         <!-- Rental price -->
-        <div class='flex mb-2'>
-          <div class='flex items-center px-1'>
+        <div class="flex mb-2">
+          <div class="flex items-center px-1">
             <span
-              class='inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10'
+              class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10"
             >
               Rental rate
             </span>
           </div>
-          <div class='flex items-center'>
-            <span class='text-base font-normal'>{{ film.rental_rate }}/day</span>
+          <div class="flex items-center">
+            <span class="text-base font-normal">{{ film.rental_rate }}/day</span>
           </div>
         </div>
       </div>
-      <div class='flex justify-end'>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-flat-button matStepperNext class='rounded-button' color='primary' (click)='createRental()'>
+      <div class="flex justify-end">
+        <button class="mx-2" mat-button matStepperPrevious>Back</button>
+        <button mat-flat-button matStepperNext class="rounded-button" color="primary" (click)="createRental()">
           Confirm
         </button>
       </div>
