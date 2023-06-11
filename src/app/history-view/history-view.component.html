@@ -1,7 +1,7 @@
 <div class="flex flex-col items-stretch justify-start">
   <div class="flex flex-wrap justify-stretch gap-4">
     <div class="container min-w-[300px] max-w-[400px] md:max-w-[300px]" *ngFor="let card of cardData">
-      <app-stat-card [card]="card"></app-stat-card>
+      <app-stat-card role="list" [card]="card"></app-stat-card>
     </div>
   </div>
   <div class="pb-16 py-6 rounded-md" *ngIf="data; else elseBlock">
