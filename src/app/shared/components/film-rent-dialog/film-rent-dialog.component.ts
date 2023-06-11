@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { AvailableStore, Film, RentalRequest } from 'src/app/graphql/film';
 
 import { FormBuilder, Validators, FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
@@ -12,6 +12,7 @@ import { SelectStoreComponent } from '../select-store/select-store.component';
 import { NgForOf, NgIf } from '@angular/common';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-film-rent-dialog',
@@ -28,7 +29,9 @@ import { MatCardModule } from '@angular/material/card';
     NgIf,
     NgForOf,
     MatChipsModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule,
+    MatDividerModule
   ]
 })
 export class FilmRentDialogComponent {
