@@ -1,70 +1,94 @@
+<h1 mat-dialog-title class='text-2xl font-bold' style='margin:0'>
+  {{film.title}} ({{film.release_year}}
+  ) {{getFlagEmoji(film.language?.name ?? '')}}
+</h1>
+<mat-divider />
+
+
 <mat-dialog-content>
   <!-- Header -->
   <div class='flex flex-col rounded-2xl gap-4'>
-    <div class='grid grid-cols-10'>
-      <div class='col-span-10 md:col-span-8'>
-        <h1 class='text-2xl font-bold m-0'>{{film.title}} ({{film.release_year}}
-          ) {{getFlagEmoji(film.language?.name ?? '')}}
-        </h1>
-      </div>
-      <div class='col-span-10 md:col-span-2'>
-        <div class='w-full flex xs:justify-start md:justify-end'>
-        <span
-          class='rf-blue-label'>{{film.length}}
-          min</span>
+    <!--
+      <div class='grid grid-cols-10'>
+        <div class='col-span-10 md:col-span-8'>
+          <h1 class='text-2xl font-bold m-0'>{{film.title}} ({{film.release_year}}
+            ) {{getFlagEmoji(film.language?.name ?? '')}}
+          </h1>
+        </div>
+        <div class='col-span-10 md:col-span-2'>
+          <div class='w-full flex xs:justify-start md:justify-end'>
           <span
-            class='rf-red-label'>{{film.rating}}</span>
+            class='rf-blue-label'>{{film.length}}
+            min</span>
+            <span
+              class='rf-red-label'>{{film.rating}}</span>
+          </div>
+        </div>
+      </div>
+      -->
+    <p class='mat-body-2' style='margin: 0'>{{film.description}}</p>
+    <!-- Film and rent details -->
+    <div class='flex flex-col'>
+      <h4 class='text-xl font-bold' style='margin:0'>Details</h4>
+      <div class='grid grid-cols-10 gap-2 border rounded w-full p-4'>
+        <!-- actors -->
+        <div class='col-span-4 md:col-span-2'>
+          <span class='rf-blue-label w-full'>Actors</span>
+        </div>
+        <div class='col-span-6 md:col-span-8'>
+          <span *ngIf='film.actors' class='mat-body-2'> {{ actorsList() }}</span>
+        </div>
+        <!-- film length -->
+        <div class='col-span-4 md:col-span-2'>
+          <span class='rf-blue-label w-full'>Length</span>
+        </div>
+        <div class='col-span-6 md:col-span-8'>
+          <span class='mat-body-2'> {{film.length}} min </span>
+        </div>
+        <!-- rating -->
+        <div class='col-span-4 md:col-span-2'>
+          <span class='rf-blue-label w-full'>Rating</span>
+        </div>
+        <div class='col-span-6 md:col-span-8'>
+          <span class='mat-body-2'> {{film.rating}} </span>
+        </div>
+        <!-- categories -->
+        <div class='col-span-4 md:col-span-2'>
+          <span class='rf-blue-label w-full'>Categories</span>
+        </div>
+        <div class='col-span-6 md:col-span-8'>
+          <span class='mat-body-2'> {{film.category?.name}} </span>
+        </div>
+        <!--max rent duration -->
+        <div class='col-span-4 md:col-span-2'>
+          <span class='rf-blue-label w-full'>Max rent duration</span>
+        </div>
+        <div class='col-span-6 md:col-span-8'>
+          <span class='mat-body-2'> {{film.rental_duration}} days </span>
+        </div>
+        <!-- actors -->
+        <div class='col-span-4 md:col-span-2'>
+          <span class='rf-blue-label w-full'>Price</span>
+        </div>
+        <div class='col-span-6 md:col-span-8'>
+          <span class='mat-body-2'> {{film.rental_rate}}/day </span>
         </div>
       </div>
     </div>
-    <p class='mat-body-2'>{{film.description}}</p>
-    <!-- Film and rent details -->
-    <div class='grid grid-cols-10 gap-2 border rounded w-full p-4'>
-      <!-- actors -->
-      <div class='col-span-4 md:col-span-2'>
-        <span class='rf-blue-label w-full'>Actors</span>
-      </div>
-      <div class='col-span-6 md:col-span-8'>
-        <span *ngIf='film.actors' class='text-base font-normal'> {{ actorsList() }}</span>
-      </div>
-      <!-- categories -->
-      <div class='col-span-4 md:col-span-2'>
-          <span
-            class='rf-blue-label w-full'>Categories</span>
-      </div>
-      <div class='col-span-6 md:col-span-8'>
-        <span class='text-base font-normal'> {{film.category?.name}} </span>
-      </div>
-      <!--max rent duration -->
-      <div class='col-span-4 md:col-span-2'>
-            <span
-              class='rf-blue-label w-full'>Max rent duration</span>
-      </div>
-      <div class='col-span-6 md:col-span-8'>
-        <span class='text-base font-normal'> {{film.rental_duration}} days </span>
-      </div>
-      <!-- actors -->
-      <div class='col-span-4 md:col-span-2'>
-            <span
-              class='rf-blue-label w-full'>Price</span>
-      </div>
-      <div class='col-span-6 md:col-span-8'>
-        <span class='text-base font-normal'> {{film.rental_rate}}/day </span>
-      </div>
-    </div>
     <!-- Available store -->
-    <div class='border rounded w-full p-4'>
-      <!-- Title -->
+    <div class='flex flex-col'>
       <h4 class='text-xl font-bold' style='margin:0'> Availability </h4>
-      <div class='flex flex-wrap gap-1'>
-        <span
-          *ngFor='let store of film.availableStores'
-          class='rf-label-bordered'>{{store.address.address}}
-          ({{store.address.city.city}}, {{store.address.city.country.country}})</span>
+      <div class='border rounded w-full p-4'>
+        <div class='flex flex-wrap gap-1'>
+        <span *ngFor='let store of film.availableStores' class='rf-label-bordered'>
+          {{store.address.address}} ({{store.address.city.city}}, {{store.address.city.country.country}})
+        </span>
+        </div>
       </div>
     </div>
   </div>
 </mat-dialog-content>
+<mat-divider></mat-divider>
 <mat-dialog-actions align='end'>
   <!-- Rent button -->
   <button mat-button (click)='dialogRef.close()'>Close</button>

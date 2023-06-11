@@ -1,16 +1,16 @@
-<h1 mat-dialog-title class='text-2xl font-bold m-0'>Rental details</h1>
-<mat-divider/>
+<h1 mat-dialog-title class='text-2xl font-bold' style='margin:0'>Rental details</h1>
+<mat-divider />
 <mat-dialog-content>
   <!-- Film details -->
-  <div class='flex flex-col mb-2'>
-    <p class='text-base font-medium grey-600'>Film details</p>
+  <div class='flex flex-col'>
+    <h4 class='text-xl font-bold' style='margin:0'> Film details </h4>
     <div class='grid grid-cols-10 gap-2 border rounded-2xl w-full p-4'>
       <!-- Film -->
-      <div class='col-span-4 md:col-span-2 mb-0'>
-        <span class='rf-blue-label w-full mb-0'>Film</span>
+      <div class='col-span-4 md:col-span-2'>
+        <span class='rf-blue-label w-full'>Film</span>
       </div>
       <div class='col-span-6 md:col-span-8'>
-        <span class='text-base font-normal'> {{ rental.inventory.film.title }}</span>
+        <span class='mat-body-2'> {{ rental.inventory.film.title }}</span>
       </div>
       <!-- Store -->
       <div class='col-span-4 md:col-span-2'>
@@ -18,21 +18,23 @@
             class='rf-blue-label w-full'>Store</span>
       </div>
       <div class='col-span-6 md:col-span-8'>
-        <span class='text-base font-normal'> {{ rental.inventory.store.address.address}} ({{rental.inventory.store.address.city.city}}, {{rental.inventory.store.address.city.country.country}}) </span>
+        <span class='mat-body-2'> {{ rental.inventory.store.address.address}}
+          ({{rental.inventory.store.address.city.city}}, {{rental.inventory.store.address.city.country.country}}
+          ) </span>
       </div>
     </div>
   </div>
 
   <!-- General details -->
-  <div class='flex flex-col mb-2'>
-    <p class='text-base font-medium grey-600'>General details</p>
+  <div class='flex flex-col my-2'>
+    <h4 class='text-xl font-bold' style='margin:0'>General details</h4>
     <div class='grid grid-cols-10 gap-2 border rounded-2xl w-full p-4'>
       <!-- Rental start -->
-      <div class='col-span-5 md:col-span-3 mb-0'>
-        <span class='rf-blue-label w-full mb-0'>Rental start</span>
+      <div class='col-span-5 md:col-span-3'>
+        <span class='rf-blue-label w-full'>Rental start</span>
       </div>
       <div class='col-span-5 md:col-span-7'>
-        <span class='text-base font-normal'> {{ rental.rental_date | date: 'dd/MM/yyyy' }}</span>
+        <span class='mat-body-2'> {{ rental.rental_date | date: 'dd/MM/yyyy' }}</span>
       </div>
       <!-- Rental end -->
       <div class='col-span-5 md:col-span-3'>
@@ -40,61 +42,67 @@
             class='rf-blue-label w-full'>Rental end</span>
       </div>
       <div class='col-span-5 md:col-span-7'>
-        <span *ngIf="rental.return_date" class='text-base font-normal'> {{ rental.return_date | date: 'dd/MM/yyyy' }}</span>
-        <span *ngIf="!rental.return_date" class='text-base font-normal'>-</span>
+        <span *ngIf='rental.return_date'
+              class='mat-body-2'> {{ rental.return_date | date: 'dd/MM/yyyy' }}</span>
+        <span *ngIf='!rental.return_date' class='mat-body-2'>-</span>
       </div>
       <!-- Total days -->
       <div class='col-span-5 md:col-span-3'>
         <span
           class='rf-blue-label w-full'>Total days</span>
-    </div>
-    <div class='col-span-5 md:col-span-7'>
-      <span *ngIf="rental.return_date" class='text-base font-normal'> {{ rental.rental_period }} days </span>
-      <span *ngIf="!rental.return_date" class='text-base font-normal'> {{ rental.rental_period }} days (in progress) </span>
-    </div>
+      </div>
+      <div class='col-span-5 md:col-span-7'>
+        <span *ngIf='rental.return_date' class='mat-body-2'> {{ rental.rental_period }} days </span>
+        <span *ngIf='!rental.return_date' class='mat-body-2'> {{ rental.rental_period }}
+          days (in progress) </span>
+      </div>
     </div>
   </div>
 
   <!-- Payment details -->
-  <div class='flex flex-col mb-2'>
-    <p class='text-base font-medium grey-600'>Payment details</p>
-    <div *ngIf="rental.return_date" class='grid grid-cols-10 gap-2 border rounded-2xl w-full p-4'>
+  <div class='flex flex-col'>
+    <h4 class='text-xl font-bold' style='margin:0'>Payment details</h4>
+    <div *ngIf='rental.return_date' class='grid grid-cols-10 gap-2 border rounded-2xl w-full p-4'>
       <!-- Ammount -->
-      <div class='col-span-5 md:col-span-3 mb-0'>
-        <span class='rf-blue-label w-full mb-0'>Ammount</span>
+      <div class='col-span-5 md:col-span-3'>
+        <span class='rf-blue-label w-full'>Ammount</span>
       </div>
       <div class='col-span-5 md:col-span-7'>
-        <span class='text-base font-normal'>€ {{ rental.payment.amount }}</span>
+        <span class='mat-body-2'>€ {{ rental.payment.amount }}</span>
       </div>
       <!-- Date -->
       <div class='col-span-5 md:col-span-3'>
-          <span class='rf-blue-label w-full'>Date</span>
+        <span class='rf-blue-label w-full'>Date</span>
       </div>
       <div class='col-span-5 md:col-span-7'>
-        <span *ngIf="rental.return_date" class='text-base font-normal'> {{ rental.payment.payment_date | date: 'dd/MM/yyyy' }}</span>
-        <span *ngIf="!rental.return_date" class='text-base font-normal'>-</span>
+        <span *ngIf='rental.return_date'
+              class='mat-body-2'> {{ rental.payment.payment_date | date: 'dd/MM/yyyy' }}</span>
+        <span *ngIf='!rental.return_date' class='mat-body-2'>-</span>
       </div>
       <!-- Success alert -->
-      <div class="flex bg-green-100 text-green-700 px-4 py-3 rounded-2xl col-span-10" role="alert">
-        <span class='text-base font-normal'>The rental has been paid!</span>
+      <div class='flex bg-green-100 text-green-700 px-4 py-3 rounded-2xl col-span-10' role='alert'>
+        <span class='mat-body-2'>The rental has been paid!</span>
       </div>
     </div>
-    <div *ngIf="!rental.return_date" class='grid grid-cols-10 gap-2 border rounded-2xl w-full p-4'>
+    <div *ngIf='!rental.return_date' class='grid grid-cols-10 gap-2 border rounded-2xl w-full p-4'>
       <!-- Est. ammount -->
-      <div class='col-span-5 md:col-span-3 mb-0'>
-        <span class='rf-blue-label w-full mb-0'>Est. ammount</span>
+      <div class='col-span-5 md:col-span-3'>
+        <span class='rf-blue-label w-full'>Est. ammount</span>
       </div>
       <div class='col-span-5 md:col-span-7'>
-        <span *ngIf="rental.inventory.film.replacement_cost" class='text-base font-normal'>€ {{ rental.rental_period * rental.inventory.film.replacement_cost }}</span>
-        <span *ngIf="!rental.inventory.film.replacement_cost" class='text-base font-normal'>€ {{ rental.rental_period * rental.inventory.film.rental_rate }}</span>
+        <span *ngIf='rental.inventory.film.replacement_cost'
+              class='mat-body-2'>€ {{ rental.rental_period * rental.inventory.film.replacement_cost }}</span>
+        <span *ngIf='!rental.inventory.film.replacement_cost'
+              class='mat-body-2'>€ {{ rental.rental_period * rental.inventory.film.rental_rate }}</span>
       </div>
       <!-- Warning alert -->
-      <div class="flex bg-orange-100 text-orange-700 px-4 py-3 rounded-2xl col-span-10" role="alert">
-        <span class='text-base font-normal'>The rental has not ended yet!</span>
+      <div class='flex bg-orange-100 text-orange-700 px-4 py-3 rounded-2xl col-span-10' role='alert'>
+        <span class='mat-body-2'>The rental is not ended yet!</span>
       </div>
     </div>
   </div>
 </mat-dialog-content>
+<mat-divider></mat-divider>
 <mat-dialog-actions align='end'>
   <button mat-flat-button color='primary' (click)='this.dialogRef.close();'>Close</button>
 </mat-dialog-actions>

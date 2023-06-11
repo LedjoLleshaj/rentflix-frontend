@@ -15,7 +15,7 @@
       <td mat-cell class='rf-text-center' *matCellDef='let film' [attr.aria-label]="'Title ' + film.title">
         <button mat-stroked-button color='primary' [attr.aria-label]="'Open ' + film.title + ' info'"
                 class='xl:w-2/3 w-full rf-text-center'
-                title="'Open ' + film.title + ' info'"
+                [title]="'Open ' + film.title + ' info'"
                 (click)='this.infoMovie.emit(film)'>
           {{ film.title }}
         </button>

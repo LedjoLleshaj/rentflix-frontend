@@ -7,21 +7,21 @@ import { GET_CATEGORIES_QUERY, GetCategoriesModel } from 'src/app/graphql/film';
 @Component({
   selector: 'app-chips',
   templateUrl: './chips.component.html',
-  styleUrls: ['./chips.component.scss'],
   standalone: true,
-  imports: [MatChipsModule, NgFor],
+  imports: [MatChipsModule, NgFor]
 })
 export class ChipsComponent implements OnInit {
   categories: GetCategoriesModel[] = [];
   selected: string[] = [];
   @Output() selectedCategories = new EventEmitter<number[]>();
 
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo) {
+  }
 
   ngOnInit() {
     this.apollo
       .query({
-        query: GET_CATEGORIES_QUERY,
+        query: GET_CATEGORIES_QUERY
       })
       .subscribe((data: any) => {
         this.categories = data.data.getCategories;

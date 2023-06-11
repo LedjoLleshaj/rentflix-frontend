@@ -9,7 +9,6 @@ import { Rental } from '../../../models/rental.model';
 @Component({
   selector: 'app-history-table',
   templateUrl: './history-table.component.html',
-  styleUrls: ['./history-table.component.scss'],
   standalone: true,
   imports: [MatTableModule, MatButtonModule, MatPaginatorModule, NgIf, NgFor, MatSortModule, DatePipe]
 })
