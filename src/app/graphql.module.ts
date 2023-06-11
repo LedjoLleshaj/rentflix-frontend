@@ -9,14 +9,26 @@ import { LOCAL_STORAGE_KEYS } from './shared/constants';
 const uri = 'http://localhost:4000/'; // <-- add the URL of the GraphQL server here
 
 export function createApollo(httpLink: HttpLink) {
-  const token = localStorage.getItem(LOCAL_STORAGE_KEYS.AUTH_TOKEN);
-  const basic = setContext((operation, context) => ({
-    headers: {
-      Authorization: token ? `Bearer ${token}` : ''
-    }
-  }));
 
-  const link = ApolloLink.from([basic, httpLink.create({ uri })]);
+  // const basic = setContext((operation, context) => ({
+  //   headers: {
+  //     Authorization: token ? `Bearer ${token}` : ''
+  //   }
+  // }));
+
+  const authLink = setContext((_, { headers }) => {
+    // get the authentication token from local storage if it exists
+    const token = localStorage.getItem(LOCAL_STORAGE_KEYS.AUTH_TOKEN);
+    // return the headers to the context so httpLink can read them
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : "",
+      }
+    }
+  });
+
+  const link = ApolloLink.from([authLink, httpLink.create({ uri })]);
   const cache = new InMemoryCache();
 
   return {
