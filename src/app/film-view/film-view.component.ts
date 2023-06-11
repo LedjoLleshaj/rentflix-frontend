@@ -5,12 +5,12 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { FilmDetailsDialogComponent } from '../shared/components/film-details-dialog/film-details-dialog.component';
 import { FilmRentDialogComponent } from '../shared/components/film-rent-dialog/film-rent-dialog.component';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-film-view',
   templateUrl: './film-view.component.html',
   styleUrls: ['./film-view.component.scss'],
-  providers: [FilmsApiService],
+  providers: [FilmsApiService, MatProgressSpinnerModule],
 })
 export class FilmViewComponent {
   data: Film[];
