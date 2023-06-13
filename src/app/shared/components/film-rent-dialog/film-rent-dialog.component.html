@@ -2,7 +2,7 @@
   Rental film
 </h1>
 <mat-divider />
-<mat-dialog-content style="padding-left: 0">
+<mat-dialog-content style="padding:0">
   <mat-stepper orientation="vertical" [linear]="true" #stepper>
     <mat-step [stepControl]="rentalForm">
       <ng-template matStepLabel>Rental information</ng-template>
@@ -24,7 +24,7 @@
               [aria-label]="
                 store.address.address + ' (' + store.address.city.city + ', ' + store.address.city.country.country + ')'
               "
-              >{{ store.address.address }} ({{ store.address.city.city }}, {{ store.address.city.country.country }})
+            >{{ store.address.address }} ({{ store.address.city.city }}, {{ store.address.city.country.country }})
             </mat-chip-option>
           </mat-chip-listbox>
         </div>
@@ -37,19 +37,19 @@
             formControlName="selectedDateControl"
           >
             <mat-chip-option tabindex="0" [aria-label]="'Today -' + formatDate(getToday())" [value]="getToday()"
-              >Today - {{ formatDate(getToday()) }}
+            >Today - {{ formatDate(getToday()) }}
             </mat-chip-option>
             <mat-chip-option
               tabindex="0"
               [aria-label]="'Tomorrow' + formatDate(getDatePlusNDays(1))"
               [value]="getDatePlusNDays(1)"
-              >Tomorrow - {{ formatDate(getDatePlusNDays(1)) }}</mat-chip-option
+            >Tomorrow - {{ formatDate(getDatePlusNDays(1)) }}</mat-chip-option
             >
             <mat-chip-option
               tabindex="0"
               [aria-label]="formatDate(getDatePlusNDays(2))"
               [value]="getDatePlusNDays(2)"
-              >{{ formatDate(getDatePlusNDays(2)) }}</mat-chip-option
+            >{{ formatDate(getDatePlusNDays(2)) }}</mat-chip-option
             >
           </mat-chip-listbox>
         </div>
