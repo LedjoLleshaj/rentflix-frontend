@@ -12,9 +12,8 @@ export interface CardInput {
 @Component({
   selector: 'app-stat-card',
   templateUrl: './stat-card.component.html',
-  styleUrls: ['./stat-card.component.scss'],
   standalone: true,
-  imports: [MatCardModule, MatIconModule],
+  imports: [MatCardModule, MatIconModule]
 })
 export class StatCardComponent {
   @Input() card: CardInput;
