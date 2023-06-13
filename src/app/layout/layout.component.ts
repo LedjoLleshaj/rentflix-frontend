@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LOCAL_STORAGE_KEYS } from '../shared/constants';
 import { DarkModeService } from '../shared/services/dark-mode/dark-mode.service';
+import { AuthApiService } from '../shared/services/auth-api/auth-api.service';
 
 @Component({
   selector: 'app-layout',
@@ -20,7 +21,7 @@ export class LayoutComponent {
     public router: Router,
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    public darkModeService: DarkModeService
+    public darkModeService: DarkModeService,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -39,11 +40,7 @@ export class LayoutComponent {
   }
 
   logout() {
-    Object.values(LOCAL_STORAGE_KEYS).forEach((key) => {
-      if (key !== LOCAL_STORAGE_KEYS.DARK_MODE) {
-        localStorage.removeItem(key);
-      }
-    });
+    AuthApiService.logout();
     document.body.classList.remove('rf-dark-theme');
     this.router.navigate(['/login']);
   }

@@ -1,8 +1,11 @@
-export interface AuthResponse {
+export interface AuthDetails {
     token: string
     first_name: string
     last_name: string
-    email: string
+}
+
+export interface AuthResponse {
+  login: AuthDetails
 }
 
 export interface AuthForm {
