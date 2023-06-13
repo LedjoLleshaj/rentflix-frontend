@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Apollo } from 'apollo-angular';
-import { GET_RENTS_OF_COSTUMER, GetRentalFilterInput, GetRentalAPI, Rental } from '../../../models/rental.model';
-import { getRentalsStats, RentalStatistics } from 'src/app/graphql/rents';
-import { Subject } from 'rxjs';
-import { GET_RENTAL_QUERY } from 'src/app/graphql/get-rental';
+import { Injectable } from "@angular/core";
+import { Apollo } from "apollo-angular";
+import { GET_RENTS_OF_COSTUMER, GetRentalFilterInput, GetRentalAPI, Rental } from "../../../models/rental.model";
+import { getRentalsStats, RentalStatistics } from "src/app/graphql/rents";
+import { Subject } from "rxjs";
+import { GET_RENTAL_QUERY } from "src/app/graphql/get-rental";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class RentalApiService {
   constructor(private apollo: Apollo) {}
@@ -19,13 +19,14 @@ export class RentalApiService {
         variables: {
           filter: filter,
         },
+        fetchPolicy: "network-only",
       })
       .subscribe({
         next: ({ data }) => {
           response.next(data);
         },
         error: (error) => {
-          console.log('Error: ', error);
+          console.log("Error: ", error);
           response.next(error);
         },
       });
@@ -38,13 +39,14 @@ export class RentalApiService {
     this.apollo
       .query<RentalStatistics>({
         query: getRentalsStats,
+        fetchPolicy: "network-only",
       })
       .subscribe({
         next: ({ data }) => {
           response.next(data);
         },
         error: (error) => {
-          console.log('Error: ', error);
+          console.log("Error: ", error);
           response.next(error);
         },
       });
@@ -63,7 +65,7 @@ export class RentalApiService {
           response.next(data.getRental);
         },
         error: (error) => {
-          console.log('Error: ', error);
+          console.log("Error: ", error);
           response.next(error);
         },
       });

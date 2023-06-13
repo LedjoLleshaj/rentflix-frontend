@@ -1,33 +1,33 @@
-<div class='rf-table-responsive'>
+<div class="rf-table-responsive">
   <table
     mat-table
-    tabindex='0'
+    tabindex="0"
     matSort
-    aria-label='Film rental history'
-    (matSortChange)='this.announceSortChange.emit($event)'
-    [dataSource]='data'
-    class='mat-elevation-z1 table'
+    aria-label="Film rental history"
+    (matSortChange)="this.announceSortChange.emit($event)"
+    [dataSource]="data"
+    class="mat-elevation-z1 table"
   >
     <caption>
       Film rental history
     </caption>
     <!-- title -->
-    <ng-container matColumnDef='title' sticky>
+    <ng-container matColumnDef="title" sticky>
       <th
         mat-header-cell
         *matHeaderCellDef
-        class='rf-text-center'
-        role='columnheader'
-        scope='col'
+        class="rf-text-center"
+        role="columnheader"
+        scope="col"
         mat-sort-header
-        sortActionDescription='Sort by title'
+        sortActionDescription="Sort by title"
       >
         Title
       </th>
       <td
         mat-cell
-        class='rf-text-center rf-table-row'
-        *matCellDef='let rent'
+        class="rf-text-center rf-table-row"
+        *matCellDef="let rent"
         [attr.aria-label]="'Title ' + rent.inventory.film.title"
       >
         {{ rent.inventory.film.title }}
@@ -36,73 +36,73 @@
 
     <!-- rental_date -->
 
-    <ng-container matColumnDef='rental_date'>
+    <ng-container matColumnDef="rental_date">
       <th
-        class='rf-text-center'
+        class="rf-text-center"
         mat-header-cell
         *matHeaderCellDef
-        role='columnheader'
-        scope='col'
+        role="columnheader"
+        scope="col"
         mat-sort-header
-        sortActionDescription='Sort by rental date'
+        sortActionDescription="Sort by rental date"
       >
         Rental date
       </th>
       <td
-        class='rf-text-center rf-table-row'
+        class="rf-text-center rf-table-row"
         mat-cell
-        tabindex='0'
-        *matCellDef='let rent'
-        [attr.aria-label]="'Rental date ' + (rent.rental_date | date : 'dd/MM/yyyy HH:MM')"
+        tabindex="0"
+        *matCellDef="let rent"
+        [attr.aria-label]="'Rental date ' + (rent.rental_date | date : 'dd/MM/yyyy')"
       >
-        {{ rent.rental_date | date : 'dd/MM/yyyy HH:MM' }}
+        {{ rent.rental_date | date : 'dd/MM/yyyy' }}
       </td>
     </ng-container>
 
     <!-- return_date -->
-    <ng-container matColumnDef='return_date'>
+    <ng-container matColumnDef="return_date">
       <th
-        class='rf-text-center'
+        class="rf-text-center"
         mat-header-cell
         *matHeaderCellDef
-        role='columnheader'
-        scope='col'
+        role="columnheader"
+        scope="col"
         mat-sort-header
-        sortActionDescription='Sort by return date'
+        sortActionDescription="Sort by return date"
       >
         Return date
       </th>
       <td
-        class='rf-text-center rf-table-row'
+        class="rf-text-center rf-table-row"
         mat-cell
-        tabindex='0'
-        *matCellDef='let rent'
+        tabindex="0"
+        *matCellDef="let rent"
         [attr.aria-label]="
-          'Return date ' + (rent.return_date ? (rent.return_date | date : 'dd/MM/yyyy HH:MM') : 'In progress...')
+          'Return date ' + (rent.return_date ? (rent.return_date | date : 'dd/MM/yyyy') : 'In progress...')
         "
       >
-        {{ rent.return_date ? (rent.return_date | date : 'dd/MM/yyyy HH:MM') : 'In progress...' }}
+        {{ rent.return_date ? (rent.return_date | date : 'dd/MM/yyyy') : 'In progress...' }}
       </td>
     </ng-container>
 
     <!-- rental period -->
-    <ng-container matColumnDef='rental_period'>
+    <ng-container matColumnDef="rental_period">
       <th
-        class='rf-text-center'
+        class="rf-text-center"
         mat-header-cell
         *matHeaderCellDef
-        role='columnheader'
-        scope='col'
+        role="columnheader"
+        scope="col"
         mat-sort-header
-        sortActionDescription='Sort by rental period'
+        sortActionDescription="Sort by rental period"
       >
         Rental period
       </th>
       <td
-        class='rf-text-center rf-table-row'
+        class="rf-text-center rf-table-row"
         mat-cell
-        tabindex='0'
-        *matCellDef='let rent'
+        tabindex="0"
+        *matCellDef="let rent"
         [attr.aria-label]="'Rental period ' + rent.return_date ? rent.rental_period + ' days' : 'In progress...'"
       >
         {{ rent.return_date ? rent.rental_period + ' days' : 'In progress...' }}
@@ -110,23 +110,23 @@
     </ng-container>
 
     <!-- address -->
-    <ng-container matColumnDef='address'>
+    <ng-container matColumnDef="address">
       <th
-        class='rf-text-center'
+        class="rf-text-center"
         mat-header-cell
         *matHeaderCellDef
-        role='columnheader'
-        scope='col'
+        role="columnheader"
+        scope="col"
         mat-sort-header
-        sortActionDescription='Sort by address'
+        sortActionDescription="Sort by address"
       >
         Address
       </th>
       <td
-        class='rf-text-center rf-table-row'
+        class="rf-text-center rf-table-row"
         mat-cell
-        tabindex='0'
-        *matCellDef='let rent'
+        tabindex="0"
+        *matCellDef="let rent"
         [attr.aria-label]="'Address ' + rent.inventory.store.address.address"
       >
         {{ rent.inventory.store.address.address }}
@@ -134,23 +134,23 @@
     </ng-container>
 
     <!-- amount -->
-    <ng-container matColumnDef='amount'>
+    <ng-container matColumnDef="amount">
       <th
-        class='rf-text-center'
+        class="rf-text-center"
         mat-header-cell
         *matHeaderCellDef
-        role='columnheader'
-        scope='col'
+        role="columnheader"
+        scope="col"
         mat-sort-header
-        sortActionDescription='Sort by amount'
+        sortActionDescription="Sort by amount"
       >
         Amount
       </th>
       <td
-        class='rf-text-center rf-table-row'
+        class="rf-text-center rf-table-row"
         mat-cell
-        tabindex='0'
-        *matCellDef='let rent'
+        tabindex="0"
+        *matCellDef="let rent"
         [attr.aria-label]="rent.payment ? rent.payment.amount + ' €' : 'In progress to be returned'"
       >
         {{ rent.payment ? rent.payment.amount + ' €' : 'In progress...' }}
@@ -158,30 +158,30 @@
     </ng-container>
 
     <!-- rental info button -->
-    <ng-container matColumnDef='rental-info' sticky>
-      <th class='rf-text-center' mat-header-cell *matHeaderCellDef role='columnheader' scope='col'>Rent details</th>
-      <td mat-cell *matCellDef='let rental' [attr.aria-label]="'Rent details of ' + rental.inventory.film.title">
+    <ng-container matColumnDef="rental-info" sticky>
+      <th class="rf-text-center" mat-header-cell *matHeaderCellDef role="columnheader" scope="col">Rent details</th>
+      <td mat-cell *matCellDef="let rental" [attr.aria-label]="'Rent details of ' + rental.inventory.film.title">
         <button
-          class='xl:w-2/3 w-full rf-text-center'
+          class="xl:w-2/3 w-full rf-text-center"
           mat-flat-button
-          color='primary'
-          (click)='this.infoRental.emit(rental)'
+          color="primary"
+          (click)="this.infoRental.emit(rental)"
         >
           Details
         </button>
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef='columns'></tr>
-    <tr mat-row *matRowDef='let row; columns: columns'></tr>
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns"></tr>
   </table>
 </div>
 <mat-paginator
-  class='mat-elevation-z1'
-  [length]='this.total'
-  [pageSize]='10'
-  [pageSizeOptions]='[5, 10, 25, 50]'
+  class="mat-elevation-z1"
+  [length]="this.total"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 50]"
   showFirstLastButtons
-  (page)='this.nextPage.emit($event)'
-  aria-label='Pagination Navigation'
+  (page)="this.nextPage.emit($event)"
+  aria-label="Pagination Navigation"
 ></mat-paginator>

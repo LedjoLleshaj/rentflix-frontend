@@ -1,36 +1,41 @@
-import { Component } from '@angular/core';
-import { Film, GetFilmsFilterInput } from '../graphql/film';
-import { FilmsApiService } from '../shared/services/film-api/film-api.service';
-import { PageEvent } from '@angular/material/paginator';
-import { MatDialog } from '@angular/material/dialog';
-import { FilmDetailsDialogComponent } from '../shared/components/film-details-dialog/film-details-dialog.component';
-import { FilmRentDialogComponent } from '../shared/components/film-rent-dialog/film-rent-dialog.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Component } from "@angular/core";
+import { Film, GetFilmsFilterInput } from "../graphql/film";
+import { FilmsApiService } from "../shared/services/film-api/film-api.service";
+import { PageEvent } from "@angular/material/paginator";
+import { MatDialog } from "@angular/material/dialog";
+import { FilmDetailsDialogComponent } from "../shared/components/film-details-dialog/film-details-dialog.component";
+import { FilmRentDialogComponent } from "../shared/components/film-rent-dialog/film-rent-dialog.component";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { ActivatedRoute } from "@angular/router";
+
 @Component({
-  selector: 'app-film-view',
-  templateUrl: './film-view.component.html',
-  styleUrls: ['./film-view.component.scss'],
+  selector: "app-film-view",
+  templateUrl: "./film-view.component.html",
+  styleUrls: ["./film-view.component.scss"],
   providers: [FilmsApiService, MatProgressSpinnerModule],
 })
 export class FilmViewComponent {
   data: Film[];
   total: number = 0;
-  searchTitle: string = '';
   timer: any;
   filter: GetFilmsFilterInput = {
-    title: '',
+    title: "",
     categories: [],
     page: 1,
     filmPerPage: 10,
-    orderBy: 'title',
-    sort: 'asc',
+    orderBy: "title",
+    sort: "asc",
   };
+
+  periodicUpdate: any;
 
   constructor(private filmsApiService: FilmsApiService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.fetchFilms();
-    this.refresh();
+    this.periodicUpdate = setInterval(() => {
+      this.fetchFilms();
+    }, 1000 * 10);
   }
 
   onSearchTitleChange(event: any) {
@@ -51,20 +56,18 @@ export class FilmViewComponent {
     this.filmsApiService.getFilm(film.film_id).subscribe((film) => {
       this.dialog
         .open(FilmRentDialogComponent, {
-          width: '560px',
+          width: "560px",
           data: film,
         })
         .afterClosed()
         .subscribe({
           next: (rental) => {
             if (rental) {
-              console.log(rental);
-
               this.filmsApiService.rentFilm(rental).subscribe((data) => {
-                console.log(data);
+                // update films after rent
+                this.fetchFilms();
               });
             }
-            this.fetchFilms();
           },
         });
     });
@@ -74,7 +77,7 @@ export class FilmViewComponent {
     this.filmsApiService.getFilm(film.film_id).subscribe((film) => {
       this.dialog
         .open(FilmDetailsDialogComponent, {
-          width: '900px',
+          width: "900px",
           data: film,
         })
         .afterClosed()
@@ -96,11 +99,8 @@ export class FilmViewComponent {
     });
   }
 
-  refresh() {
-    this.fetchFilms();
-    setTimeout(() => {
-      console.log('refreshing data...');
-      this.refresh();
-    }, 30 * 1000);
+  ngOnDestroy() {
+    // destroy the interval
+    clearInterval(this.periodicUpdate);
   }
 }

@@ -1,16 +1,17 @@
-import { Component, Output } from '@angular/core';
-import { RentalApiService } from '../shared/services/rental-api/rental-api.service';
-import { GetRentalFilterInput, Rental } from '../models/rental.model';
-import { PageEvent } from '@angular/material/paginator';
-import { CardInput } from '../shared/components/stat-card/stat-card.component';
-import { MatDialog } from '@angular/material/dialog';
-import { RentalDetailsDialogComponent } from '../shared/components/rental-details-dialog/rental-details-dialog.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Component, Output } from "@angular/core";
+import { RentalApiService } from "../shared/services/rental-api/rental-api.service";
+import { GetRentalFilterInput, Rental } from "../models/rental.model";
+import { PageEvent } from "@angular/material/paginator";
+import { CardInput } from "../shared/components/stat-card/stat-card.component";
+import { MatDialog } from "@angular/material/dialog";
+import { RentalDetailsDialogComponent } from "../shared/components/rental-details-dialog/rental-details-dialog.component";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: 'app-history-view',
-  templateUrl: './history-view.component.html',
-  styleUrls: ['./history-view.component.scss'],
+  selector: "app-history-view",
+  templateUrl: "./history-view.component.html",
+  styleUrls: ["./history-view.component.scss"],
   providers: [RentalApiService, MatProgressSpinnerModule],
 })
 export class HistoryViewComponent {
@@ -19,9 +20,10 @@ export class HistoryViewComponent {
   filter: GetRentalFilterInput = {
     page: 1,
     itemsPerPage: 10,
-    orderBy: '',
-    sort: 'asc',
+    orderBy: "rental_date",
+    sort: "desc",
   };
+  periodicUpdate: any;
 
   @Output() cardData: CardInput[];
 
@@ -30,7 +32,10 @@ export class HistoryViewComponent {
   ngOnInit() {
     this.fetchHistory();
     this.fetchStats();
-    this.refresh();
+    this.periodicUpdate = setInterval(() => {
+      this.fetchHistory();
+      this.fetchStats();
+    }, 10000);
   }
 
   fetchHistory() {
@@ -44,28 +49,28 @@ export class HistoryViewComponent {
     this.rentalApiService.getRentalsStats().subscribe((data) => {
       this.cardData = [
         {
-          icon: 'upcoming',
+          icon: "upcoming",
           stat: String(data.getUser.rental_stats.current_rentals),
-          description: 'Rentals in progress',
-          iconColor: 'text-orange-400',
+          description: "Rentals in progress",
+          iconColor: "text-orange-400",
         },
         {
-          icon: 'wallet',
-          stat: String(data.getUser.rental_stats.total_amount) + ' €',
-          description: 'Total spendings (€)',
-          iconColor: 'text-green-400',
+          icon: "wallet",
+          stat: String(data.getUser.rental_stats.total_amount) + " €",
+          description: "Total spendings (€)",
+          iconColor: "text-green-400",
         },
         {
-          icon: 'category',
+          icon: "category",
           stat: data.getUser.rental_stats?.most_frequent_category?.name,
-          description: 'Favorite category  ',
-          iconColor: 'text-cyan-400',
+          description: "Favorite category  ",
+          iconColor: "text-cyan-400",
         },
         {
-          icon: 'timeline',
+          icon: "timeline",
           stat: String(data.getUser.rental_stats.total_rentals),
-          description: 'Total rentals      ',
-          iconColor: 'text-violet-400',
+          description: "Total rentals      ",
+          iconColor: "text-violet-400",
         },
       ];
     });
@@ -80,7 +85,7 @@ export class HistoryViewComponent {
   infoRental(rental: Rental) {
     this.rentalApiService.getRental(rental.rental_id).subscribe((rental) => {
       this.dialog.open(RentalDetailsDialogComponent, {
-        width: '532px',
+        width: "532px",
         data: rental,
       });
     });
@@ -88,16 +93,16 @@ export class HistoryViewComponent {
 
   updateFilter(sort: any) {
     const orderByMapping: { [key: string]: string } = {
-      title: 'film.title',
-      amount: 'payment.amount',
-      rental_date: 'rental_date',
-      return_date: 'return_date',
-      rental_period: 'rental_period',
-      address: 'store.address',
+      title: "film.title",
+      amount: "payment.amount",
+      rental_date: "rental_date",
+      return_date: "return_date",
+      rental_period: "rental_period",
+      address: "store.address",
     };
 
-    this.filter.sort = this.filter.sort === 'asc' ? 'desc' : 'asc';
-    this.filter.orderBy = orderByMapping[sort.active] || '';
+    this.filter.sort = this.filter.sort === "asc" ? "desc" : "asc";
+    this.filter.orderBy = orderByMapping[sort.active] || "";
   }
 
   announceSortChange(sort: any) {
@@ -105,12 +110,7 @@ export class HistoryViewComponent {
     this.fetchHistory();
   }
 
-  refresh() {
-    this.fetchHistory();
-    this.fetchStats();
-    setTimeout(() => {
-      console.log('refreshing data...');
-      this.refresh();
-    }, 30 * 1000);
+  ngOnDestroy() {
+    clearInterval(this.periodicUpdate);
   }
 }

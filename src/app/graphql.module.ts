@@ -1,15 +1,14 @@
-import { NgModule } from '@angular/core';
-import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
-import { ApolloClientOptions, ApolloLink, InMemoryCache } from '@apollo/client/core';
-import { HttpLink } from 'apollo-angular/http';
-import { setContext } from '@apollo/client/link/context';
-import { HttpClientModule } from '@angular/common/http';
-import { LOCAL_STORAGE_KEYS } from './shared/constants';
+import { NgModule } from "@angular/core";
+import { ApolloModule, APOLLO_OPTIONS } from "apollo-angular";
+import { ApolloClientOptions, ApolloLink, DefaultOptions, InMemoryCache } from "@apollo/client/core";
+import { HttpLink } from "apollo-angular/http";
+import { setContext } from "@apollo/client/link/context";
+import { HttpClientModule } from "@angular/common/http";
+import { LOCAL_STORAGE_KEYS } from "./shared/constants";
 
-const uri = 'http://localhost:4000/'; // <-- add the URL of the GraphQL server here
+const uri = "http://localhost:4000/"; // <-- add the URL of the GraphQL server here
 
 export function createApollo(httpLink: HttpLink) {
-
   // const basic = setContext((operation, context) => ({
   //   headers: {
   //     Authorization: token ? `Bearer ${token}` : ''
@@ -24,16 +23,27 @@ export function createApollo(httpLink: HttpLink) {
       headers: {
         ...headers,
         authorization: token ? `Bearer ${token}` : "",
-      }
-    }
+      },
+    };
   });
 
   const link = ApolloLink.from([authLink, httpLink.create({ uri })]);
   const cache = new InMemoryCache();
+  //const defaultOptions: DefaultOptions = {
+  //  watchQuery: {
+  //    fetchPolicy: "no-cache",
+  //    errorPolicy: "ignore",
+  //  },
+  //  query: {
+  //    fetchPolicy: "no-cache",
+  //    errorPolicy: "all",
+  //  },
+  //};
 
   return {
     link,
-    cache
+    cache,
+    //defaultOptions,
   };
 }
 
@@ -43,9 +53,8 @@ export function createApollo(httpLink: HttpLink) {
     {
       provide: APOLLO_OPTIONS,
       useFactory: createApollo,
-      deps: [HttpLink]
-    }
-  ]
+      deps: [HttpLink],
+    },
+  ],
 })
-export class GraphQLModule {
-}
+export class GraphQLModule {}
