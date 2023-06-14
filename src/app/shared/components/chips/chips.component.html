@@ -1,9 +1,8 @@
-<mat-chip-listbox multiple aria-label="Category selection" tabindex="0">
+<mat-chip-listbox multiple aria-label="Select movie categories to filter" tabindex="0">
   <ng-container *ngFor="let category of categories">
     <mat-chip-option
       tabIndex="category.category_id"
       [value]="category.category_id"
-      role="category option"
       (selectionChange)="onChipSelectionChange($event)"
       >{{ category.name }}</mat-chip-option
     >
