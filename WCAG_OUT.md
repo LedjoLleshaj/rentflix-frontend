@@ -102,3 +102,12 @@ Level AA:
 - 4.1.3 Status Messages: In content implemented using markup languages, status messages can be programmatically
   determined through role or properties such that they can be presented to the user by assistive technologies without
   receiving focus.
+
+L'attributo role: specifica il ruolo (semantica) dell'elemento (button, checkbox, tree, tablist, tab, ecc);
+
+- proprietà aria-label, aria-labelledby, aria-valuenow, ecc.: attributi che descrivono la natura di un dato oggetto.
+- Una modifica di una proprietà può avere un impatto rilevante sul significato o sulla presentazione di un oggetto;
+- stati aria-checked, aria-selected, ecc.: proprietà dinamiche che esprimono le caratteristiche di un oggetto.
+- Possono cambiare in risposta ad azioni intraprese dall'utente o a processi automatizzati.
+- Gli stati non influenzano la natura essenziale dell'oggetto, ma rappresentano i dati associati all'oggetto o alle
+  possibilità di interazione dell'utente con esso.

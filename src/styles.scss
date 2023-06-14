@@ -37,6 +37,7 @@ $rf-dark-theme: mat.define-dark-theme(
 
 .rf-title {
   color: #3f51b5;
+  font-weight: 700 !important;
 }
 
 // Include theme styles for core and each component used in your app.
@@ -52,6 +53,7 @@ $rf-dark-theme: mat.define-dark-theme(
 
   .rf-title {
     color: #00bcd4 !important;
+    font-weight: 700 !important;
   }
 
   .rf-toolbar {
@@ -74,7 +76,7 @@ mat-card {
 
 
 // zoom tags
-div.rf-zoom {
+.rf-zoom {
   @apply fixed bottom-0 right-0 mb-2 mr-2;
   z-index: 1;
 

@@ -22,7 +22,7 @@ export class HistoryTableComponent {
 
   @ViewChild(MatPaginatorModule) paginator!: MatPaginatorModule;
 
-  @HostListener("window:keydown.arrowright", ["$event"]) keyRightEvent(event: KeyboardEvent) {
+  /*@HostListener("window:keydown.arrowright", ["$event"]) keyRightEvent(event: KeyboardEvent) {
     event.preventDefault();
     let currentElement = document.activeElement as HTMLElement;
     if (currentElement) {
@@ -69,5 +69,5 @@ export class HistoryTableComponent {
         (elem as HTMLElement).focus();
       }
     }
-  }
+  }*/
 }
