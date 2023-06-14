@@ -13,8 +13,8 @@
     </div>
     <!-- user info -->
     <div class="rf-avatar-container">
-      <i class="material-icons">account_circle</i>
-      <div class="mat-typography">
+      <i class="material-icons" aria-hidden="true">account_circle</i>
+      <div>
         <p class="mat-headline-6">{{ username }}</p>
         <p class="mat-body-2">{{ firstName }} {{ lastName }}</p>
       </div>
@@ -43,7 +43,7 @@
 
 
   <mat-sidenav-content role="main">
-    <mat-toolbar class="rf-toolbar">
+    <mat-toolbar class="rf-toolbar" role="heading" aria-level="1">
       <!-- open menu and title -->
       <div class="flex items-center">
         <button mat-icon-button (click)="rfnav.toggle()"
