@@ -1,29 +1,29 @@
 <mat-sidenav-container>
   <mat-sidenav
-    class='rf-sidenav'
+    class="rf-sidenav"
     #rfnav
     [mode]="mobileQuery.matches ? 'over' : 'side'"
     [style.width]='mobileQuery.matches ? "215px" : "250px"'
-    role='region'
-    fixedInViewport='true'>
-    <div class='flex justify-end' *ngIf='mobileQuery.matches'>
-      <button mat-icon-button aria-label='Close sidenav' title='Close sidenav' (click)='rfnav.toggle()'>
+    role="region"
+    fixedInViewport="true">
+    <div class="flex justify-end" *ngIf="mobileQuery.matches">
+      <button mat-icon-button aria-label="Close sidenav" title="Close sidenav" (click)="rfnav.toggle()">
         <mat-icon>close</mat-icon>
       </button>
     </div>
     <!-- user info -->
-    <div class='rf-avatar-container'>
-      <i class='material-icons'>account_circle</i>
-      <div class='mat-typography'>
-        <p class='mat-headline-6'>{{ username }}</p>
-        <p class='mat-body-2'>{{ firstName }} {{ lastName }}</p>
+    <div class="rf-avatar-container">
+      <i class="material-icons">account_circle</i>
+      <div class="mat-typography">
+        <p class="mat-headline-6">{{ username }}</p>
+        <p class="mat-body-2">{{ firstName }} {{ lastName }}</p>
       </div>
     </div>
     <!-- navigation -->
     <mat-nav-list>
       <mat-divider></mat-divider>
       <button mat-list-item
-              aria-label='Open movies view' title='Open movies view'
+              aria-label="Open movies view" title="Open movies view"
               [activated]="this.router.url==='/'"
               (click)='this.router.navigate([""])'
       >
@@ -31,7 +31,7 @@
         <div matListItemTitle>Movies</div>
       </button>
       <button mat-list-item
-              aria-label='Open history view' title='Open history view'
+              aria-label="Open history view" title="Open history view"
               [activated]="this.router.url==='/history'"
               (click)='this.router.navigate(["/history"])'
       >
@@ -42,49 +42,35 @@
   </mat-sidenav>
 
 
-  <mat-sidenav-content role='main'>
-    <mat-toolbar class='rf-toolbar'>
+  <mat-sidenav-content role="main">
+    <mat-toolbar class="rf-toolbar">
       <!-- open menu and title -->
-      <div class='flex items-center'>
-        <button mat-icon-button (click)='rfnav.toggle()'
+      <div class="flex items-center">
+        <button mat-icon-button (click)="rfnav.toggle()"
+                [attr.title]="rfnav.opened ? 'Close sidenav' : 'Open sidenav'"
                 [attr.aria-label]="rfnav.opened ? 'Close sidenav' : 'Open sidenav'"
         >
           <mat-icon>menu</mat-icon>
         </button>
         <h1>Rentflix</h1>
       </div>
-
-      <!--
-      <button mat-icon-button [matMenuTriggerFor]='rfMenu'
-              aria-label='Open menu' title='Open menu'>
-        <mat-icon>settings</mat-icon>
-      </button>
-      <mat-menu #rfMenu='matMenu'>
-        <ng-template matMenuContent>
-
-        </ng-template>
-      </mat-menu>-->
-      <div class='flex items-end gap-4'>
+      <div class="flex items-end gap-4">
         <!-- dark/light mode -->
-        <button *ngIf='this.darkModeService.darkMode' (click)='this.darkModeService.toggleDarkMode()'
+        <button (click)="this.darkModeService.toggleDarkMode()"
                 mat-stroked-button
-                aria-label='Active light mode' title='Active light mode'>
-          <mat-icon style='margin:0'>light_mode</mat-icon>
-        </button>
-        <button *ngIf='!this.darkModeService.darkMode' (click)='this.darkModeService.toggleDarkMode()'
-                mat-stroked-button
-                aria-label='Active dark mode' title='Active dark mode'>
-          <mat-icon style='margin:0'>dark_mode</mat-icon>
+                [attr.aria-label]="this.darkModeService.darkMode ? 'Active dark mode' : 'Active light mode'"
+                [attr.title]="this.darkModeService.darkMode ? 'Active dark mode' : 'Active light mode'">
+          <mat-icon style="margin:0">{{this.darkModeService.darkMode ? 'light_mode' : 'dark_mode'}}</mat-icon>
         </button>
         <!-- logout -->
-        <button (click)='logout()' mat-stroked-button aria-label='Logout' title='Logout'>
-          <mat-icon style='margin:0'>logout</mat-icon>
+        <button (click)="logout()" mat-stroked-button aria-label="Logout" title="Logout">
+          <mat-icon style="margin:0">logout</mat-icon>
         </button>
       </div>
 
     </mat-toolbar>
     <!-- main content -->
-    <div class='py-4 px-5'>
+    <div class="py-4 px-5">
       <router-outlet></router-outlet>
     </div>
     <!-- end main content -->

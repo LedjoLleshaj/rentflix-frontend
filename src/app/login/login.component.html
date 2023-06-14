@@ -1,16 +1,10 @@
 <main>
   <div class="rf-theme">
-    <button *ngIf="this.darkModeService.darkMode" (click)="this.darkModeService.toggleDarkMode()" mat-stroked-button
-            aria-label="Active light mode"
-            title="Active light mode">
-      <mat-icon>light_mode</mat-icon>
-      Light mode
-    </button>
-    <button *ngIf="!this.darkModeService.darkMode" (click)="this.darkModeService.toggleDarkMode()" mat-stroked-button
-            aria-label="Active dark mode"
-            title="Active dark mode">
-      <mat-icon>dark_mode</mat-icon>
-      Dark mode
+    <button (click)="this.darkModeService.toggleDarkMode()" mat-stroked-button
+            [attr.aria-label]="this.darkModeService.darkMode ? 'Active light mode' : 'Active dark mode'"
+            [attr.title]="this.darkModeService.darkMode ? 'Active light mode' : 'Active dark mode'">
+      <mat-icon>{{ this.darkModeService.darkMode ? 'light_mode' : 'dark_mode'}}</mat-icon>
+      {{this.darkModeService.darkMode ? 'Light mode' : 'Dark mode' }}
     </button>
   </div>
   <div class="rf-login-form">
