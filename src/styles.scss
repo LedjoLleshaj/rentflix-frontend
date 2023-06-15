@@ -26,7 +26,7 @@ $rf-default-theme: mat.define-light-theme(
 $rf-dark-theme: mat.define-dark-theme(
   (
     color: (
-      primary: mat.define-palette(mat.$cyan-palette),
+      primary: mat.define-palette(mat.$cyan-palette, 200),
       accent: mat.define-palette(mat.$blue-grey-palette, A200, A100, A400),
       warn: mat.define-palette(mat.$amber-palette),
     ),

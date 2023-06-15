@@ -7,6 +7,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { RentalDetailsDialogComponent } from "../shared/components/rental-details-dialog/rental-details-dialog.component";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { ActivatedRoute } from "@angular/router";
+import { LiveAnnouncer } from "@angular/cdk/a11y";
 
 @Component({
   selector: "app-history-view",
@@ -27,7 +28,7 @@ export class HistoryViewComponent {
 
   @Output() cardData: CardInput[];
 
-  constructor(private rentalApiService: RentalApiService, private dialog: MatDialog) {}
+  constructor(private rentalApiService: RentalApiService, private dialog: MatDialog, private _liveAnnouncer: LiveAnnouncer) {}
 
   ngOnInit() {
     this.fetchHistory();
@@ -108,6 +109,12 @@ export class HistoryViewComponent {
   announceSortChange(sort: any) {
     this.updateFilter(sort);
     this.fetchHistory();
+
+    if (sort.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sort.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 
   ngOnDestroy() {

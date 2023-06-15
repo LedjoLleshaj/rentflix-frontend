@@ -7,7 +7,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
-import { SelectStoreComponent } from '../select-store/select-store.component';
 
 import { NgForOf, NgIf } from '@angular/common';
 import { MatChipsModule } from '@angular/material/chips';
@@ -25,7 +24,6 @@ import { MatDividerModule } from '@angular/material/divider';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    SelectStoreComponent,
     NgIf,
     NgForOf,
     MatChipsModule,
