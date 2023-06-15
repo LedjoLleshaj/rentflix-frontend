@@ -1,39 +1,62 @@
-- 1.1.1 Non-text Content: All non-text content that is presented to the user has a text alternative that serves the
+- [ ] 1.1.1 Non-text Content: All non-text content that is presented to the user has a text alternative that serves the
   equivalent purpose
-- Emoji: Basta mettere aria-hidden="true"
 
+  > Emoji: Basta mettere aria-hidden="true"
 
-- 1.3.1 Info and Relationships: Information, structure, and relationships conveyed through presentation can be
+- [ ] 1.3.1 Info and Relationships: Information, structure, and relationships conveyed through presentation can be
   programmatically determined or are available in text.
-- Guardare axe DevTools
 
+  > Guardare axe DevTools
 
-- 1.3.2 Meaningful Sequence: When the sequence in which content is presented affects its meaning, a correct reading
+- [ ] 1.3.2 Meaningful Sequence: When the sequence in which content is presented affects its meaning, a correct reading
   sequence can be programmatically determined.
 
+  > È stato rispettato ad esempio nella definizione della navbar e della appbar.
 
-- 1.3.3 Sensory Characteristics: Instructions provided for understanding and operating content do not rely solely on
-  sensory characteristics of components such as shape, color, size, visual location, orientation, or sound.
-- 1.4.1 Use of Color: Color is not used as the only visual means of conveying information, indicating an action,
+- [ ] ~~1.3.3 Sensory Characteristics: Instructions provided for understanding and operating content do not rely solely on~~
+  ~~sensory characteristics of components such as shape, color, size, visual location, orientation, or sound.~~
+
+- [ ] 1.4.1 Use of Color: Color is not used as the only visual means of conveying information, indicating an action,
   prompting a response, or distinguishing a visual element.
-- 2.1.1 Keyboard: All functionality of the content is operable through a keyboard interface without requiring specific
+
+  > In ogni input è presente un bordo rosso e un testo che indica il tipo di errore, se la validazione non è andata a buon fine
+
+- [ ] 2.1.1 Keyboard: All functionality of the content is operable through a keyboard interface without requiring specific
   timings for individual keystrokes, except where the underlying function requires input that depends on the path of the
   user's movement and not just the endpoints.
-- 2.1.2 No Keyboard Trap: If keyboard focus can be moved to a component of the page using a keyboard interface, then
+
+  > Tutto il sito è navigabile con la tastiera usando `tab` e `shift + tab`
+
+
+- [ ] 2.1.2 No Keyboard Trap: If keyboard focus can be moved to a component of the page using a keyboard interface, then
   focus can be moved away from that component using only a keyboard interface, and, if it requires more than unmodified
   arrow or tab keys or other standard exit methods, the user is advised of the method for moving focus away.
-- 2.1.4 Character Key Shortcuts: If a keyboard shortcut is implemented in content using only letter (including upper-
-  and lower-case letters), punctuation, number, or symbol characters
-- 2.3.1 Three Flashes or Below Threshold: Web pages do not contain anything that flashes more than three times in any
+
+  > È stato rispettato ad esempio nei dialog di dettaglio film, dettaglio noleggio e nuovo noleggio
+
+
+- [ ] ~~2.1.4 Character Key Shortcuts: If a keyboard shortcut is implemented in content using only letter (including upper-~~
+  ~~and lower-case letters), punctuation, number, or symbol characters~~
+
+- [ ] 2.3.1 Three Flashes or Below Threshold: Web pages do not contain anything that flashes more than three times in any
   one second period, or the flash is below the general flash and red flash thresholds.
-- 2.4.1 Bypass Blocks: A mechanism is available to bypass blocks of content that are repeated on multiple Web pages (
-  navigation buttons)
+
+  > Il nostro sito non contiene niente che lampeggi
+
+- [ ] ~~2.4.1 Bypass Blocks: A mechanism is available to bypass blocks of content that are repeated on multiple Web pages (~~
+  ~~navigation buttons)~~
+
 - 2.4.2 Page Titled: Web pages have titles that describe topic or purpose.
+
+  > Ogni pagina ha il titolo corretto
+
 - 2.4.3 Focus Order: If a Web page can be navigated sequentially and the navigation sequences affect meaning or
   operation, focusable components receive focus in an order that preserves meaning and operability.
+
 - 2.4.4 Link Purpose (In Context): The purpose of each link can be determined from the link text alone or from the link
   text together with its programmatically determined link context, except where the purpose of the link would be
   ambiguous to users in general.
+
 - 2.5.2 Pointer Cancellation: For functionality that can be operated using a single pointer, at least one of the
   following is true:
   - No Down-Event: The down-event of the pointer is not used to execute any part of the function;
@@ -41,22 +64,31 @@
     before completion or to undo the function after completion;
   - Up Reversal: The up-event reverses any outcome of the preceding down-event;
   - Essential: Completing the function on the down-event is essential.
+
 - 2.5.3 Label in Name !!: For user interface components with labels that include text or images of text, the name
   contains the text that is presented visually.
+
 - 2.5.4 Motion Actuation: Functionality that can be operated by device motion or user motion can also be operated by
   user interface components and responding to the motion can be disabled to prevent accidental actuation, except when:
   - Supported Interface: The motion is used to operate functionality through an accessibility supported interface;
   - Essential: The motion is essential for the function and doing so would invalidate the activity.
+
 - 3.1.1 Language of Page: The default human language of each Web page can be programmatically determined.
+
 - 3.2.1 On Focus: When any component receives focus, it does not initiate a change of context.
+
 - 3.2.2 On Input: Changing the setting of any user interface component does not automatically cause a change of context
   unless the user has been advised of the behavior before using the component.
+
 - 3.3.1 Error Identification: If an input error is automatically detected, the item that is in error is identified and
   the error is described to the user in text.
+
 - 3.3.2 Labels or Instructions: Labels or instructions are provided when content requires user input.
+
 - 4.1.1 Parsing: In content implemented using markup languages, elements have complete start and end tags, elements are
   nested according to their specifications, elements do not contain duplicate attributes, and any IDs are unique, except
   where the specifications allow these features.
+
 - 4.1.2 Name, Role, Value: For all user interface components (including but not limited to: form elements, links and
   components generated by scripts), the name and role can be programmatically determined; states, properties, and values
   that can be set by the user can be programmatically set; and notification of changes to these items is available to
