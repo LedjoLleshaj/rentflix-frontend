@@ -53,46 +53,67 @@
 - 2.4.3 Focus Order: If a Web page can be navigated sequentially and the navigation sequences affect meaning or
   operation, focusable components receive focus in an order that preserves meaning and operability.
 
-- 2.4.4 Link Purpose (In Context): The purpose of each link can be determined from the link text alone or from the link
-  text together with its programmatically determined link context, except where the purpose of the link would be
-  ambiguous to users in general.
+  >Ogni elemento e navigabile con `tab` nel ordine che si dovrebbe anche leggere
+
+
+- ~~2.4.4 Link Purpose (In Context): The purpose of each link can be determined from the link text alone or from the link~~
+  ~~text together with its programmatically determined link context, except where the purpose of the link would be~~
+  ~~ambiguous to users in general.~~
+
+  >Non abbiamo link? ma nella sidebar solo buttoni che reinderizzano la view
 
 - 2.5.2 Pointer Cancellation: For functionality that can be operated using a single pointer, at least one of the
   following is true:
+
   - No Down-Event: The down-event of the pointer is not used to execute any part of the function;
   - Abort or Undo: Completion of the function is on the up-event, and a mechanism is available to abort the function
     before completion or to undo the function after completion;
   - Up Reversal: The up-event reverses any outcome of the preceding down-event;
   - Essential: Completing the function on the down-event is essential.
 
+  >Si puo cancellare l'esecuzione di un evento se l'utente tennendo il mouse cliccatto esce fuori dal elemento e poi lancia il click.Questo e un comportamento default quando come event trigger viene usato (click) che succede quando il mouse finisce il click.Per tornare dietro oppure revertire lesecuzione negli elementi di one click basta clicckare di nuovo (light/dark/mode...login/logout...cambiare view) negli altri e sempre richiesto una conferma (fare un rent non e neanche 1 clickable)
+
 - 2.5.3 Label in Name !!: For user interface components with labels that include text or images of text, the name
   contains the text that is presented visually.
 
-- 2.5.4 Motion Actuation: Functionality that can be operated by device motion or user motion can also be operated by
-  user interface components and responding to the motion can be disabled to prevent accidental actuation, except when:
-  - Supported Interface: The motion is used to operate functionality through an accessibility supported interface;
-  - Essential: The motion is essential for the function and doing so would invalidate the activity.
+  >le aria labels che abbiamo messo sono uguali al testo visivo e a volte anche piu verbosi.x
+  
+- ~~2.5.4 Motion Actuation: Functionality that can be operated by device motion or user motion can also be operated by~~
+  ~~user interface components and responding to the motion can be disabled to prevent accidental actuation, except when:~~
+  
+  - ~~Supported Interface: The motion is used to operate functionality through an accessibility supported interface;~~
+  - ~~Essential: The motion is essential for the function and doing so would invalidate the activity.~~
+  
+- ~~3.1.1 Language of Page: The default human language of each Web page can be programmatically determined.~~
 
-- 3.1.1 Language of Page: The default human language of each Web page can be programmatically determined.
+  >Not yet...
 
 - 3.2.1 On Focus: When any component receives focus, it does not initiate a change of context.
 
-- 3.2.2 On Input: Changing the setting of any user interface component does not automatically cause a change of context
-  unless the user has been advised of the behavior before using the component.
+  >Ogni componente interativo deve essere cliccato per cambiare il contesto(interaggire) on focus ci sono solo cambiamenti di stilo per evidenziare il tipo di elemento. 
+
+- ~~3.2.2 On Input: Changing the setting of any user interface component does not automatically cause a change of context~~
+  ~~unless the user has been advised of the behavior before using the component.~~
 
 - 3.3.1 Error Identification: If an input error is automatically detected, the item that is in error is identified and
   the error is described to the user in text.
 
+  >fatto nella validazione di login se input non e di lunghezza minima ed e anche facile vedere dove bisogna mettere le info.
+  
 - 3.3.2 Labels or Instructions: Labels or instructions are provided when content requires user input.
 
-- 4.1.1 Parsing: In content implemented using markup languages, elements have complete start and end tags, elements are
-  nested according to their specifications, elements do not contain duplicate attributes, and any IDs are unique, except
-  where the specifications allow these features.
+  >ogni input field e sempre dentro una mat-form che garantisce il label.(nella login non ce mat-label, nella search title c'e)
+
+- ~~4.1.1 Parsing: In content implemented using markup languages, elements have complete start and end tags, elements are~~
+  ~~nested according to their specifications, elements do not contain duplicate attributes, and any IDs are unique, except~~
+  ~~where the specifications allow these features.~~
 
 - 4.1.2 Name, Role, Value: For all user interface components (including but not limited to: form elements, links and
   components generated by scripts), the name and role can be programmatically determined; states, properties, and values
   that can be set by the user can be programmatically set; and notification of changes to these items is available to
   user agents, including assistive technologies.
+  
+  >fatto dapertutto
 
 Level AA:
 
