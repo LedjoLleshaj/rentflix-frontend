@@ -62,6 +62,11 @@
 
   >Non abbiamo link? ma nella sidebar solo buttoni che reinderizzano la view
 
+- 2.5.1 Pointer Gestures: All functionality that uses multipoint or path-based gestures for operation can be operated
+  with a single pointer without a path-based gesture, unless a multipoint or path-based gesture is essential.
+
+  >Nelle slider della tabella quando si parla di dimensioni piccole e possibile cambiare usando arrayKey e anche mouse pointer.
+  
 - 2.5.2 Pointer Cancellation: For functionality that can be operated using a single pointer, at least one of the
   following is true:
 
@@ -119,42 +124,90 @@ Level AA:
 
 - 1.3.4 Orientation: Content does not restrict its view and operation to a single display orientation, such as portrait
   or landscape, unless a specific display orientation is essential.
-- 1.3.5 Identify Input Purpose: The purpose of each input field collecting information about the user can be
-  programmatically
+  
+  >il nostro app funziona in entrambi i modi(portrait/landscape) anche se per mobile e consigliabile usare landscape soprattuo per le tabelle ogni funzionamento e garantito in qualsiasi dimensione.
+  
+- ~~1.3.5 Identify Input Purpose: The purpose of each input field collecting information about the user can be~~
+  ~~programmatically~~
+  
+  >Non abbiamo implementato la autocomplete.
+  
 - 1.4.3 Contrast (Minimum): The visual presentation of text and images of text has a contrast ratio of at least 4.5:1
+
+  >Controllato con AXE devtools e risolto.
+
 - 1.4.4 Resize text: Except for captions and images of text, text can be resized without assistive technology up to 200
   percent without loss of content or functionality.
+  
+  >Abbiamo implementato la (zoom-in/zoom-out) che aiuta a cambiare le dimensioni della pagina (non solo text)
+  
 - (Check) 1.4.10 Reflow: Content can be presented without loss of information or functionality, and without requiring
   scrolling in two dimensions
+  
+  > La pagina e testata con le dimensioni di tablet mobile e desktop ed garantito la responsiveness
+  
 - (Check) 1.4.11 Non-text Contrast: The visual presentation of the following have a contrast ratio of at least 3:1
   against adjacent color(s)
+  
+  >Garantito ta material e testato con AXE devtools
+  
 - (Check) 1.4.13 Content on Hover or Focus: Where receiving and then removing pointer hover or keyboard focus triggers
   additional content to become visible and then hidden, the following...
+  
+  Abbiamo usato sia hover mettendo una shadow sia cambiando il pointer.
+  
 - (Check) 2.4.6 Headings and Labels: Headings and labels describe topic or purpose.
+
+  >Abbiamo sempre messo la label per input
+
 - (Check) 2.4.7 Focus Visible: Any keyboard operable user interface has a mode of operation where the keyboard focus
   indicator is visible.
-- 2.5.1 Pointer Gestures: All functionality that uses multipoint or path-based gestures for operation can be operated
-  with a single pointer without a path-based gesture, unless a multipoint or path-based gesture is essential.
-- 3.1.2 Language of Parts: The human language of each passage or phrase in the content can be programmatically
-  determined except for proper names, technical terms, words of indeterminate language, and words or phrases that have
-  become part of the vernacular of the immediately surrounding text.
+  
+  >Garantito da Material
+  
+- ~~3.1.2 Language of Parts: The human language of each passage or phrase in the content can be programmatically~~
+  ~~determined except for proper names, technical terms, words of indeterminate language, and words or phrases that have~~
+  ~~become part of the vernacular of the immediately surrounding text.~~
+  
+  >Non abbiamo language changes
+  
 - 3.2.3 Consistent Navigation: Navigational mechanisms that are repeated on multiple Web pages within a set of Web pages
   occur in the same relative order each time they are repeated, unless a change is initiated by the user.
+  
+  >Gli elementi sono sempre nello stesso ordine.
+  
 - 3.2.4 Consistent Identification: Components that have the same functionality within a set of Web pages are identified
-  consistently.Pointer
-- 3.3.3 Error Suggestion: If an input error is automatically detected and suggestions for correction are known, then the
+  consistently.
+  
+  >Per i buttoni che cambiano funzionalita (dark/light mode) cambia anche la aria label sempre
+  
+-  3.3.3 Error Suggestion: If an input error is automatically detected and suggestions for correction are known, then the
   suggestions are provided to the user, unless it would jeopardize the security or purpose of the content.
+  
+  >Nella login form abbiamo implementato la validazione che da anche il tipo di errore(>4  char...) Non diamo suggerimenti nella serach title siccome abbiamo fatto in modo che la tabella si aggiorna continuamente.
+  
 - 3.3.4 Error Prevention (Legal, Financial, Data): For Web pages that cause legal commitments or financial transactions
   for the user to occur, that modify or delete user-controllable data in data storage systems, or that submit user test
   responses, at least one of the following is true:
-  - Reversible: Submissions are reversible.
+  
+  - ~~Reversible: Submissions are reversible.~~
   - Checked: Data entered by the user is checked for input errors and the user is provided an opportunity to correct
     them.
+  
+  >La data viene preso gia in formato corretto siccome lutente sceglie tra le possibile opzioni
+  
   - Confirmed: A mechanism is available for reviewing, confirming, and correcting information before finalizing the
     submission.
-- 4.1.3 Status Messages: In content implemented using markup languages, status messages can be programmatically
-  determined through role or properties such that they can be presented to the user by assistive technologies without
-  receiving focus.
+  
+  >Abbiamo una confirmation dialog quando si fa la renting di un film
+  
+- ~~4.1.3 Status Messages: In content implemented using markup languages, status messages can be programmatically~~
+  ~~determined through role or properties such that they can be presented to the user by assistive technologies without~~
+  ~~receiving focus.~~
+  
+  
+  
+  
 
 L'attributo role: specifica il ruolo (semantica) dell'elemento (button, checkbox, tree, tablist, tab, ecc);
 
