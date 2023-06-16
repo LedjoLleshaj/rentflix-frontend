@@ -55,7 +55,6 @@
     <!-- return_date -->
     <ng-container matColumnDef="return_date">
       <th
-        class="rf-text-center"
         scope="col"
         mat-header-cell
         *matHeaderCellDef
@@ -69,17 +68,16 @@
         mat-cell
         *matCellDef="let rent"
         [attr.aria-label]="
-          'Return date ' + (rent.return_date ? (rent.return_date | date : 'dd/MM/yyyy') : 'In progress...')
+          'Return date ' + (rent.return_date ? (rent.return_date | date : 'dd/MM/yyyy') : 'In progress')
         "
       >
-        {{ rent.return_date ? (rent.return_date | date : 'dd/MM/yyyy') : 'In progress...' }}
+        {{ rent.return_date ? (rent.return_date | date : 'dd/MM/yyyy') : 'In progress' }}
       </td>
     </ng-container>
 
     <!-- rental period -->
     <ng-container matColumnDef="rental_period">
       <th
-        class="rf-text-center"
         mat-header-cell
         *matHeaderCellDef
         scope="col"
@@ -92,9 +90,9 @@
         class="rf-table-row"
         mat-cell
         *matCellDef="let rent"
-        [attr.aria-label]="'Rental period ' + rent.return_date ? rent.rental_period + ' days' : 'In progress...'"
+        [attr.aria-label]="'Rental period ' + rent.return_date ? rent.rental_period + ' days' : 'In progress'"
       >
-        {{ rent.return_date ? rent.rental_period + ' days' : 'In progress...' }}
+        {{ rent.return_date ? rent.rental_period + ' days' : 'In progress' }}
       </td>
     </ng-container>
 
@@ -136,17 +134,19 @@
         *matCellDef="let rent"
         [attr.aria-label]="rent.payment ? rent.payment.amount + ' €' : 'In progress to be returned'"
       >
-        {{ rent.payment ? rent.payment.amount + ' €' : 'In progress...' }}
+        {{ rent.payment ? rent.payment.amount + ' €' : 'In progress' }}
       </td>
     </ng-container>
 
     <!-- rental info button -->
     <ng-container matColumnDef="rental-info" sticky>
-      <th class="rf-text-center" mat-header-cell *matHeaderCellDef role="columnheader" scope="col">Rent details</th>
+      <th mat-header-cell *matHeaderCellDef scope="col">Rent details</th>
       <td mat-cell *matCellDef="let rental" [attr.aria-label]="'Rent details of ' + rental.inventory.film.title">
         <button
-          class="xl:w-2/3 w-full rf-text-center"
+          class="xl:w-2/3 w-full"
           mat-flat-button
+          title="Rent details"
+          aria-label="Rent details"
           color="primary"
           (click)="this.infoRental.emit(rental)"
         >
