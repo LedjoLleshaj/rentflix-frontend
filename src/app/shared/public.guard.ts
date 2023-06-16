@@ -1,18 +1,16 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
-import { LOCAL_STORAGE_KEYS } from './constants';
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { LOCAL_STORAGE_KEYS } from "./constants";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class PublicGuard {
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router) {}
 
   canActivate(): boolean {
     if (localStorage.getItem(LOCAL_STORAGE_KEYS.AUTH_TOKEN) !== null) {
-      this.router.navigate(['/']);
+      this.router.navigate(["/"]);
       return false;
     }
     return true;

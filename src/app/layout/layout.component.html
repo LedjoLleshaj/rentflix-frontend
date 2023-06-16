@@ -43,11 +43,11 @@
 
 
   <mat-sidenav-content role="main">
-    <mat-toolbar class="rf-toolbar" role="heading" aria-level="1">
+    <mat-toolbar class="rf-toolbar" role="heading">
       <!-- open menu and title -->
       <div class="flex items-center">
         <button mat-icon-button (click)="rfnav.toggle()"
-                [attr.title]="rfnav.opened ? 'Close sidenav' : 'Open sidenav'"
+                [title]="rfnav.opened ? 'Close sidenav' : 'Open sidenav'"
                 [attr.aria-label]="rfnav.opened ? 'Close sidenav' : 'Open sidenav'"
         >
           <mat-icon>menu</mat-icon>
@@ -59,7 +59,7 @@
         <button (click)="this.darkModeService.toggleDarkMode()"
                 mat-stroked-button
                 [attr.aria-label]="this.darkModeService.darkMode ? 'Active dark mode' : 'Active light mode'"
-                [attr.title]="this.darkModeService.darkMode ? 'Active dark mode' : 'Active light mode'">
+                [title]="this.darkModeService.darkMode ? 'Active dark mode' : 'Active light mode'">
           <mat-icon style="margin:0">{{this.darkModeService.darkMode ? 'light_mode' : 'dark_mode'}}</mat-icon>
         </button>
         <!-- logout -->

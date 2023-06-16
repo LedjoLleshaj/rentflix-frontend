@@ -1,4 +1,4 @@
-import { gql } from 'apollo-angular';
+import { gql } from "apollo-angular";
 
 export interface RentFilmInput {
   film_id: number;
