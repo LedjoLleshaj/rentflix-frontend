@@ -1,4 +1,4 @@
-<h1 tabindex="0" mat-dialog-title aria-label="Rent a film dialog" class="text-2xl font-bold" style="margin: 0">
+<h1 mat-dialog-title class="text-2xl font-bold" style="margin: 0">
   Rental film
 </h1>
 <mat-divider />
@@ -9,7 +9,7 @@
       <form class="my-2" [formGroup]="rentalForm">
         <!-- Show list of stores -->
         <div class="border border-gray-200 rounded p-2">
-          <p tabindex="0" class="mat-body-1">In which store do you want to rent it?</p>
+          <p class="mat-body-1">In which store do you want to rent it?</p>
           <mat-chip-listbox
             aria-label="Store selection"
             [multiple]="false"
@@ -20,7 +20,6 @@
               class="overflow-hidden text-ellipsis whitespace-nowrap"
               *ngFor="let store of film.availableStores"
               [value]="store"
-              tabIndex="0"
               [aria-label]="
                 store.address.address + ' (' + store.address.city.city + ', ' + store.address.city.country.country + ')'
               "
@@ -29,24 +28,22 @@
           </mat-chip-listbox>
         </div>
         <div class="border border-gray-200 rounded p-2 my-4">
-          <p tabindex="0" class="text-base">What day do you want to rent it?</p>
+          <p class="mat-body-1">What day do you want to rent it?</p>
           <mat-chip-listbox
             aria-label="Rental date selection"
             [multiple]="false"
             [required]="true"
             formControlName="selectedDateControl"
           >
-            <mat-chip-option tabindex="0" [aria-label]="'Today -' + formatDate(getToday())" [value]="getToday()"
+            <mat-chip-option [aria-label]="'Today -' + formatDate(getToday())" [value]="getToday()"
             >Today - {{ formatDate(getToday()) }}
             </mat-chip-option>
             <mat-chip-option
-              tabindex="0"
               [aria-label]="'Tomorrow' + formatDate(getDatePlusNDays(1))"
               [value]="getDatePlusNDays(1)"
             >Tomorrow - {{ formatDate(getDatePlusNDays(1)) }}</mat-chip-option
             >
             <mat-chip-option
-              tabindex="0"
               [aria-label]="formatDate(getDatePlusNDays(2))"
               [value]="getDatePlusNDays(2)"
             >{{ formatDate(getDatePlusNDays(2)) }}</mat-chip-option
@@ -54,11 +51,13 @@
           </mat-chip-listbox>
         </div>
         <div class="flex justify-end">
-          <button aria-label="Cancel renting this film" mat-button (click)="this.dialogRef.close()" class="mr-2">
+          <button title="Cancel renting this film" aria-label="Cancel renting this film" mat-button
+                  (click)="this.dialogRef.close()" class="mr-2">
             Cancel
           </button>
           <button
             mat-flat-button
+            title="Go to Next step"
             aria-label="Go to Next step"
             matStepperNext
             class="rounded-button"
@@ -73,20 +72,17 @@
 
     <mat-step [completed]="this.rentalForm.valid">
       <ng-template matStepLabel>Confirm rental</ng-template>
-      <div tabindex="0" aria-label="Rental details" *ngIf="isValidData" class="border w-full p-4 rounded-lg my-4">
+      <div *ngIf="isValidData" class="border w-full p-4 rounded-lg my-4">
         <!-- Film title -->
         <div class="flex mb-2">
           <div class="flex items-center px-1">
             <span
-              tabindex="0"
-              aria-label="Film title"
-              class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 border"
-            >
+              class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 border">
               Film
             </span>
           </div>
           <div class="flex items-center">
-            <span tabindex="0" class="text-base font-normal"> {{ film.title }} ({{ film.release_year }}) </span>
+            <span class="text-base font-normal"> {{ film.title }} ({{ film.release_year }}) </span>
           </div>
         </div>
 
@@ -94,15 +90,13 @@
         <div class="flex mb-2">
           <div class="flex items-center px-1">
             <span
-              tabindex="0"
-              aria-label="Store address"
               class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10"
             >
               Store
             </span>
           </div>
           <div class="flex items-center">
-            <span tabindex="0" class="text-xs md:text-base font-normal">{{ storeLabel }}</span>
+            <span class="text-xs md:text-base font-normal">{{ storeLabel }}</span>
           </div>
         </div>
 
@@ -110,15 +104,13 @@
         <div class="flex mb-2">
           <div class="flex items-center px-1">
             <span
-              tabindex="0"
-              aria-label="Rental date"
               class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10"
             >
               Rental date
             </span>
           </div>
           <div class="flex items-center">
-            <span tabindex="0" class="text-base font-normal">{{ dateLabel }}</span>
+            <span class="text-base font-normal">{{ dateLabel }}</span>
           </div>
         </div>
 
@@ -126,22 +118,23 @@
         <div class="flex mb-2">
           <div class="flex items-center px-1">
             <span
-              tabindex="0"
-              aria-label="Rental rate"
               class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10"
             >
               Rental rate
             </span>
           </div>
           <div class="flex items-center">
-            <span tabindex="0" class="text-base font-normal">{{ film.rental_rate }}/day</span>
+            <span class="text-base font-normal">{{ film.rental_rate }}$/day</span>
           </div>
         </div>
       </div>
       <div class="flex justify-end">
-        <button class="mx-2" aria-label="Go back to previous step" mat-button matStepperPrevious>Back</button>
+        <button class="mx-2" title="Go back to previous step" aria-label="Go back to previous step" mat-button
+                matStepperPrevious>Back
+        </button>
         <button
           aria-label="Confirm renting"
+          title="Confirm renting"
           mat-flat-button
           matStepperNext
           class="rounded-button"
