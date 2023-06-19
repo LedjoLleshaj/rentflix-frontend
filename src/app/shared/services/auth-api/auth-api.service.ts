@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Apollo } from 'apollo-angular';
-import { Subject } from 'rxjs';
-import { LOGIN_QUERY } from 'src/app/graphql/login';
-import { AuthDetails, AuthResponse } from 'src/app/models/auth.model';
-import { LOCAL_STORAGE_KEYS } from '../../constants';
-import { Router } from '@angular/router';
+import { Injectable } from "@angular/core";
+import { Apollo } from "apollo-angular";
+import { Subject } from "rxjs";
+import { LOGIN_QUERY } from "src/app/graphql/login";
+import { AuthDetails, AuthResponse } from "src/app/models/auth.model";
+import { LOCAL_STORAGE_KEYS } from "../../constants";
+import { Router } from "@angular/router";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class AuthApiService {
   constructor(private apollo: Apollo) {}
@@ -17,7 +17,7 @@ export class AuthApiService {
     this.apollo
       .query<AuthResponse>({
         query: LOGIN_QUERY,
-        variables: { username, password }
+        variables: { username, password },
       })
       .subscribe({
         next: ({ data }) => response.next(data.login),
@@ -32,6 +32,6 @@ export class AuthApiService {
         localStorage.removeItem(key);
       }
     });
+    window.location.reload();
   }
-
 }

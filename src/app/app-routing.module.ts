@@ -11,13 +11,13 @@ const routes: Routes = [
   {
     path: '', component: LayoutComponent,
     children: [
-      { path: '', component: FilmViewComponent, },
-      { path: 'history', component: HistoryViewComponent }
+      { path: '', component: FilmViewComponent, title: 'Available Film - Rentflix' },
+      { path: 'history', component: HistoryViewComponent, title: 'Rental histoy - Rentflix' }
     ],
     canActivate: [AuthGuard]
 
   },
-  { path: 'login', component: LoginComponent, canActivate: [PublicGuard]},
+  { path: 'login', component: LoginComponent, canActivate: [PublicGuard], title: 'Login - Rentflix' },
 ];
 
 @NgModule({

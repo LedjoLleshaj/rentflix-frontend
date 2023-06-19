@@ -1,22 +1,21 @@
-import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import { AvailableStore, Film, RentalRequest } from 'src/app/graphql/film';
+import { Component, Inject } from "@angular/core";
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from "@angular/material/dialog";
+import { AvailableStore, Film, RentalRequest } from "src/app/graphql/film";
 
-import { FormBuilder, Validators, FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatStepperModule } from '@angular/material/stepper';
-import { MatButtonModule } from '@angular/material/button';
-import { SelectStoreComponent } from '../select-store/select-store.component';
+import { FormBuilder, Validators, FormsModule, ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatStepperModule } from "@angular/material/stepper";
+import { MatButtonModule } from "@angular/material/button";
 
-import { NgForOf, NgIf } from '@angular/common';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatCardModule } from '@angular/material/card';
-import { MatDividerModule } from '@angular/material/divider';
+import { NgForOf, NgIf } from "@angular/common";
+import { MatChipsModule } from "@angular/material/chips";
+import { MatCardModule } from "@angular/material/card";
+import { MatDividerModule } from "@angular/material/divider";
 
 @Component({
-  selector: 'app-film-rent-dialog',
-  templateUrl: './film-rent-dialog.component.html',
+  selector: "app-film-rent-dialog",
+  templateUrl: "./film-rent-dialog.component.html",
   standalone: true,
   imports: [
     MatButtonModule,
@@ -25,14 +24,13 @@ import { MatDividerModule } from '@angular/material/divider';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    SelectStoreComponent,
     NgIf,
     NgForOf,
     MatChipsModule,
     MatCardModule,
     MatDialogModule,
-    MatDividerModule
-  ]
+    MatDividerModule,
+  ],
 })
 export class FilmRentDialogComponent {
   // selectedStore?: AvailableStore;
@@ -47,11 +45,11 @@ export class FilmRentDialogComponent {
   ) {
     this.rentalForm = this._formBuilder.group({
       selectedStoreControl: new FormControl<AvailableStore | null>(null, Validators.required),
-      selectedDateControl: new FormControl<Date | null>(null, Validators.required)
+      selectedDateControl: new FormControl<Date | null>(null, Validators.required),
     });
 
     if (film.availableStores?.length === 1) {
-      this.rentalForm.get('selectedStoreControl')?.setValue(film.availableStores[0]);
+      this.rentalForm.get("selectedStoreControl")?.setValue(film.availableStores[0]);
     }
   }
 
@@ -70,7 +68,7 @@ export class FilmRentDialogComponent {
 
   // Format date to DD/MM
   formatDate(date: Date) {
-    return date.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit' });
+    return date.toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit" });
   }
 
   get isValidData() {
@@ -78,34 +76,34 @@ export class FilmRentDialogComponent {
   }
 
   get selectedStore() {
-    return this.rentalForm.get('selectedStoreControl')?.value;
+    return this.rentalForm.get("selectedStoreControl")?.value;
   }
 
   get selectedDate() {
-    return this.rentalForm.get('selectedDateControl')?.value;
+    return this.rentalForm.get("selectedDateControl")?.value;
   }
 
   get storeLabel() {
     const address = this.selectedStore.address.address;
     const city = this.selectedStore.address.city.city;
     const country = this.selectedStore.address.city.country.country;
-    return address + '(' + city + ', ' + country + ')';
+    return address + "(" + city + ", " + country + ")";
   }
 
   get dateLabel() {
     const date = this.formatDate(this.selectedDate);
     if (this.selectedDate.toISOString() == this.getToday().toISOString()) {
-      return 'Today - ' + date;
+      return "Today - " + date;
     } else if (this.selectedDate.toISOString() === this.getDatePlusNDays(1).toISOString()) {
-      return 'Tomorrow - ' + date;
+      return "Tomorrow - " + date;
     } else {
       return date;
     }
   }
 
   createRental() {
-    const selectedStore = this.rentalForm.get('selectedStoreControl')?.value;
-    const selectedDate = this.rentalForm.get('selectedDateControl')?.value;
+    const selectedStore = this.rentalForm.get("selectedStoreControl")?.value;
+    const selectedDate = this.rentalForm.get("selectedDateControl")?.value;
 
     const rentalRequest = new RentalRequest(
       this.film.film_id,

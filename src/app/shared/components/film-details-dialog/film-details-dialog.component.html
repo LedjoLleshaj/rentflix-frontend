@@ -1,104 +1,82 @@
-<h1 mat-dialog-title class='text-2xl font-bold' tabindex='0' style='margin: 0'>
-  {{ film.title }} ({{ film.release_year }} ) {{ getFlagEmoji(film.language?.name ?? '') }}
+<h1 mat-dialog-title class="text-2xl font-bold" tabindex="0" style="margin: 0">
+  {{ film.title }} ({{ film.release_year }} )
+  <span [attr.aria-label]="film.language?.name">{{ getFlagEmoji(film.language?.name ?? '') }}</span>
 </h1>
 <mat-divider />
 
 <mat-dialog-content>
   <!-- Header -->
-  <div aria-label='film description' class='flex flex-col rounded-2xl gap-4'>
-    <!--
-      <div class='grid grid-cols-10'>
-        <div class='col-span-10 md:col-span-8'>
-          <h1 class='text-2xl font-bold m-0'>{{film.title}} ({{film.release_year}}
-            ) {{getFlagEmoji(film.language?.name ?? '')}}
-          </h1>
-        </div>
-        <div class='col-span-10 md:col-span-2'>
-          <div class='w-full flex xs:justify-start md:justify-end'>
-          <span
-            class='rf-blue-label'>{{film.length}}
-            min</span>
-            <span
-              class='rf-red-label'>{{film.rating}}</span>
-          </div>
-        </div>
-      </div>
-      -->
-    <p class='mat-body-2' tabindex='0' style='margin: 0'>
+  <div class="flex flex-col rounded-2xl gap-4">
+    <p class="mat-body-2" style="margin: 0">
       {{ film.description }}
     </p>
     <!-- Film and rent details -->
-    <div tabindex='0' aria-label='film details' class='flex flex-col'>
-      <h4 class='text-xl font-bold' style='margin: 0'>Details</h4>
-      <div class='grid grid-cols-10 gap-2 border rounded w-full p-4'>
+    <div class="flex flex-col">
+      <h4 class="text-xl font-bold" style="margin: 0">Details</h4>
+      <div class="grid grid-cols-10 gap-2 border rounded w-full p-4">
         <!-- actors -->
-        <div class='col-span-4 md:col-span-2'>
-          <span class='rf-blue-label w-full'>Actors</span>
+        <div class="col-span-4 md:col-span-2">
+          <span class="rf-blue-label w-full">Actors</span>
         </div>
-        <div tabindex='0' aria-label='actors in the film' class='col-span-6 md:col-span-8'>
-          <span tabindex='0' *ngIf='film.actors' class='mat-body-2'> {{ actorsList() }}</span>
+        <div class="col-span-6 md:col-span-8">
+          <span *ngIf="film.actors" class="mat-body-2"> {{ actorsList() }}</span>
         </div>
         <!-- film length -->
-        <div class='col-span-4 md:col-span-2'>
-          <span class='rf-blue-label w-full'>Length</span>
+        <div class="col-span-4 md:col-span-2">
+          <span class="rf-blue-label w-full">Length</span>
         </div>
-        <div tabindex='0' aria-label='film length in minutes' class='col-span-6 md:col-span-8'>
-          <span tabindex='0' class='mat-body-2'> {{ film.length }} min </span>
+        <div class="col-span-6 md:col-span-8">
+          <span class="mat-body-2"> {{ film.length }} min </span>
         </div>
         <!-- rating -->
-        <div class='col-span-4 md:col-span-2'>
-          <span class='rf-blue-label w-full'>Rating</span>
+        <div class="col-span-4 md:col-span-2">
+          <span class="rf-blue-label w-full">Rating</span>
         </div>
-        <div tabindex='0' aria-label='film rating' class='col-span-6 md:col-span-8'>
-          <span tabindex='0' class='mat-body-2'> {{ film.rating }} </span>
+        <div class="col-span-6 md:col-span-8">
+          <span class="mat-body-2"> {{ film.rating }} </span>
         </div>
         <!-- categories -->
-        <div class='col-span-4 md:col-span-2'>
-          <span class='rf-blue-label w-full'>Categories</span>
+        <div class="col-span-4 md:col-span-2">
+          <span class="rf-blue-label w-full">Categories</span>
         </div>
-        <div tabindex='0' aria-label='film category' class='col-span-6 md:col-span-8'>
-          <span tabindex='0' class='mat-body-2'> {{ film.category?.name }} </span>
+        <div class="col-span-6 md:col-span-8">
+          <span class="mat-body-2"> {{ film.category?.name }} </span>
         </div>
         <!--max rent duration -->
-        <div class='col-span-4 md:col-span-2'>
-          <span class='rf-blue-label w-full'>Max rent duration</span>
+        <div class="col-span-4 md:col-span-2">
+          <span class="rf-blue-label w-full">Max rent duration</span>
         </div>
-        <div tabindex='0' aria-label='film rental duration' class='col-span-6 md:col-span-8'>
-          <span tabindex='0' class='mat-body-2'> {{ film.rental_duration }} days </span>
+        <div class="col-span-6 md:col-span-8">
+          <span class="mat-body-2"> {{ film.rental_duration }} days </span>
         </div>
         <!-- actors -->
-        <div class='col-span-4 md:col-span-2'>
-          <span class='rf-blue-label w-full'>Price</span>
+        <div class="col-span-4 md:col-span-2">
+          <span class="rf-blue-label w-full">Price</span>
         </div>
-        <div tabindex='0' aria-label='rental rate per day' class='col-span-6 md:col-span-8'>
-          <span tabindex='0' class='mat-body-2'> {{ film.rental_rate }}/day </span>
+        <div class="col-span-6 md:col-span-8">
+          <span class="mat-body-2"> {{ film.rental_rate }}/day </span>
         </div>
       </div>
     </div>
     <!-- Available store -->
-    <div tabindex='0' aria-label='Availability of the film' class='flex flex-col'>
-      <h4 class='text-xl font-bold' style='margin: 0'>Availability</h4>
-      <div class='border rounded w-full p-4'>
-        <div tabindex='0' aria-label='Stores with available coppies' class='flex flex-wrap gap-1'>
-          <span tabindex='0' *ngFor='let store of film.availableStores' class='rf-label-bordered'>
+    <div class="flex flex-col">
+      <h4 class="text-xl font-bold" style="margin: 0">Availability</h4>
+      <div class="border rounded w-full p-4">
+        <div class="flex flex-wrap gap-1">
+          <span *ngFor="let store of film.availableStores" class="rf-label-bordered">
             {{ store.address.address }} ({{ store.address.city.city }}, {{ store.address.city.country.country }})
           </span>
         </div>
       </div>
     </div>
   </div>
-  <div class='flex justify-end content-end gap-2 mt-4'>
-    <button mat-button title='Close film details dialog' aria-label='Close film details dialog'
-            (click)='dialogRef.close()'>Close
+  <div class="flex justify-end content-end gap-2 mt-4">
+    <button mat-button title="Close film details dialog" aria-label="Close film details dialog"
+            (click)="dialogRef.close()">Close
     </button>
-    <button mat-flat-button color='primary' title='Open dialog to rent the movie'
-            aria-label='Open dialog to rent the movie'
-            (click)='startRent()'>Rent
+    <button mat-flat-button color="primary" title="Open dialog to rent the movie"
+            aria-label="Open dialog to rent the movie"
+            (click)="startRent()">Rent
     </button>
   </div>
 </mat-dialog-content>
-<!-- <mat-divider></mat-divider>
-<mat-dialog-actions align="end">
-  <button mat-button aria-label="Close film details dialog" (click)="dialogRef.close()">Close</button>
-  <button mat-flat-button color="primary" aria-label="Start renting this movie" (click)="startRent()">Rent</button>
-</mat-dialog-actions>-->

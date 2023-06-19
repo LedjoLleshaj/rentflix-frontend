@@ -1,7 +1,7 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@use "@angular/material" as mat;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -26,7 +26,7 @@ $rf-default-theme: mat.define-light-theme(
 $rf-dark-theme: mat.define-dark-theme(
     (
       color: (
-        primary: mat.define-palette(mat.$cyan-palette),
+        primary: mat.define-palette(mat.$cyan-palette, 200),
         accent: mat.define-palette(mat.$blue-grey-palette, A200, A100, A400),
         warn: mat.define-palette(mat.$amber-palette),
       ),
@@ -37,6 +37,7 @@ $rf-dark-theme: mat.define-dark-theme(
 
 .rf-title {
   color: #3f51b5;
+  font-weight: 700 !important;
 }
 
 // Include theme styles for core and each component used in your app.
@@ -52,6 +53,7 @@ $rf-dark-theme: mat.define-dark-theme(
 
   .rf-title {
     color: #00bcd4 !important;
+    font-weight: 700 !important;
   }
 
   .rf-toolbar {
@@ -72,9 +74,8 @@ mat-card {
   @apply rounded-xl;
 }
 
-
 // zoom tags
-div.rf-zoom {
+.rf-zoom {
   @apply fixed bottom-0 right-0 mb-2 mr-2;
   z-index: 1;
 
@@ -184,14 +185,14 @@ div.rf-zoom {
   @apply inline-flex items-center rounded-md;
   @apply px-2 py-1;
   @apply text-xs font-medium text-blue-700 bg-blue-50;
-  @apply ring-1 ring-inset ring-blue-700/10 ;
+  @apply ring-1 ring-inset ring-blue-700/10;
 }
 
 .rf-red-label {
   @apply inline-flex items-center rounded-md;
   @apply px-2 py-1;
   @apply text-xs font-medium text-red-700 bg-red-50;
-  @apply ring-1 ring-inset ring-red-600/10 ;
+  @apply ring-1 ring-inset ring-red-600/10;
 }
 
 .rf-label-bordered {

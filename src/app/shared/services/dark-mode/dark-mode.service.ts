@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { LOCAL_STORAGE_KEYS } from '../../constants';
+import { Injectable } from "@angular/core";
+import { LOCAL_STORAGE_KEYS } from "../../constants";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class DarkModeService {
   public darkMode: boolean = false;
@@ -19,10 +19,10 @@ export class DarkModeService {
   }
 
   private loadDarkModeSetting(): void {
-    this.darkMode = localStorage.getItem(LOCAL_STORAGE_KEYS.DARK_MODE) === 'true';
+    this.darkMode = localStorage.getItem(LOCAL_STORAGE_KEYS.DARK_MODE) === "true";
   }
 
   private applyDarkMode(): void {
-    this.darkMode ? document.body.classList.add('rf-dark-theme') : document.body.classList.remove('rf-dark-theme');
+    this.darkMode ? document.body.classList.add("rf-dark-theme") : document.body.classList.remove("rf-dark-theme");
   }
 }

@@ -1,8 +1,8 @@
-import { gql } from 'apollo-angular';
+import { gql } from "apollo-angular";
 
 enum Sort {
-  asc = 'asc',
-  desc = 'desc',
+  asc = "asc",
+  desc = "desc",
 }
 
 export interface Rental {

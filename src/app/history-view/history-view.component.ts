@@ -7,11 +7,12 @@ import { MatDialog } from "@angular/material/dialog";
 import { RentalDetailsDialogComponent } from "../shared/components/rental-details-dialog/rental-details-dialog.component";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { ActivatedRoute } from "@angular/router";
+import { LiveAnnouncer } from "@angular/cdk/a11y";
+import { LOCAL_STORAGE_KEYS } from "../shared/constants";
 
 @Component({
   selector: "app-history-view",
   templateUrl: "./history-view.component.html",
-  styleUrls: ["./history-view.component.scss"],
   providers: [RentalApiService, MatProgressSpinnerModule],
 })
 export class HistoryViewComponent {
@@ -27,7 +28,11 @@ export class HistoryViewComponent {
 
   @Output() cardData: CardInput[];
 
-  constructor(private rentalApiService: RentalApiService, private dialog: MatDialog) {}
+  constructor(
+    private rentalApiService: RentalApiService,
+    private dialog: MatDialog,
+    private _liveAnnouncer: LiveAnnouncer
+  ) {}
 
   ngOnInit() {
     this.fetchHistory();
@@ -52,25 +57,21 @@ export class HistoryViewComponent {
           icon: "upcoming",
           stat: String(data.getUser.rental_stats.current_rentals),
           description: "Rentals in progress",
-          iconColor: "text-orange-400",
         },
         {
           icon: "wallet",
           stat: String(data.getUser.rental_stats.total_amount) + " €",
           description: "Total spendings (€)",
-          iconColor: "text-green-400",
         },
         {
           icon: "category",
           stat: data.getUser.rental_stats?.most_frequent_category?.name,
-          description: "Favorite category  ",
-          iconColor: "text-cyan-400",
+          description: "Favorite category",
         },
         {
           icon: "timeline",
           stat: String(data.getUser.rental_stats.total_rentals),
-          description: "Total rentals      ",
-          iconColor: "text-violet-400",
+          description: "Total rentals",
         },
       ];
     });
@@ -108,6 +109,12 @@ export class HistoryViewComponent {
   announceSortChange(sort: any) {
     this.updateFilter(sort);
     this.fetchHistory();
+
+    if (sort.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sort.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce("Sorting cleared");
+    }
   }
 
   ngOnDestroy() {

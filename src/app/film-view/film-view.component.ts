@@ -11,7 +11,6 @@ import { ActivatedRoute } from "@angular/router";
 @Component({
   selector: "app-film-view",
   templateUrl: "./film-view.component.html",
-  styleUrls: ["./film-view.component.scss"],
   providers: [FilmsApiService, MatProgressSpinnerModule],
 })
 export class FilmViewComponent {

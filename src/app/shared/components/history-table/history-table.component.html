@@ -1,9 +1,7 @@
 <div class="rf-table-responsive">
   <table
     mat-table
-    tabindex="0"
     matSort
-    aria-label="Film rental history"
     (matSortChange)="this.announceSortChange.emit($event)"
     [dataSource]="data"
     class="mat-elevation-z1 table"
@@ -16,8 +14,6 @@
       <th
         mat-header-cell
         *matHeaderCellDef
-        class="rf-text-center"
-        role="columnheader"
         scope="col"
         mat-sort-header
         sortActionDescription="Sort by title"
@@ -26,9 +22,8 @@
       </th>
       <td
         mat-cell
-        class="rf-text-center rf-table-row"
+        class="rf-table-row"
         *matCellDef="let rent"
-        [attr.aria-label]="'Title ' + rent.inventory.film.title"
       >
         {{ rent.inventory.film.title }}
       </td>
@@ -38,10 +33,8 @@
 
     <ng-container matColumnDef="rental_date">
       <th
-        class="rf-text-center"
         mat-header-cell
         *matHeaderCellDef
-        role="columnheader"
         scope="col"
         mat-sort-header
         sortActionDescription="Sort by rental date"
@@ -49,11 +42,9 @@
         Rental date
       </th>
       <td
-        class="rf-text-center rf-table-row"
+        class="rf-table-row"
         mat-cell
-        tabindex="0"
         *matCellDef="let rent"
-        [attr.aria-label]="'Rental date ' + (rent.rental_date | date : 'dd/MM/yyyy')"
       >
         {{ rent.rental_date | date : 'dd/MM/yyyy' }}
       </td>
@@ -62,36 +53,28 @@
     <!-- return_date -->
     <ng-container matColumnDef="return_date">
       <th
-        class="rf-text-center"
+        scope="col"
         mat-header-cell
         *matHeaderCellDef
-        role="columnheader"
-        scope="col"
         mat-sort-header
         sortActionDescription="Sort by return date"
       >
         Return date
       </th>
       <td
-        class="rf-text-center rf-table-row"
+        class="rf-table-row"
         mat-cell
-        tabindex="0"
         *matCellDef="let rent"
-        [attr.aria-label]="
-          'Return date ' + (rent.return_date ? (rent.return_date | date : 'dd/MM/yyyy') : 'In progress...')
-        "
       >
-        {{ rent.return_date ? (rent.return_date | date : 'dd/MM/yyyy') : 'In progress...' }}
+        {{ rent.return_date ? (rent.return_date | date : 'dd/MM/yyyy') : 'In progress' }}
       </td>
     </ng-container>
 
     <!-- rental period -->
     <ng-container matColumnDef="rental_period">
       <th
-        class="rf-text-center"
         mat-header-cell
         *matHeaderCellDef
-        role="columnheader"
         scope="col"
         mat-sort-header
         sortActionDescription="Sort by rental period"
@@ -99,23 +82,19 @@
         Rental period
       </th>
       <td
-        class="rf-text-center rf-table-row"
+        class="rf-table-row"
         mat-cell
-        tabindex="0"
         *matCellDef="let rent"
-        [attr.aria-label]="'Rental period ' + rent.return_date ? rent.rental_period + ' days' : 'In progress...'"
       >
-        {{ rent.return_date ? rent.rental_period + ' days' : 'In progress...' }}
+        {{ rent.return_date ? rent.rental_period + ' days' : 'In progress' }}
       </td>
     </ng-container>
 
     <!-- address -->
     <ng-container matColumnDef="address">
       <th
-        class="rf-text-center"
         mat-header-cell
         *matHeaderCellDef
-        role="columnheader"
         scope="col"
         mat-sort-header
         sortActionDescription="Sort by address"
@@ -123,11 +102,9 @@
         Address
       </th>
       <td
-        class="rf-text-center rf-table-row"
+        class="rf-table-row"
         mat-cell
-        tabindex="0"
         *matCellDef="let rent"
-        [attr.aria-label]="'Address ' + rent.inventory.store.address.address"
       >
         {{ rent.inventory.store.address.address }}
       </td>
@@ -136,10 +113,8 @@
     <!-- amount -->
     <ng-container matColumnDef="amount">
       <th
-        class="rf-text-center"
         mat-header-cell
         *matHeaderCellDef
-        role="columnheader"
         scope="col"
         mat-sort-header
         sortActionDescription="Sort by amount"
@@ -147,23 +122,23 @@
         Amount
       </th>
       <td
-        class="rf-text-center rf-table-row"
+        class="rf-table-row"
         mat-cell
-        tabindex="0"
         *matCellDef="let rent"
-        [attr.aria-label]="rent.payment ? rent.payment.amount + ' €' : 'In progress to be returned'"
       >
-        {{ rent.payment ? rent.payment.amount + ' €' : 'In progress...' }}
+        {{ rent.payment ? rent.payment.amount + ' €' : 'In progress' }}
       </td>
     </ng-container>
 
     <!-- rental info button -->
     <ng-container matColumnDef="rental-info" sticky>
-      <th class="rf-text-center" mat-header-cell *matHeaderCellDef role="columnheader" scope="col">Rent details</th>
-      <td mat-cell *matCellDef="let rental" [attr.aria-label]="'Rent details of ' + rental.inventory.film.title">
+      <th mat-header-cell *matHeaderCellDef scope="col">Rent details</th>
+      <td mat-cell *matCellDef="let rental">
         <button
-          class="xl:w-2/3 w-full rf-text-center"
+          class="xl:w-2/3 w-full"
           mat-flat-button
+          title="Rent details"
+          aria-label="Rent details"
           color="primary"
           (click)="this.infoRental.emit(rental)"
         >
