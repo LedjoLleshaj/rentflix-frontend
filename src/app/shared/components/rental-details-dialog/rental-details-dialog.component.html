@@ -93,10 +93,7 @@
         <span class="rf-blue-label w-full">Est. ammount</span>
       </div>
       <div class="col-span-5 md:col-span-7">
-        <span *ngIf="rental.inventory.film.replacement_cost" class="mat-body-2"
-        >€ {{ rental.rental_period * rental.inventory.film.replacement_cost }}</span
-        >
-        <span *ngIf="!rental.inventory.film.replacement_cost" class="mat-body-2"
+        <span class="mat-body-2"
         >€ {{ rental.rental_period * rental.inventory.film.rental_rate }}</span
         >
       </div>

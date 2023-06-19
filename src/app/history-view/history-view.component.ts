@@ -61,7 +61,7 @@ export class HistoryViewComponent {
         {
           icon: "wallet",
           stat: String(data.getUser.rental_stats.total_amount) + " €",
-          description: "Total spendings (€)",
+          description: "Total spendings",
         },
         {
           icon: "category",
